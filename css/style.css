@@ -55,6 +55,10 @@ a:focus {
 div {
   box-sizing: border-box; }
 
+@media (max-width: 48em) {
+  #header {
+    background-size: auto !important; } }
+
 #header {
   padding: 58px 0 0;
   text-align: left;
