@@ -6,12 +6,13 @@ date: 2017-10-11 12:27:18
 tags: 
 - xhtml 
 - html
+categories: 前端知识
 description: xhtml与html的区别以及如何将html转换成xhtml
 ---
 ### 文档结构
-* <!DOCTYPE>是强制的
-* <html>中的XML namespace属性是强制的
-* <html>、<head>、<body>也是强制的
+* &lt;!DOCTYPE&gt;是强制的
+* &lt;html&gt;中的XML namespace属性是强制的
+* &lt;html&gt;、&lt;head&gt;、&lt;body&gt;也是强制的
 ### 元素语法
 * 元素必须正确嵌套
 * 元素必须始终关闭
@@ -23,7 +24,7 @@ description: xhtml与html的区别以及如何将html转换成xhtml
 * 属性最小化也是禁止的
 * 不允许属性简写
 ### 将html转换成xhtml
-1. 添加一个xhtml <!DOCTYPE>到网页中
+1. 添加一个xhtml &lt;!DOCTYPE&gt;到网页中
 2. 添加xmlns属性到每个页面的html元素中
 3. 改变所有元素为小写
 4. 关闭所有空元素
