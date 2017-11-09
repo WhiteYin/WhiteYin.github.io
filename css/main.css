@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d524ff;
+  background: #dac6ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1944,8 +1944,8 @@ pre .javascript .function {
 }
 #zc-wrapper {
   position: absolute;
-  bottom: -50px;
-  left: 0;
+  top: 0;
+  left: -160px;
   font-size: 0;
   text-align: center;
 }
