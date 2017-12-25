@@ -82,7 +82,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="《js高程》笔记之严格模式">
 <meta property="og:url" content="https://whiteyin.github.io/2017/10/22/《js高程》笔记之严格模式/index.html">
-<meta property="og:site_name" content="假装是个技术博客">
+<meta property="og:site_name" content="前端吟游诗">
 <meta property="og:description" content="读《javascript高级程序设计》附录B 严格模式笔记">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-08T09:58:21.858Z">
@@ -124,7 +124,7 @@
 
 
 
-  <title>《js高程》笔记之严格模式 | 假装是个技术博客</title>
+  <title>《js高程》笔记之严格模式 | 前端吟游诗</title>
   
 
 
@@ -164,12 +164,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">假装是个技术博客</span>
+        <span class="site-title">前端吟游诗</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">爱生活，爱游戏</h1>
+        <h1 class="site-subtitle" itemprop="description">爱生活，爱前端</h1>
       
   </div>
 
@@ -270,7 +270,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="假装是个技术博客">
+      <meta itemprop="name" content="前端吟游诗">
     </span>
 
     
@@ -377,8 +377,8 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>严格模式是ES5中引入的概念，使用严格模式，可以在函数内部选择进行较为严格的全局或局部错误条件检测。使用严格模式的好处是可以提早知道代码中存在的错误，及时捕获一些可能导致编程错误的ECMAScript行为。</p>
 <h2 id="一、使用严格模式"><a href="#一、使用严格模式" class="headerlink" title="一、使用严格模式"></a>一、使用严格模式</h2><p>字符串”use strict”是一个使用严格模式的编译指示，支持严格模式的引擎将会启动严格模式，不支持的则当作遇到一个未赋值的字符串字面量。<br>既可以在全局中声明使用严格模式，也可以在函数中声明使用，两者情况下的作用域不同。  </p>
-<h2 id="二、对变量的限制"><a href="#二、对变量的限制" class="headerlink" title="二、对变量的限制"></a>二、对变量的限制</h2><p>首先，不允许意外创建全局变量。即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">message = &apos;hello world&apos;;</div></pre></td></tr></table></figure></p>
-<p>这行代码在非严格模式下将message定义为全局属性，而严格模式则抛出ReferenceError错误。<br>其次，不能对变量调用delete操作符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">delete message;</div></pre></td></tr></table></figure></p>
+<h2 id="二、对变量的限制"><a href="#二、对变量的限制" class="headerlink" title="二、对变量的限制"></a>二、对变量的限制</h2><p>首先，不允许意外创建全局变量。即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">message = &apos;hello world&apos;;</span><br></pre></td></tr></table></figure></p>
+<p>这行代码在非严格模式下将message定义为全局属性，而严格模式则抛出ReferenceError错误。<br>其次，不能对变量调用delete操作符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delete message;</span><br></pre></td></tr></table></figure></p>
 <p>非严格模式下，会返回false静默错误。而严格模式则抛出ReferenceError错误。<br>最后，严格模式还不允许变量使用implements、interface、let、package等保留字。</p>
 <h3 id="三、操作对象"><a href="#三、操作对象" class="headerlink" title="三、操作对象"></a>三、操作对象</h3><ol>
 <li>为只读属性赋值会抛出TypeError；</li>
@@ -386,10 +386,10 @@
 <li>对不可扩展的对象添加属性会抛出TypeError。</li>
 <li>对象的属性名必须唯一：</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var person = &#123;</div><div class="line">    name: &quot;abc&quot;,</div><div class="line">    name: &quot;def&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">    name: &quot;abc&quot;,</span><br><span class="line">    name: &quot;def&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>非严格模式中，最后声明的name属性值生效，而严格模式中这种代码会导致语法错误。</p>
 <h2 id="四、函数"><a href="#四、函数" class="headerlink" title="四、函数"></a>四、函数</h2><ol>
-<li>函数形参必须唯一，不能重名。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function add(num,num)&#123;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li>函数形参必须唯一，不能重名。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function add(num,num)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>非严格模式中，重名形参只能访问到最后一个，而严格模式下会报语法错误。</p>
@@ -397,13 +397,13 @@
 <li>严格模式修改形参无法反映到arguments对象。</li>
 <li>禁用arguments.callee和arguments.caller</li>
 <li>保留字无法用来命名函数</li>
-<li>if语句中无法命名函数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if(1)&#123;</div><div class="line">    function add(a,b)&#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<li>if语句中无法命名函数：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if(1)&#123;</span><br><span class="line">    function add(a,b)&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>非严格模式下会将add函数提升到if语句外，而严格模式报语法错误。</p>
-<h2 id="五、eval"><a href="#五、eval" class="headerlink" title="五、eval()"></a>五、eval()</h2><p>eval()不再能够创建变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">eval(var x = 10);</div><div class="line">alert(x);</div></pre></td></tr></table></figure></p>
+<h2 id="五、eval"><a href="#五、eval" class="headerlink" title="五、eval()"></a>五、eval()</h2><p>eval()不再能够创建变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">eval(var x = 10);</span><br><span class="line">alert(x);</span><br></pre></td></tr></table></figure></p>
 <p>非严格模式下，alert正常运行；严格模式下报错。</p>
-<h2 id="六、this的正确指向"><a href="#六、this的正确指向" class="headerlink" title="六、this的正确指向"></a>六、this的正确指向</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var color = &apos;red&apos;;</div><div class="line">function display()&#123;</div><div class="line">    alert(this.color);</div><div class="line">&#125;</div><div class="line">display.call(null);</div></pre></td></tr></table></figure>
+<h2 id="六、this的正确指向"><a href="#六、this的正确指向" class="headerlink" title="六、this的正确指向"></a>六、this的正确指向</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var color = &apos;red&apos;;</span><br><span class="line">function display()&#123;</span><br><span class="line">    alert(this.color);</span><br><span class="line">&#125;</span><br><span class="line">display.call(null);</span><br></pre></td></tr></table></figure>
 <p>以上代码在非严格模式中，值为null的this会转换为window，因此能够正常弹出对话框red，而严格模式下，this的值为null，报错。</p>
 <h2 id="七、其他变化"><a href="#七、其他变化" class="headerlink" title="七、其他变化"></a>七、其他变化</h2><ol>
 <li>抛弃with语句。</li>
@@ -567,7 +567,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -578,7 +578,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -589,7 +589,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

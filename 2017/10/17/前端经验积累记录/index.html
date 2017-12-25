@@ -82,7 +82,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端经验积累记录">
 <meta property="og:url" content="https://whiteyin.github.io/2017/10/17/前端经验积累记录/index.html">
-<meta property="og:site_name" content="假装是个技术博客">
+<meta property="og:site_name" content="前端吟游诗">
 <meta property="og:description" content="把遇到的需求、解决方法、黑科技记录下来。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-11-08T09:58:02.686Z">
@@ -124,7 +124,7 @@
 
 
 
-  <title>前端经验积累记录 | 假装是个技术博客</title>
+  <title>前端经验积累记录 | 前端吟游诗</title>
   
 
 
@@ -164,12 +164,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">假装是个技术博客</span>
+        <span class="site-title">前端吟游诗</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <h1 class="site-subtitle" itemprop="description">爱生活，爱游戏</h1>
+        <h1 class="site-subtitle" itemprop="description">爱生活，爱前端</h1>
       
   </div>
 
@@ -270,7 +270,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="假装是个技术博客">
+      <meta itemprop="name" content="前端吟游诗">
     </span>
 
     
@@ -377,17 +377,17 @@
       
         <p>2017-10-16</p>
 <ol>
-<li>前端页面判断app是否已安装<br><a href="https://github.com/pod4g/tool/wiki/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85app" target="_blank" rel="external">github地址</a>和<a href="http://t.diaox2.com/view/test/openinapp/openinapp.html" target="_blank" rel="external">demo</a><br>思路：点击按钮后，先尝试将url设置为app的url，同时2.5s后执行将url设置为下载页面的url。如已安装app，则第一步即可打开app，否则第一步url设置后无反应，开始执行延迟函数。<br>根据目前淘宝的实现效果来看，就是这个方法。  </li>
+<li>前端页面判断app是否已安装<br><a href="https://github.com/pod4g/tool/wiki/%E5%85%B3%E4%BA%8E%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E5%AE%89%E8%A3%85app" target="_blank" rel="noopener">github地址</a>和<a href="http://t.diaox2.com/view/test/openinapp/openinapp.html" target="_blank" rel="noopener">demo</a><br>思路：点击按钮后，先尝试将url设置为app的url，同时2.5s后执行将url设置为下载页面的url。如已安装app，则第一步即可打开app，否则第一步url设置后无反应，开始执行延迟函数。<br>根据目前淘宝的实现效果来看，就是这个方法。  </li>
 </ol>
 <p>2017-10-17</p>
 <ol>
-<li><p>移动端页面元数据<meta><br><a href="http://www.w3cplus.com/mobile/mobile-terminal-refactoring-create-page.html" target="_blank" rel="external">相关文章</a> 和<br><a href="http://www.cnblogs.com/gaoxue/p/4080886.html" target="_blank" rel="external">属性解释</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;&gt;</div><div class="line">&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;</div><div class="line">&lt;meta name=&quot;format-detection&quot;content=&quot;telephone=no&quot; /&gt;</div></pre></td></tr></table></figure>
+<li><p>移动端页面元数据<meta><br><a href="http://www.w3cplus.com/mobile/mobile-terminal-refactoring-create-page.html" target="_blank" rel="noopener">相关文章</a> 和<br><a href="http://www.cnblogs.com/gaoxue/p/4080886.html" target="_blank" rel="noopener">属性解释</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0&quot;&gt;</span><br><span class="line">&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;</span><br><span class="line">&lt;meta name=&quot;format-detection&quot;content=&quot;telephone=no&quot; /&gt;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>原生js操作dom元素节点添加删除class<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/classList" target="_blank" rel="external">MDN地址</a>  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var ele = document.querySeletor(&apos;div&apos;);</div><div class="line">ele.addEventListener(&apos;click&apos;,function()&#123;</div><div class="line">    ele.classList.toggle(&apos;example-class&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<li><p>原生js操作dom元素节点添加删除class<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/classList" target="_blank" rel="noopener">MDN地址</a>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var ele = document.querySeletor(&apos;div&apos;);</span><br><span class="line">ele.addEventListener(&apos;click&apos;,function()&#123;</span><br><span class="line">    ele.classList.toggle(&apos;example-class&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>html实现刻度尺效果<br><a href="http://www.17sucai.com/pins/22120.html" target="_blank" rel="external">demo地址</a></p>
+<li><p>html实现刻度尺效果<br><a href="http://www.17sucai.com/pins/22120.html" target="_blank" rel="noopener">demo地址</a></p>
 </li>
 </ol>
 
@@ -535,7 +535,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -546,7 +546,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -557,7 +557,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
