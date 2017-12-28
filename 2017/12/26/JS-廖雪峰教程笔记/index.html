@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="前端吟游诗">
 <meta property="og:description" content="廖雪峰官网的JS教程学习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-26T13:33:02.861Z">
+<meta property="og:updated_time" content="2017-12-28T13:15:31.686Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 廖雪峰教程笔记">
 <meta name="twitter:description" content="廖雪峰官网的JS教程学习笔记">
@@ -225,6 +225,16 @@
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/notes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-edit"></i> <br />
+            
+            随手记
           </a>
         </li>
       
@@ -458,6 +468,138 @@
 <h2 id="iterable类型"><a href="#iterable类型" class="headerlink" title="iterable类型"></a>iterable类型</h2><p>虽然Map和Set有一些新特性，弥补Array的一些缺陷，但是仍然存在一个问题：无法使用下标遍历。因此，ES6新增iterable类型统一Map、Set和Array类型，使用for…of来遍历。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var a = [1,2,3];</span><br><span class="line">var s = new Set(a);</span><br><span class="line">var m = new Map([[1,1],[2,2],[3,3]]);</span><br><span class="line"></span><br><span class="line">for(var x of a)&#123;</span><br><span class="line">    console.log(x);</span><br><span class="line">&#125;</span><br><span class="line">for(var x of s)&#123;</span><br><span class="line">    console.log(x);</span><br><span class="line">&#125;</span><br><span class="line">for(var x of m)&#123;</span><br><span class="line">    console.log(`$&#123;x[0]&#125;:$&#123;x[1]&#125;`);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>看上去，for…of和for…in很相似，但是for…in在遍历这些对象时，会遍历自定义属性。比如<code>arr.name=&quot;周聪&quot;</code>，此时for…in会输出name属性值。但是for…of不会，它只循环集合本身内容。</p>
 <p>此外，iterable类型自带forEach方法，每次迭代都会执行一次回调函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a = [1,2,3];</span><br><span class="line">a.forEach(function(ele,index,array)&#123;</span><br><span class="line">    /** </span><br><span class="line">    * ele: 当前迭代的元素值；</span><br><span class="line">    * index：当前元素索引，Set对象中该参数与第一个参数值相同；</span><br><span class="line">    * array：迭代对象本身，此处指a数组</span><br><span class="line">    */</span><br><span class="line">    console.log(ele+&apos;:&apos;+index);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>函数是JS的一等公民，可以当作参数传递。具有抽象性。</p>
+<h4 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h4><ol>
+<li><p>函数声明</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function f(x)&#123;</span><br><span class="line">    return x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数表达式声明</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var f = function(x)&#123;</span><br><span class="line">    return x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果函数不执行return语句，返回默认值undefined。</p>
+<h4 id="函数传参"><a href="#函数传参" class="headerlink" title="函数传参"></a>函数传参</h4><p>JS中，调用函数时并不强制传参数量与声明时参数数量一致，如果调用时传参比声明时少，会自动传入undefined代替，因此在声明时要对参数进行判断。</p>
+<p>在函数中，JS指定了一个名叫arguments变量，其中包含了所有在调用函数时传递的参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function foo(x) &#123;</span><br><span class="line">    console.log(&apos;x = &apos; + x); // 10</span><br><span class="line">    for (var i=0; i&lt;arguments.length; i++) &#123;</span><br><span class="line">        console.log(&apos;arg &apos; + i + &apos; = &apos; + arguments[i]); // 10, 20, 30</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">foo(10, 20, 30);</span><br></pre></td></tr></table></figure></p>
+<p>从上面的例子中可以看到arguments不需要声明，因为是JS内置的。而且它和数组相似，具有length属性，且通过下标可以获取元素值。但它并不是数组，是另一种对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">arguments instanceof Array;//false</span><br><span class="line">arguments instanceof Object;//true</span><br></pre></td></tr></table></figure></p>
+<p>有时候，我们在函数声明时显式定义了a、b两个参数，再判断实际调用时是否传入c、d、e等参数。如果我们要将a、b分成一组，c、d、e分成一组，第二组的写法可能是<code>var rest = [arguments[2],arguments[3],arguments[4]];</code>，看上去很麻烦。</p>
+<p>在ES6中，可以使用rest参数来改写函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function x(a,b,...other)&#123;</span><br><span class="line">    console.log(other);</span><br><span class="line">    console.log(other.length);</span><br><span class="line">    console.log(other[0]);</span><br><span class="line">&#125;</span><br><span class="line">x(1,2,3,4,5);</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(3) [3, 4, 5]</span><br><span class="line">3</span><br><span class="line">3</span><br></pre></td></tr></table></figure></p>
+<p>因此，arguments = 显式声明形参 + rest形参。<br><strong>注意：</strong> rest参数只能写在最后，前面用…标识。</p>
+<h4 id="函数变量作用域"><a href="#函数变量作用域" class="headerlink" title="函数变量作用域"></a>函数变量作用域</h4><ol>
+<li><p>内部作用域  </p>
+<p> 如果一个变量在函数体内部申明，则该变量的作用域为整个函数体，在函数体外不可引用该变量。但是，函数内部可以使用函数外部的变量。</p>
+<p> 在函数中还存在变量提升的现象。指的是函数在执行前，会先扫描函数体，将所有内部声明的变量都提升到函数顶部，但不会提升变量的赋值。举个例子：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">    var x = &apos;Hello, &apos; + y;</span><br><span class="line">    console.log(x);</span><br><span class="line">    var y = &apos;Bob&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 实际上，相当于：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">    var x,y;</span><br><span class="line">    x = &apos;Hello, &apos; + y;</span><br><span class="line">    console.log(x);</span><br><span class="line">    y = &apos;Bob&apos;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> 这样，x在赋值时不会报错，但是此时y的值还没有变成’Bob’，而是undefined。<br> 为了安全起见，函数内的变量声明赋值应该在函数开头完成。</p>
+</li>
+<li><p>全局作用域  </p>
+<p> 不在任何函数内定义的变量就具有全局作用域。实际上，JavaScript默认有一个全局对象window，全局作用域的变量实际上被绑定到window的一个属性。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var globalVar = &apos;a&apos;;</span><br><span class="line">window.globalVar === globalVar;//true</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>之前说过函数内部可以调用外部变量，是因为函数在搜索变量时会先在内部查找，如果没有找到则向上层函数作用域中查找。而全局作用域作为顶级作用域，如果其中也没有要查找到的变量，则查找失败，报ReferenceError错误。
+</code></pre><ol>
+<li><p>命名空间<br> 由于全局作用域唯一，而所有JS文件都可以在其中声明自己的变量，往往会导致不同JS文件出现命名冲突的情况。因此建议声明自己的变量和函数时，将它们绑定在一个个性化全局对象中。虽然仍有可能出现冲突，但出现率会大大减少。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 唯一的全局变量MYAPP:</span></span><br><span class="line"><span class="keyword">var</span> MYAPP = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 其他变量:</span></span><br><span class="line">MYAPP.name = <span class="string">'myapp'</span>;</span><br><span class="line">MYAPP.version = <span class="number">1.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 其他函数:</span></span><br><span class="line">MYAPP.foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'foo'</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>块级作用域</p>
+<p> 有点JS基础的应该都知道，在JS中，if语句、for循环等块级代码中声明的变量实际上是声明在全局作用域中的。如果在块级代码以外调用，不会出现未声明的错误。</p>
+<p> 这可能会导致一些问题：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var sum = 0;</span><br><span class="line">for(var i = 0;i&lt;10;i++)&#123;</span><br><span class="line">    console.log(i);</span><br><span class="line">&#125;</span><br><span class="line">i++;//10</span><br></pre></td></tr></table></figure>
+<p> 在ES6中，有一个新的关键字：let。使用let声明的变量在块级代码执行后不会保留：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(let i =0 ;i&lt;10;i++)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">i++;//SyntaxError</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常量<br>ES6引入关键字const用来声明常量。需要注意以下几点：</p>
+<ol>
+<li>const声明常量和let、var在声明变量后不能再使用其他两种关键字声明同名变量；</li>
+<li>const常量声明后不得修改，不然怎么叫常量呢。</li>
+</ol>
+</li>
+<li><p>解构赋值<br>这也是ES6中的语法，用来对一组变量进行赋值。<br>在ES6出现之前：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,2,3];</span><br><span class="line">var a = arr[0];</span><br><span class="line">var b = arr[1];</span><br><span class="line">var c = arr[2];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在ES6中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var [a,b,c] = arr;</span><br><span class="line">console.log(a);</span><br><span class="line">console.log(b);</span><br><span class="line">console.log(c);</span><br></pre></td></tr></table></figure></p>
+<p>也就是说要从数组取值时，应该将一组变量用[]括起。如果有多层嵌套：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1,[2,3]];</span><br></pre></td></tr></table></figure></p>
+<p>那么解构赋值的括号嵌套也要保持一致：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var [a,[b,c]] = arr;</span><br></pre></td></tr></table></figure></p>
+<p>如果部分值不需要，可以忽略：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var [,,c] = arr;</span><br></pre></td></tr></table></figure></p>
+<p>如果从对象中取值，用{}括起，且变量名与属性名一致,嵌套也要一致。下面是一个简单的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">    x:1,</span><br><span class="line">    y:&#123;</span><br><span class="line">      z:3  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">var &#123;x,y:&#123;z&#125;&#125; = obj;</span><br></pre></td></tr></table></figure></p>
+<p>如果存在已经声明的变量，不能直接省略var，而是用另一种表达式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var x,y</span><br><span class="line">(&#123;x,y&#125; = obj);</span><br></pre></td></tr></table></figure></p>
+<p>解构赋值还有一个常见的用法，交换两个数的值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var j = 0,k =1;</span><br><span class="line">[j,k] = [k,j];</span><br></pre></td></tr></table></figure></p>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ol>
+<li>方法是对象的函数。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &apos;小明&apos;,</span><br><span class="line">    birth: 1990,</span><br><span class="line">    age: function () &#123;</span><br><span class="line">        var y = new Date().getFullYear();</span><br><span class="line">        return y - this.birth;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.age; // function xiaoming.age()</span><br><span class="line">xiaoming.age(); // 今年调用是25,明年调用就变成26了</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>在age方法中我们使用了this关键字，该变量指向当前调用方法的对象。如果直接调用<code>age();</code>，此时this指向全局对象window；而如果在严格模式下，this的值是undefined。</p>
+<ol>
+<li><p>apply方法<br>apply方法可以指定方法中this的值。该方法接收两个参数，第一个是this指定的对象，另一个是传入方法的参数组成的数组。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function getAge() &#123;</span><br><span class="line">    var y = new Date().getFullYear();</span><br><span class="line">    return y - this.birth;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var xiaoming = &#123;</span><br><span class="line">    name: &apos;小明&apos;,</span><br><span class="line">    birth: 1990,</span><br><span class="line">    age: getAge</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">xiaoming.age(); // 25</span><br><span class="line">getAge.apply(xiaoming,[]); // 25, this指向xiaoming, 参数为空</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>call方法<br>此外，函数还有一个call方法，它与apply方法类似，但是其不要求参数组成一个数组。</p>
+</li>
+</ol>
+<p>那么，什么时候使用apply和call？<br>事实上，他们两个没有特别大的区别，只有当参数是数组时，apply有天生优势。</p>
+<h4 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h4><p>当一个函数接受的参数中有函数变量时，该函数称为高阶函数。</p>
+<p>JS中常见的高阶函数有：map、reduce、filter和sort等等。</p>
+<ol>
+<li>Array.map(callback)</li>
+</ol>
+<p>map方法可以对数组中的每一个元素执行一遍函数形参，返回一个新数组，也就是在原数组和新数组之间增加一种映射关系。  </p>
+<p>其函数形参接收3个参数：n当前迭代项的值，index当前迭代项的索引，arr当前迭代的数组。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addTen</span>(<span class="params">n,index,arr</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line"><span class="built_in">console</span>.log(index);</span><br><span class="line">    <span class="keyword">return</span> n+<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> origin = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"><span class="keyword">var</span> result = origin.map(addTen);</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br></pre></td></tr></table></figure></p>
+<p>这里有一个传参的错误实例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;;</span><br><span class="line"></span><br><span class="line">var arr = [&apos;1&apos;, &apos;2&apos;, &apos;3&apos;];</span><br><span class="line">var r;</span><br><span class="line">r = arr.map(parseInt);</span><br><span class="line">console.log(r);</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1,NaN,NaN</span><br></pre></td></tr></table></figure></p>
+<p>原因是parseInt(string, radix)接收2个参数，第一个是要转换的字符，第二个是进制。但是map方法默认第二个传参为索引值。导致实际运算的真实情况是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parseInt(&apos;0&apos;, 0); // 0, 按十进制转换</span><br><span class="line">parseInt(&apos;1&apos;, 1); // NaN, 没有一进制</span><br><span class="line">parseInt(&apos;2&apos;, 2); // NaN, 按二进制转换不允许出现2</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Array.reduce(callback)</li>
+</ol>
+<p>reduce函数的函数形参f接收2个参数，第一个参数为上一次迭代时运算的结果，第二个参数是参与本次运算的数组项。  </p>
+<p>回调函数中可以传递3个参数：第一个是上一次运算的结果值，第二个是当前迭代的计算值，第三个是当前计算值的索引下标，第四个是调用函数的数组对象。<br>效果如下：<br><code>[x1, x2, x3, x4].reduce(f) = f(f(f(x1, x2), x3), x4);</code><br>相当于:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x+y;</span><br><span class="line">&#125;</span><br><span class="line">y1 = x1+x2;</span><br><span class="line">y2 = y1+x3;</span><br><span class="line">y3 = y2+x4;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>Array.filter函数</li>
+</ol>
+<p>filter(callback)用于把Array的某些元素过滤掉，然后返回剩下的元素。根据数组每一项在执行回调函数后返回的布尔值确定是否保留该数组项。</p>
+<p>例如删除偶数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var arr = [1, 2, 4, 5, 6, 9, 10, 15];</span><br><span class="line">var r = arr.filter(function (x) &#123;</span><br><span class="line">    return x % 2 !== 0;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>与map和reduce的回调函数相同，filter的回调函数也有3个参数，意义与之前的两个方法一样。</p>
+<ol>
+<li><p>Array.sort(compare)<br>sort方法可以传回调函数参数也可以不传。如果传入自定义的比较函数，则函数的返回值应符合如下规则：  </p>
+<ol>
+<li>x&lt;y : 返回负值；</li>
+<li>x=y ：返回0；</li>
+<li><p>x&gt;y ：返回正值；</p>
+<p>如果不传比较函数，则默认将数组项转成字符串，按ASCII码大小排序。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h4><p>闭包是在函数中声明函数，声明的子函数能够使用外层函数中定义的变量。当外层函数返回内部函数时，内部函数在调用时仍保存这些外层变量。</p>
+<p>但是被返回的函数并不是立即执行的，必须手动调用。而此时，内部保存的变量状态可能会变化。举个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function count()&#123;</span><br><span class="line">    var arr = [];</span><br><span class="line">    for(var i = 1;i&lt;=3;i++)&#123;</span><br><span class="line">        console.log(i);</span><br><span class="line">        arr.push(function()&#123;</span><br><span class="line">            console.log(i);</span><br><span class="line">            return i*i;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    console.log(arr);</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var result = count();</span><br><span class="line">var r1 = result[0];</span><br><span class="line">var r2 = result[1];</span><br><span class="line">var r3 = result[2];</span><br><span class="line"></span><br><span class="line">r1();</span><br><span class="line">r2();</span><br><span class="line">r3();</span><br></pre></td></tr></table></figure></p>
+<p>由于result中每一项的函数中保存了变量i，而i又在循环后变成了4，所以r1/r2/r3三个函数最后输出的都是4*4=16。<br>要修改成输出1，4，9，应该在循环中使用let声明i。每一次循环，都相当于执行了一次<code>let i</code>，由于let只存在于块作用域中，所以出了本次循环后别的循环中的声明不再对它有影响。</p>
+<p>在不支持ES6的浏览器中，可以使用立即执行匿名函数表达式的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function count() &#123;</span><br><span class="line">    var arr = [];</span><br><span class="line">    for (var i=1; i&lt;=3; i++) &#123;</span><br><span class="line">        arr.push((function (n) &#123;</span><br><span class="line">            return function () &#123;</span><br><span class="line">                return n * n;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)(i));</span><br><span class="line">    &#125;</span><br><span class="line">    return arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在要返回的函数外再加一层匿名函数，并将i作为参数传递，同时立刻执行该匿名函数。这时，内部函数引用的是匿名函数的形参，该形参的值与i相等，但并不会再因为i改变。</p>
+<p>匿名函数立即执行写法：<code>(function(){})();</code>，用()括起写成函数表达式，避免JS语法解析报错。  </p>
+<p>使用闭包可以实现一般面向对象中的private私有变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&apos;use strict&apos;;</span><br><span class="line"></span><br><span class="line">function create_counter(initial) &#123;</span><br><span class="line">    var x = initial || 0;</span><br><span class="line">    return &#123;</span><br><span class="line">        inc: function () &#123;</span><br><span class="line">            x += 1;</span><br><span class="line">            return x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var obj = new create_counter();</span><br><span class="line">obj.x;//undefined</span><br><span class="line">obj.inc();//1</span><br></pre></td></tr></table></figure></p>
+<p>可以看到obj是无法获取到x值，但是能够修改x的值。这样就保证了x变量私有化。</p>
+<h4 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h4><p>箭头函数是匿名函数的另一种写法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//箭头函数</span></span><br><span class="line">x =&gt; x*x;</span><br><span class="line"><span class="comment">//一般写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x*x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>箭头函数相当于匿名函数，并且简化了函数定义。如果函数体中只包含一条表达式，可以省略{}和return，但如果有多个语句或返回值为对象字面量时，不能省略{}和return。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x =&gt; &#123;</span><br><span class="line">    if(x&gt;=0)&#123;</span><br><span class="line">        return x;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        return -x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果参数有0个或2个及以上，需用()括起。</p>
+<p>箭头函数与匿名函数有一个区别，其内部的this变量作用域根据上下文确定。<br>举一个匿名函数中this指向错误的例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    birth:<span class="number">1990</span>,</span><br><span class="line">    getAge:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">this</span>.birth;</span><br><span class="line">        <span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>.birth);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> fn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getAge();<span class="comment">//undefined</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>虽然我不知道为什么要写成匿名函数的形式，直接在getAge里执行不可以吗？但是廖雪峰这么举例子，那就这样吧。</p>
+</blockquote>
+<p>而修改成箭头函数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    birth:<span class="number">1990</span>,</span><br><span class="line">    getAge:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> b = <span class="keyword">this</span>.birth;</span><br><span class="line">        <span class="keyword">var</span> fn = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">console</span>.log(<span class="keyword">this</span>.birth);</span><br><span class="line">        <span class="keyword">return</span> fn();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">obj.getAge();<span class="comment">//1990</span></span><br></pre></td></tr></table></figure></p>
+<p>又因为箭头函数中的this已经根据上下文绑定，指向外层定义者obj，所以使用apply或call方法都无法改变其this指向。</p>
+<h4 id="generate生成器"><a href="#generate生成器" class="headerlink" title="generate生成器"></a>generate生成器</h4><p>ES6提出generate生成器概念，它是一种数据类型，跟函数很像：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">foo</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">yield</span> x+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">yield</span> x+<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">return</span> x+<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> f = foo(<span class="number">3</span>);</span><br></pre></td></tr></table></figure></p>
+<p>与普通函数不同之处：使用function*定义，除了return语句还可以使用yield返回多次。上面的例子中f是一个generate对象，想要获得foo执行返回的值，需要使用Generate.next()方法，该方法返回一个对象<code>{value:值,done:true/false}</code>。</p>
+<p>流程应该是：</p>
+<ol>
+<li>调用f.next()，执行一遍foo，</li>
+<li>遇到yield关键字，获取返回值，</li>
+<li>判断该值是否为最后一个返回值，如果是则done属性的值为true，否则为false。</li>
+</ol>
+<p>除了使用next方法，还可以用for…of方法迭代generate对象，这时不需要我们手动判断done属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var f of fib(10))&#123;</span><br><span class="line">    console.log(f);//f的值就是value属性的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由此可见，generate对象可以在要返回一组数据时，代替数组作为返回值这种方式。<br>此外，generate还有优化ajax代码的作用，实现一个异步方法。<br><a href="http://www.ruanyifeng.com/blog/2015/04/generator.html?20170921130219" target="_blank" rel="noopener">Generator 函数的含义与用法</a></p>
 
       
     </div>
@@ -499,6 +641,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/28/2017年回顾/" rel="prev" title="2017年回顾">
+                2017年回顾 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -610,7 +756,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -621,7 +767,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -632,7 +778,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -697,7 +843,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">4.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">5.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map和Set"><span class="nav-number">6.</span> <span class="nav-text">Map和Set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map"><span class="nav-number">6.0.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">6.0.2.</span> <span class="nav-text">Set</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iterable类型"><span class="nav-number">7.</span> <span class="nav-text">iterable类型</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">4.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">5.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map和Set"><span class="nav-number">6.</span> <span class="nav-text">Map和Set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map"><span class="nav-number">6.0.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">6.0.2.</span> <span class="nav-text">Set</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iterable类型"><span class="nav-number">7.</span> <span class="nav-text">iterable类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数定义"><span class="nav-number">8.0.1.</span> <span class="nav-text">函数定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数传参"><span class="nav-number">8.0.2.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数变量作用域"><span class="nav-number">8.0.3.</span> <span class="nav-text">函数变量作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">8.0.4.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高阶函数"><span class="nav-number">8.0.5.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">8.0.6.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#箭头函数"><span class="nav-number">8.0.7.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate生成器"><span class="nav-number">8.0.8.</span> <span class="nav-text">generate生成器</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

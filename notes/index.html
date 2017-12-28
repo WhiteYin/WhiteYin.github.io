@@ -77,16 +77,17 @@
 
 
 
-<meta name="description" content="在我的小窝，吟唱我的歌">
+<meta name="description" content="心得笔记记录平时遇到的问题、解决方案、趣事和社区分享。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="前端吟游诗">
-<meta property="og:url" content="https://whiteyin.github.io/tags/社会杂谈/index.html">
+<meta property="og:title" content="notes">
+<meta property="og:url" content="https://whiteyin.github.io/notes/index.html">
 <meta property="og:site_name" content="前端吟游诗">
-<meta property="og:description" content="在我的小窝，吟唱我的歌">
+<meta property="og:description" content="心得笔记记录平时遇到的问题、解决方案、趣事和社区分享。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-28T13:24:49.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端吟游诗">
-<meta name="twitter:description" content="在我的小窝，吟唱我的歌">
+<meta name="twitter:title" content="notes">
+<meta name="twitter:description" content="心得笔记记录平时遇到的问题、解决方案、趣事和社区分享。">
 
 
 
@@ -116,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="https://whiteyin.github.io/tags/社会杂谈/"/>
+  <link rel="canonical" href="https://whiteyin.github.io/notes/"/>
 
 
 
 
 
-  <title>标签: 社会杂谈 | 前端吟游诗</title>
+  <title>notes | 前端吟游诗</title>
   
 
 
@@ -151,7 +152,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -255,54 +256,37 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>社会杂谈<small>标签</small>
-        </h2>
-      </div>
+	<h2 class="post-title" itemprop="name headline">notes</h2>
+
+
+
+</header>
 
       
+      
+      
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
         
-            <a class="post-title-link" href="/2017/11/25/谈谈红黄蓝幼儿园事件/" itemprop="url">
-              
-                <span itemprop="name">谈谈红黄蓝幼儿园事件</span>
-              
-            </a>
-        
-      </h3>
+          <h1 id="心得笔记"><a href="#心得笔记" class="headerlink" title="心得笔记"></a>心得笔记</h1><p>记录平时遇到的问题、解决方案、趣事和社区分享。</p>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-11-25T20:50:10+08:00"
-              content="2017-11-25" >
-          11-25
-        </time>
+        
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
-
+    
+    
+    
   </div>
-  
-  
-  
-
-  
 
 
           </div>
@@ -310,6 +294,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -330,8 +325,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -427,6 +431,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#心得笔记"><span class="nav-number">1.</span> <span class="nav-text">心得笔记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -586,6 +606,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -637,6 +661,30 @@
       </style>
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'WhiteYin',
+            repo: 'hexo-comment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '29ae77cbbfa8b8e1b528bd3de80c9cc4a327afd1',
+            
+                client_id: '0be43d9564938da5b5cd'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
