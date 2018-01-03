@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="前端吟游诗">
 <meta property="og:description" content="廖雪峰官网的JS教程学习笔记">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-28T13:15:31.686Z">
+<meta property="og:updated_time" content="2018-01-03T09:33:22.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 廖雪峰教程笔记">
 <meta name="twitter:description" content="廖雪峰官网的JS教程学习笔记">
@@ -600,6 +600,133 @@
 </ol>
 <p>除了使用next方法，还可以用for…of方法迭代generate对象，这时不需要我们手动判断done属性。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for(var f of fib(10))&#123;</span><br><span class="line">    console.log(f);//f的值就是value属性的值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>由此可见，generate对象可以在要返回一组数据时，代替数组作为返回值这种方式。<br>此外，generate还有优化ajax代码的作用，实现一个异步方法。<br><a href="http://www.ruanyifeng.com/blog/2015/04/generator.html?20170921130219" target="_blank" rel="noopener">Generator 函数的含义与用法</a></p>
+<h2 id="标准对象"><a href="#标准对象" class="headerlink" title="标准对象"></a>标准对象</h2><p>使用typeof操作符区分数据类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typeof 123; // &apos;number&apos;</span><br><span class="line">typeof NaN; // &apos;number&apos;</span><br><span class="line">typeof &apos;str&apos;; // &apos;string&apos;</span><br><span class="line">typeof true; // &apos;boolean&apos;</span><br><span class="line">typeof undefined; // &apos;undefined&apos;</span><br><span class="line">typeof Math.abs; // &apos;function&apos;</span><br><span class="line">typeof null; // &apos;object&apos;</span><br><span class="line">typeof []; // &apos;object&apos;</span><br><span class="line">typeof &#123;&#125;; // &apos;object&apos;</span><br></pre></td></tr></table></figure></p>
+<p>可以区分的有number、string、boolean、undefined、function和object六个基本数据类型，<code>typeof null</code>返回”object”。</p>
+<p>基本数据类型还有对应的封装对象类型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var n = new Number(123);</span><br><span class="line">var b = new Boolean(true);</span><br><span class="line">var s = new String(&quot;string&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>这三个封装函数如果在赋值时不使用new关键字生成对象实例，功能会变成基本类型转换：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var n = Number(&quot;123&quot;);//123</span><br><span class="line">var b = Boolean(0);//false</span><br><span class="line">var s = String(123);&quot;123&quot;</span><br></pre></td></tr></table></figure></p>
+<p>要明确某个对象是否为数组，可以使用Array.isArray()方法。是数组会返回true，不是则返回false。</p>
+<p>最后，虽然大多数数据类型都有toString方法，但是number数据调用toString需要特殊处理，否则会报错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">123..toString(); // &apos;123&apos;, 注意是两个点！</span><br><span class="line">(123).toString(); // &apos;123&apos;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Date对象"><a href="#Date对象" class="headerlink" title="Date对象"></a>Date对象</h4><p>顾名思义，Date对象表示日期时间。创建的默认实例是代码执行的时间。<br>想要创建指定时间的Date实例，有两种方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">//第一种方法</span><br><span class="line">var date = new Date(2020,0,1,0,0,0,0);</span><br><span class="line">//参数依次为年、月（从0开始）、日、时、分、秒。</span><br><span class="line"></span><br><span class="line">//第二种方法</span><br><span class="line">var dateStamp = Date.parse(&apos;2020-01-01-24T00:00:00.0+08:00&apos;);</span><br><span class="line">//这是用parse方法解析一个符合ISO 8601格式的字符串，返回值是一个时间戳</span><br><span class="line">var date = new Date(dateStamp);</span><br><span class="line">//通过时间戳再创建Date实例。</span><br></pre></td></tr></table></figure></p>
+<p>Date对象具有的方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">date.getFullYear();<span class="comment">//获取年份</span></span><br><span class="line">date.getMonth();<span class="comment">//获取月份，月份并不是1~12，而是0~11</span></span><br><span class="line">date.getDate();<span class="comment">//获取日期</span></span><br><span class="line">date.getDay();<span class="comment">//获取星期几</span></span><br><span class="line">date.getHours();<span class="comment">//小时，24小时制</span></span><br><span class="line">date.getMinutes();<span class="comment">//分钟</span></span><br><span class="line">date.getSeconds();<span class="comment">//秒</span></span><br><span class="line">date.getMillseconds();<span class="comment">//毫秒</span></span><br><span class="line">date.getTimes();<span class="comment">//number类型时间戳</span></span><br><span class="line"><span class="built_in">Date</span>.now();<span class="comment">//获取当前时间</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="正则对象RegExp"><a href="#正则对象RegExp" class="headerlink" title="正则对象RegExp"></a>正则对象RegExp</h4><p>正则表达式是匹配字符串的强大武器。<br>廖雪峰老师的教程讲的不是很详细，建议看看<a href="https://zhuanlan.zhihu.com/p/29707385" target="_blank" rel="noopener">JavaScript正则迷你书</a>。</p>
+<h4 id="JSON对象"><a href="#JSON对象" class="headerlink" title="JSON对象"></a>JSON对象</h4><p>json格式与JS对象字面量的格式一致。目前都用JSON取代XML传输报文格式。</p>
+<p>JSON对象可以序列化为字符串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var json = &#123;</span><br><span class="line">    name:&apos;周聪&apos;,</span><br><span class="line">    age:22,</span><br><span class="line">    gender:&quot;male&quot;</span><br><span class="line">&#125;</span><br><span class="line">var jsonString = JSON.stringify(json);</span><br></pre></td></tr></table></figure></p>
+<p>JSON.stringify接收3个参数：</p>
+<ol>
+<li>value:要序列化的值；</li>
+<li>replacer：如果该参数是一个函数，则在序列化过程中，被序列化的值的每个属性都会经过该函数的转换和处理；如果该参数是一个数组，则只有包含在这个数组中的属性名才会被序列化到最终的 JSON 字符串中；如果该参数为null或者未提供，则对象所有的属性都会被序列化;</li>
+<li>space:指定缩进用的空白字符串，用于美化输出（pretty-print）；如果参数是个数字，它代表有多少的空格；上限为10。该值若小于1，则意味着没有空格；如果该参数为字符串(字符串的前十个字母)，该字符串将被作为空格；如果该参数没有提供（或者为null）将没有空格。</li>
+</ol>
+<blockquote>
+<p>具体例子应该想一想就知道，我就不举例子啦~  </p>
+</blockquote>
+<p>如果我们获取的是一个JSON格式的字符串，可以使用JSON.parse方法将其解析成JS对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var jsonString = &apos;&#123;&quot;name&quot;:&quot;周聪&quot;,&quot;age&quot;:22&#125;&apos;;</span><br><span class="line">var json = JSON.parse(jsonString);</span><br></pre></td></tr></table></figure></p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><h4 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h4><p>创建对象首先要有一个构造函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Person(name)&#123;</span><br><span class="line">    this.name = name;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.sayHello = function()&#123;</span><br><span class="line">    console.log(&quot;hello &quot;+this.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>一般将属性声明在构造函数内部，公用方法声明在构造函数的原型上。如果用new关键字调用，Person构造函数返回的就是this值，而如果不用new关键字，返回的是undefined。所以一定不要忘记使用new关键字。但是，为了防止没有new的出错情况，需要修改代码，提高健壮性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function person(name)&#123;</span><br><span class="line">    var obj = new Object();</span><br><span class="line">    </span><br><span class="line">    obj.name = name;</span><br><span class="line">    obj.sayHello = function()&#123;</span><br><span class="line">        console.log(&quot;hello &quot;+this.name);</span><br><span class="line">    &#125;</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>因为这不算是一个构造器函数，所以函数名首字母就不大写了。</p>
+<h4 id="class继承"><a href="#class继承" class="headerlink" title="class继承"></a>class继承</h4><p>ES6中使用关键字class来简化类的定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class Person&#123;</span><br><span class="line">    constructor(name)&#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    hello()&#123;</span><br><span class="line">        console.log(`hello $&#123;this.name&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>此外，还是用extends关键字简化类的继承。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class Man extends Person&#123;</span><br><span class="line">    constructor(name,age)&#123;</span><br><span class="line">        super(name);//使用super调用父类构造函数</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    showAge()&#123;</span><br><span class="line">        console.log(`I am $&#123;this.age&#125; years old`);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>class关键字与原型继承的实现原理相同，但是代码简化了很多。</p>
+<h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><table>
+<thead>
+<tr>
+<th>浏览器</th>
+<th>渲染引擎</th>
+<th>JS引擎</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IE</td>
+<td>Trident</td>
+<td>Chakra (查克拉)</td>
+</tr>
+<tr>
+<td>Chrome</td>
+<td>Blink</td>
+<td>V8</td>
+</tr>
+<tr>
+<td>FireFox</td>
+<td>Gecko</td>
+<td>OdinMonkey</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>Webkit</td>
+<td>SquirrelFish（松鼠鱼）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="浏览器对象"><a href="#浏览器对象" class="headerlink" title="浏览器对象"></a>浏览器对象</h4><p>在用户浏览网页的时候，浏览器会自动创建一些对象，这些对象存放着浏览器窗口的属性和相关信息，也就是大家熟称的BOM。浏览器对象模型（BOM）定义了很多浏览器对象，包括window、navigator、screen、location、document和history等。</p>
+<ol>
+<li>window对象<br> window对象除了作为顶级全局作用域外，还保存当前浏览器窗口的部分属性。比如<code>innerWidth</code>和<code>innerHeight</code>属性，指浏览器窗口内部宽高（不包括工具栏、菜单栏等高度）。而<code>outerHieght</code>和<code>outerWidth</code>属性可以获取全部宽高。</li>
+<li><p>navigator对象<br> navigator对象指代浏览器的代理信息。常用属性有</p>
+<ol>
+<li>navigator.appName：浏览器名称；</li>
+<li>navigator.appVersion：浏览器版本；</li>
+<li>navigator.language：浏览器设置的语言；</li>
+<li>navigator.platform：操作系统类型；</li>
+<li><p>navigator.userAgent：浏览器设定的User-Agent字符串。</p>
+<p>一般判断浏览器类型，不推荐直接根据navigator的属性判断，而是根据某些特定属性是否存在来判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">//IE9以下获取浏览器宽度用document.body.clientWidth</span><br><span class="line">//IE9以上使用window.innerWidth</span><br><span class="line">var width = window.innerWidth || document.body.clientWidth;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p>screen对象<br> screen对象表示屏幕的信息，常用的属性有：</p>
+<ol>
+<li>screen.width：屏幕宽度，以像素为单位；</li>
+<li>screen.height：屏幕高度，以像素为单位；</li>
+<li>screen.colorDepth：返回颜色位数，如8、16、24。</li>
+</ol>
+</li>
+<li><p>location对象</p>
+<p> location对象表示当前页面的URL信息。<br> 常用属性有：</p>
+<ol>
+<li>location.protocol:url的传输协议,包括<code>:</code>；</li>
+<li>location.host:url的域名+端口号；</li>
+<li>location.hostname:url的域名；</li>
+<li>location.port:url中的端口；</li>
+<li>location.pathname:域名后的完整文件目录；</li>
+<li>location.search:文件目录后的参数，包括<code>?</code>；</li>
+<li><p>location.hash:<code>#</code>后的hash参数。</p>
+<p>例如，一个完整的URL：</p>
+<p><code>http://www.example.com:8080/path/index.html?a=1&amp;b=2#TOP</code><br>可以用location.href获取。要获得URL各个部分的值，可以这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location.protocol; // &apos;http:&apos;</span><br><span class="line">location.hostname; // &apos;www.example.com&apos;</span><br><span class="line">location.port; // &apos;8080&apos;</span><br><span class="line">location.pathname; // &apos;/path/index.html&apos;</span><br><span class="line">location.search; // &apos;?a=1&amp;b=2&apos;</span><br><span class="line">location.hash; // &apos;#TOP&apos;</span><br></pre></td></tr></table></figure>
+<p>要加载一个新页面，可以调用location.assign()。如果传入的url不带<code>http</code>等协议，url会默认连接在当前页面的url后。  </p>
+<p>如果要重新加载当前页面，调用location.reload()方法非常方便。</p>
+</li>
+</ol>
+</li>
+<li><p>document对象</p>
+<p> document对象指代当前页面，是整个DOM的根节点。比如可以使用document.title修改当前页面的标题。还可以使用document.querySelector()获取元素节点。此外，document还有cookie属性，获取当前页面存储在用户客户端中 的cookie。</p>
+</li>
+<li><p>history对象</p>
+<p> history对象保存了浏览器的历史记录，JavaScript可以调用history对象的back()或forward ()，相当于用户点击了浏览器的“后退”或“前进”按钮。但是现在前后端交互往往使用Ajax来处理，简单粗暴的history.back会影响用户体验。因此不建议使用history对象。</p>
+</li>
+</ol>
+<h4 id="更新DOM"><a href="#更新DOM" class="headerlink" title="更新DOM"></a>更新DOM</h4><p>HTML文档中的节点总体上被看作一颗DOM树上的节点，对DOM的操作与对树的操作一样，有修改、删除、插入遍历等操作。当然，首先得获取要操作的节点：getElementById()、getElementsByTagName()、getElementsByClassName()、querySelector()、querySelectorAll()等方法都可以按需使用。</p>
+<ol>
+<li><p>修改节点内容</p>
+<p> 修改内容有两种方式，一种是修改文本：对innerText或textContent属性赋值即可；还有一种是修改内部html文档：修改innerHtml属性，将节点内的所有子结构都替换为要修改的内容。</p>
+</li>
+<li><p>插入新节点</p>
+<p> 在目标节点的基础上插入原始节点的第一种方法：destEle.appendChild(oriEle),将oriEle节点插入到destEle节点中。如果oriEle节点已经存在与文档流中，将会被剪切到目标节点。当然也可以使用document.createElement()来创建一个新的节点，使用appendChild方法插入。这种插入方法会将子节点插入在父节点最后。  </p>
+<p> 另一种方法是使用insertBefore()方法，传入两个参数：插入子节点和参照物子节点。作用是将插入子节点插入在参照物子节点之前。</p>
+</li>
+<li><p>删除节点</p>
+<p> 删除节点只有一个方法：removeChild()。要想删除某个节点，先获取其父元素节点Node.parentElement，然后父元素节点调用removeChild方法即可。这种删除方法，删除的节点仍保存在内存中，但是文档流中已经不存在其位置了。</p>
+</li>
+</ol>
+<h4 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h4><p>Ajax的意思是使用JS执行异步网络请求。核心思想是使用XMLHttpRequest对象来传输报文。</p>
+<p>手写一个兼容低版本IE的Ajax代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> request;</span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest)&#123;</span><br><span class="line">    request = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    request = <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'fail'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(request.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">        <span class="comment">//请求成功</span></span><br><span class="line">        <span class="keyword">if</span>(request.status === <span class="number">200</span>)&#123;</span><br><span class="line">            <span class="comment">//200成功</span></span><br><span class="line">            <span class="keyword">return</span> success(request.responseText);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//失败</span></span><br><span class="line">            <span class="keyword">return</span> fail();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="comment">//继续请求。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">request.open(<span class="string">'GET'</span>,<span class="string">'/api/categories?id=1'</span>);</span><br><span class="line">request.send();</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码中，根据是否能够使用XMLHttpRequest对象，判断用户使用的是否为现代浏览器。如果XMLHttpRequest对象无法使用，则说明用户使用的是低版本IE，此时用使用ActiveXObject对象来传输报文。  </p>
+<p>此外，还要考虑GET请求和POST请求的区别。GET请求不需要向send()方法传递额外参数，POST请求需要将body中的数据以字符串或formData对象形式传递。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">request.open(&apos;post&apos;,&apos;/api/categories&apos;);</span><br><span class="line">request.setRequestHeader(&apos;Content-Type&apos;,&apos;application/x-www-form-urlencoded&apos;);</span><br><span class="line">request.send(&apos;id=1&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>然后，XMLHttpRequest对象有5种状态readyState，当状态改变时触发onreadystatechange回调函数。<br>值|状态|描述<br>–|–|–<br>0|UNSENT|代理被创建，但尚未调用 open() 方法。<br>1|OPENED|open() 方法已经被调用。<br>2|HEADERS_RECEIVED|send() 方法已经被调用，并且头部和状态已经可获得。<br>3|LOADING|下载中； responseText 属性已经包含部分数据。<br>4|DONE|下载操作已完成。<br>若要判断请求的数据返回成功，同时根据readyState和status两个来判断即可。status即http协议的状态码。</p>
+<p>最后是请求完成后，XMLHttpRequest对象的responseText中会保存后台返回的数据，一般是一个JSON格式文本。</p>
+<p>关于跨域以及解决方案，可以看看<a href="https://segmentfault.com/a/1190000012469713" target="_blank" rel="noopener">这篇</a>。一般解决方案是jsonp和cors。</p>
+<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h4><p>JS的事件都是单线程执行，这也导致一些操作必须使用异步回调的方式。而Promise出现的目的就是实现异步程序的另一种解决方案，避免了回调地狱。</p>
+<p>Promise是一个容器，存放着某个未来才结束的事件。它提供统一的API，对所有异步操作都使用同一种方法处理。</p>
 
       
     </div>
@@ -843,7 +970,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">4.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">5.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map和Set"><span class="nav-number">6.</span> <span class="nav-text">Map和Set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map"><span class="nav-number">6.0.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">6.0.2.</span> <span class="nav-text">Set</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iterable类型"><span class="nav-number">7.</span> <span class="nav-text">iterable类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数定义"><span class="nav-number">8.0.1.</span> <span class="nav-text">函数定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数传参"><span class="nav-number">8.0.2.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数变量作用域"><span class="nav-number">8.0.3.</span> <span class="nav-text">函数变量作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">8.0.4.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高阶函数"><span class="nav-number">8.0.5.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">8.0.6.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#箭头函数"><span class="nav-number">8.0.7.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate生成器"><span class="nav-number">8.0.8.</span> <span class="nav-text">generate生成器</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串"><span class="nav-number">3.</span> <span class="nav-text">字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组"><span class="nav-number">4.</span> <span class="nav-text">数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象"><span class="nav-number">5.</span> <span class="nav-text">对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map和Set"><span class="nav-number">6.</span> <span class="nav-text">Map和Set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Map"><span class="nav-number">6.0.1.</span> <span class="nav-text">Map</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Set"><span class="nav-number">6.0.2.</span> <span class="nav-text">Set</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iterable类型"><span class="nav-number">7.</span> <span class="nav-text">iterable类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">8.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数定义"><span class="nav-number">8.0.1.</span> <span class="nav-text">函数定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数传参"><span class="nav-number">8.0.2.</span> <span class="nav-text">函数传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数变量作用域"><span class="nav-number">8.0.3.</span> <span class="nav-text">函数变量作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-number">8.0.4.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高阶函数"><span class="nav-number">8.0.5.</span> <span class="nav-text">高阶函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#闭包"><span class="nav-number">8.0.6.</span> <span class="nav-text">闭包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#箭头函数"><span class="nav-number">8.0.7.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#generate生成器"><span class="nav-number">8.0.8.</span> <span class="nav-text">generate生成器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准对象"><span class="nav-number">9.</span> <span class="nav-text">标准对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Date对象"><span class="nav-number">9.0.1.</span> <span class="nav-text">Date对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#正则对象RegExp"><span class="nav-number">9.0.2.</span> <span class="nav-text">正则对象RegExp</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSON对象"><span class="nav-number">9.0.3.</span> <span class="nav-text">JSON对象</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向对象编程"><span class="nav-number">10.</span> <span class="nav-text">面向对象编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建对象"><span class="nav-number">10.0.1.</span> <span class="nav-text">创建对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#class继承"><span class="nav-number">10.0.2.</span> <span class="nav-text">class继承</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器"><span class="nav-number">11.</span> <span class="nav-text">浏览器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器对象"><span class="nav-number">11.0.1.</span> <span class="nav-text">浏览器对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更新DOM"><span class="nav-number">11.0.2.</span> <span class="nav-text">更新DOM</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Ajax"><span class="nav-number">11.0.3.</span> <span class="nav-text">Ajax</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Promise"><span class="nav-number">11.0.4.</span> <span class="nav-text">Promise</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -879,7 +1006,7 @@ var jiathis_config={
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-github"></i>
   </span>
