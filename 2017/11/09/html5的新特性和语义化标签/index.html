@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="前端吟游诗">
 <meta property="og:description" content="记录html5的新特性">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-09T06:25:49.813Z">
+<meta property="og:updated_time" content="2018-01-09T09:49:29.204Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="html5的新特性和语义化标签">
 <meta name="twitter:description" content="记录html5的新特性">
@@ -388,9 +388,7 @@
         <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5" target="_blank" rel="noopener">MDN文档</a>  </p>
 <ol>
 <li>新特性<br>HTML5是HTML最新的修订版本，2014年10月由万维网联盟（W3C）完成标准制定。<br>HTML5的设计目的是为了在移动设备上支持多媒体。<br>用于绘画的 canvas 元素<br>用于多媒体回放的video和audio元素<br>对本地离线存储的更好的支持<br>新的特殊内容元素，比如 article、footer、header、nav、section<br>新的表单控件，比如 calendar、date、time、email、url、search  </li>
-<li>新的元素</li>
-</ol>
-<ul>
+<li>语义化标签是什么  <ul>
 <li>&lt;article&gt;定义页面独立的内容区域</li>
 <li>&lt;aside&gt;定义页面的侧边栏内容</li>
 <li>&lt;dbi&gt;设置一段文本，脱离其父元素的文本方向</li>
@@ -413,6 +411,14 @@
 <li>&lt;time&gt;定义日期或时间</li>
 <li>&lt;wbr&gt;规定在文本中的何处适合添加换行符</li>
 </ul>
+</li>
+<li><p>为什么有语义化标签<br> 在很久很久以前，前端开发者们设计网页布局时，使用的是table布局。将每一块的内容都是当作单元格处理。所有页面都相当于一个大表格。<br> 但是，这样的布局不够灵活，而且table元素有很多问题，比如margin失效。<br> 这时，CSS出现了，人们开始使用它设置页面样式。同时DIV元素在配合CSS上的优势也被人们发现。这时候大家都开始使用DIV+CSS开发前端页面。<br> 但是，这样还是有问题：div的语义不明。</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 看着上面的例子，我们来讲个故事：有一天小明出门，看到一棵树，树上有个果子，小明摘下后发现很好吃。然后继续往前走，又看到一棵长着果子的树，他想到第一棵树的果子很好吃，于是又摘下来吃了。结果第二颗果实是有毒的~使用div标签也是一样的道理，开发者们分不清这个div与那个div之间的作用与区别。意识到这个问题后，人们开始使用节点的某一属性标记div节点，比如class属性：</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"header"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"article"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p> 就相当于在每棵树上挂了个牌子，经过这样的处理后，下次经过第二棵树的小红就不会误食毒果了。<br> 但是，这样又让人觉得CSS和HTML的耦合性太高。原本文档结构是你HTML负责的，凭什么要我CSS来帮你？HTML也很委屈，我本来设计缺陷没有办法，要怪就怪设计我的人吧。<br> 所幸，标准制定者也知道这个缺点，于是提出来这些语义化标签，解放了CSS，降低了耦合度。  </p>
+</li>
+</ol>
 
       
     </div>
