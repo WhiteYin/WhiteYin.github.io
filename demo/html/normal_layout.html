@@ -1,281 +1,4 @@
 <!DOCTYPE html>
-
-
-
-
-<html class="theme-next gemini" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
-
-
-  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-
-
-<meta name="description" content="常见布局                                          水平居中                      text-align:center居中              .a1-s1 .parent{     text-align:center; } .a1-s1 .child{     display:inline-block; }">
-<meta property="og:type" content="website">
-<meta property="og:title" content="前端吟游诗">
-<meta property="og:url" content="https://whiteyin.github.io/demo/html/normal_layout.html">
-<meta property="og:site_name" content="前端吟游诗">
-<meta property="og:description" content="常见布局                                          水平居中                      text-align:center居中              .a1-s1 .parent{     text-align:center; } .a1-s1 .child{     display:inline-block; }">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-10T06:40:22.454Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端吟游诗">
-<meta name="twitter:description" content="常见布局                                          水平居中                      text-align:center居中              .a1-s1 .parent{     text-align:center; } .a1-s1 .child{     display:inline-block; }">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Gemini',
-    version: '5.1.3',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="https://whiteyin.github.io/demo/html/normal_layout.html"/>
-
-
-
-
-
-  <title> | 前端吟游诗</title>
-  
-
-
-
-
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?61ee2433e6c405ef8f6265d2d19b6b89";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">前端吟游诗</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <h1 class="site-subtitle" itemprop="description">爱生活，爱前端</h1>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-notes">
-          <a href="/notes/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-edit"></i> <br />
-            
-            随手记
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-    
-    
-    <div class="post-block page">
-      <header class="post-header">
-
-	<h2 class="post-title" itemprop="name headline"></h2>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-        
-        
-          <!DOCTYPE html>
 <html>
 
 <head>
@@ -284,7 +7,7 @@
     <meta name="author" content="white yin">
     <meta name="description" content="常规布局总结">
     <meta name="keywords" content="水平居中,垂直居中,双飞燕布局,圣杯布局,等高布局">
-    <link href="../css/normal_layout.css" rel="stylesheet">
+    <link href="../css/normal_layout.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -344,8 +67,8 @@
             </div>
             <p>
                 left属性百分比相对于父元素的宽度，translate属性百分比相对于元素本身宽度。
-                <br> 此外，绝对定位元素脱离文档流，需要指定父元素高度。
-                <br> 这个方法兼容到IE9，主要问题为transform属性兼容性。
+                <br /> 此外，绝对定位元素脱离文档流，需要指定父元素高度。
+                <br /> 这个方法兼容到IE9，主要问题为transform属性兼容性。
             </p>
         </section>
         <section class="a1-s4">
@@ -406,7 +129,7 @@
                 </div>
             </div>
             <p>vertical-align:middle是将子元素middle与父元素middle线对齐。
-                <br>注意，该属性只能用在table-cell或inline元素中。</p>
+                <br />注意，该属性只能用在table-cell或inline元素中。</p>
         </section>
         <section class="a2-s2">
             <h3>绝对定位+变换</h3>
@@ -460,14 +183,14 @@
             </pre>
             <div class="left">
                 左
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </div>
             <div class="right">
                 右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，
@@ -493,30 +216,30 @@
             </pre>
             <div class="left">
                 左
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </div>
             <div class="right">
                 右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右
             </div>
             <p style="clear:both;">
                 这种方法设置了.right元素具有BFC特征，以此来清除浮动。
-                <br> 因为我们将margin设置在了.left元素上，这在后面要提到的左列不定宽中非常有用。
-                <br> 至于为什么要清除浮动，因为float属性本身是为了让文本围绕图片排列，但是文本段落的背景并不会绕过浮动元素。
-                <br> 这听上去就像是浮动元素与文本元素处于一个位面，而背景则属于另一个位面。
-                <br> 我自己测试了一下，发现应该说浮动元素与除了块级元素外的元素都是在一个位面，与块级元素的content区域在一个位面。
-                <br> 块级元素的背景、padding、margin和border区域都会和身边的浮动元素重合。
-                <br> 所以，.right元素需要清除浮动。
+                <br /> 因为我们将margin设置在了.left元素上，这在后面要提到的左列不定宽中非常有用。
+                <br /> 至于为什么要清除浮动，因为float属性本身是为了让文本围绕图片排列，但是文本段落的背景并不会绕过浮动元素。
+                <br /> 这听上去就像是浮动元素与文本元素处于一个位面，而背景则属于另一个位面。
+                <br /> 我自己测试了一下，发现应该说浮动元素与除了块级元素外的元素都是在一个位面，与块级元素的content区域在一个位面。
+                <br /> 块级元素的背景、padding、margin和border区域都会和身边的浮动元素重合。
+                <br /> 所以，.right元素需要清除浮动。
             </p>
         </section>
 
@@ -539,18 +262,18 @@
             <div class="container">
                 <div class="left">
                     左
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
                 <div class="right">
                     右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右
@@ -558,7 +281,7 @@
             </div>
             <p>
                 表格布局关键就是table-layout属性需要设置为fixed，这样表格宽度决定内部单元格宽度。因此父级容器的宽度也要设置为100%初始值。
-                <br> 该方法可以实现左右等高。不过表格是无法设置margin外边距的，因此该方法适用范围比较窄。
+                <br /> 该方法可以实现左右等高。不过表格是无法设置margin外边距的，因此该方法适用范围比较窄。
             </p>
         </section>
         <section class="a3-s4">
@@ -578,8 +301,8 @@
             <div class="container">
                 <div class="left">
                     左
-                    <br>
-                    <br>
+                    <br />
+                    <br/>
                 </div>
                 <div class="right">
                     右
@@ -587,17 +310,17 @@
             </div>
             <p>
                 这个方法关键就是设置.right的flex:1;意思是右列获得父元素剩余的所有空间。
-                <br> 同时，因为flex子项的align-items属性默认为stretch，所以还能实现等高效果。
-                <br> 可惜啊，这么好用的布局方案兼容性还是有问题。希望这些旧的浏览器早点淘汰吧。
+                <br/> 同时，因为flex子项的align-items属性默认为stretch，所以还能实现等高效果。
+                <br /> 可惜啊，这么好用的布局方案兼容性还是有问题。希望这些旧的浏览器早点淘汰吧。
             </p>
         </section>
 
         <section>
             <h3>多列定宽，一列自适应</h3>
             多列定宽的情况和一列定宽的情况相似，将左列的样式同时设置在中间几列上就可以达到效果。
-            <br> 因为前面所说的方法原理都是让自适应的右列获得父元素的剩余宽度。
-            <br> 而table布局、flex布局或者是简单的浮动布局清除浮动都可以达到这样的效果。我就不用代码演示了。
-            <br> 不管是什么不定宽，float+overflow都是兼容性最好的方法。
+            <br /> 因为前面所说的方法原理都是让自适应的右列获得父元素的剩余宽度。
+            <br /> 而table布局、flex布局或者是简单的浮动布局清除浮动都可以达到这样的效果。我就不用代码演示了。
+            <br /> 不管是什么不定宽，float+overflow都是兼容性最好的方法。
         </section>
     </article>
 
@@ -632,17 +355,17 @@
             </div>
             <p>
                 这种方法很巧妙，我现在凭空是想不到的。
-                <br> 首先看关键的padding-bottoom:9999px;
-                <br> 设置padding是为了将两列的高度隐式设置为内容高度+9999px。
-                <br> 因为9999在浏览器高度中是非常大的值，要展示的内容高度不会超过这么高，甚至可以说是远小于这个高度,因此可以近似认为左右两列高度相等。但实际上是存在高度差的，将padding设置小一点我们能看到底部高度差仍然存在。
-                <br> 虽然我们将padding设置9999px高度，但是我们实际上并不需要下面的padding部分，因此需要做两个处理：
-                <br> 第一步是使用margin-bottom:-9999px;抹去内边距，使后面的元素能够出现在正常的位置。这是CSS标准盒模型的知识：Elementheight = height
+                <br /> 首先看关键的padding-bottoom:9999px;
+                <br /> 设置padding是为了将两列的高度隐式设置为内容高度+9999px。
+                <br /> 因为9999在浏览器高度中是非常大的值，要展示的内容高度不会超过这么高，甚至可以说是远小于这个高度,因此可以近似认为左右两列高度相等。但实际上是存在高度差的，将padding设置小一点我们能看到底部高度差仍然存在。
+                <br /> 虽然我们将padding设置9999px高度，但是我们实际上并不需要下面的padding部分，因此需要做两个处理：
+                <br /> 第一步是使用margin-bottom:-9999px;抹去内边距，使后面的元素能够出现在正常的位置。这是CSS标准盒模型的知识：Elementheight = height
                 + padding + margin；
-                <br> 第二步是父元素设置overflow:hidden;形成BFC清除浮动，同时清除浮动后也因为两列中较高的一列（demo中为左列）撑起父元素高度，overflow属性就将超出父元素高度的部分给截断。表面上形成了两列等高的情况。
-                <br> 其实我在学习这种布局时有个很疑惑的地方，为什么右列内容少，设置margin负值后，背景仍然和左列背景一样高呢？原来是我忘了背景是从padding开始的，与margin无关，这样我也就想通了。
-                <br>
-                <br> 总结一下这种方法兼容性好，没有用到CSS3的属性，消除浮动可能在IE低版本有问题，但是知道原理后还是能够解决的。
-                <br> 缺点就是无法设置底部边框，需要在两列内部添加一个div定位成边框。
+                <br /> 第二步是父元素设置overflow:hidden;形成BFC清除浮动，同时清除浮动后也因为两列中较高的一列（demo中为左列）撑起父元素高度，overflow属性就将超出父元素高度的部分给截断。表面上形成了两列等高的情况。
+                <br /> 其实我在学习这种布局时有个很疑惑的地方，为什么右列内容少，设置margin负值后，背景仍然和左列背景一样高呢？原来是我忘了背景是从padding开始的，与margin无关，这样我也就想通了。
+                <br />
+                <br /> 总结一下这种方法兼容性好，没有用到CSS3的属性，消除浮动可能在IE低版本有问题，但是知道原理后还是能够解决的。
+                <br /> 缺点就是无法设置底部边框，需要在两列内部添加一个div定位成边框。
             </p>
         </section>
         <section class="a4-s2">
@@ -663,13 +386,13 @@
             <div class="container">
                 <div class="left">
                     左
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
                 <div class="right">
                     右
@@ -677,7 +400,7 @@
             </div>
             <p>
                 不得不说，表格布局确实是一种不错的布局解决方案，都不用特地设置什么就能实现等高布局，这种特性真好呀。
-                <br> 缺点之前也说过，不能设置margin。
+                <br /> 缺点之前也说过，不能设置margin。
             </p>
         </section>
 
@@ -694,11 +417,11 @@
             </pre>
             <div class="container">
                 <div class="left">左
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
                 <div class="right">右</div>
             </div>
@@ -725,11 +448,11 @@
             </pre>
             <div class="left">
                 左
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </div>
             <div class="center">
                 中
@@ -739,7 +462,7 @@
             </div>
             <p>
                 这是简单的使用inline-block使3列显示在一行中，同时使用calc方法动态计算宽度。
-                <br> 此外还有“廉颇老矣，尚能饭否”的table布局和“初升的太阳”flex布局，这里不赘述了。
+                <br /> 此外还有“廉颇老矣，尚能饭否”的table布局和“初升的太阳”flex布局，这里不赘述了。
             </p>
         </section>
         <section>
@@ -776,11 +499,11 @@
                 </div>
                 <div class="left">
                     左
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
                 <div class="right">
                     右
@@ -788,7 +511,7 @@
             </div>
 
             <p>
-                圣杯布局原理就是：<br>
+                圣杯布局原理就是：<br />
                 <ol>
                     <li>先设置三列浮动，将他们布局在一行上。父元素要生成BFC清除浮动。</li>
                     <li>将中间列宽度设置为100%占满一行。这时左右两列被挤到下一行。</li>
@@ -832,11 +555,11 @@
                     </div>
                     <div class="left">
                         左
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
                     </div>
                     <div class="right">
                         右
@@ -844,580 +567,17 @@
                 </div>
     
                 <p>
-                   双飞翼的原理与圣杯原理差不多，但是没有使用相对定位，这是解决圣杯布局在浏览器宽度较小情况下失效的一种方法。<br>
-                   同时也使用了margin来推开左右两列。<br>
+                   双飞翼的原理与圣杯原理差不多，但是没有使用相对定位，这是解决圣杯布局在浏览器宽度较小情况下失效的一种方法。<br />
+                   同时也使用了margin来推开左右两列。<br />
                    缺点是DOM多了一层，损失了部分性能。
                 </p>
             </section>
     </article>
     <section>
-        前端发展到现在，布局方案层出不穷，曾经的table布局，后来的div+css，当下的flex布局，以及未来的grid布局。不得不说，前端布局会越来越容易，功能也越来越强大。<br>
-        grid布局我没有提到，有空会单独写出来，但是什么时候浏览器都能支持还是个未知数。<br>
+        前端发展到现在，布局方案层出不穷，曾经的table布局，后来的div+css，当下的flex布局，以及未来的grid布局。不得不说，前端布局会越来越容易，功能也越来越强大。<br />
+        grid布局我没有提到，有空会单独写出来，但是什么时候浏览器都能支持还是个未知数。<br />
         最后，布局方案有很多，选择哪种都需要看业务需求。如果一时半会记不住，等到要用的时候来查也是可以的。要是觉得面试会被考到，也可以提前来看一眼。
     </section>
 </body>
 
-</html>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-    
-    
-  </div>
-
-
-          </div>
-          
-
-
-          
-
-  
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
-
-  
-
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
-                alt="白吟" />
-            
-              <p class="site-author-name" itemprop="name">白吟</p>
-              <p class="site-description motion-element" itemprop="description"></p>
-          </div>
-
-          <nav class="site-state motion-element">
-
-            
-              <div class="site-state-item site-state-posts">
-              
-                <a href="/archives/">
-              
-                  <span class="site-state-item-count">15</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">9</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
-
-          
-
-          <div class="links-of-author motion-element">
-            
-          </div>
-
-          
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                我还活跃于
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://github.com/WhiteYin" title="GitHub" target="_blank">GitHub</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.zhihu.com/people/bai-yin-16-89/activities" title="知乎" target="_blank">知乎</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://blog.csdn.net/lichking11" title="csdn博客" target="_blank">csdn博客</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://segmentfault.com/u/baiyinling" title="SegmentFault" target="_blank">SegmentFault</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="/introduction" title="自我简介" target="_blank">自我简介</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-
-        </div>
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">1.</span> <span class="nav-text">水平居中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.1.</span> <span class="nav-text">text-align:center居中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.2.</span> <span class="nav-text">table+margin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.3.</span> <span class="nav-text">绝对定位+2D变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.4.</span> <span class="nav-text">绝对定位+margin负值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.0.5.</span> <span class="nav-text">flex布局</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">2.</span> <span class="nav-text">垂直居中</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.1.</span> <span class="nav-text">table-cell+vertical-align</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.2.</span> <span class="nav-text">绝对定位+变换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">2.0.3.</span> <span class="nav-text">flex布局align-items</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">3.</span> <span class="nav-text">一列或多列定宽，一列自适应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.1.</span> <span class="nav-text">左列浮动定宽（一）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.2.</span> <span class="nav-text">左列浮动定宽（二）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.3.</span> <span class="nav-text">表格布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.4.</span> <span class="nav-text">flex布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">3.0.5.</span> <span class="nav-text">多列定宽，一列自适应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">4.</span> <span class="nav-text">等高布局</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.0.1.</span> <span class="nav-text">负margin+float</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.0.2.</span> <span class="nav-text">table布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">4.0.3.</span> <span class="nav-text">flex布局</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#undefined"><span class="nav-number">5.</span> <span class="nav-text">三列布局的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.0.1.</span> <span class="nav-text">常规方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.0.2.</span> <span class="nav-text">圣杯布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">5.0.3.</span> <span class="nav-text">双飞燕布局</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
-      <div id="zc-wrapper">
-            <span id="letter1" class="zc-letter">I</span>
-            <span id="letter2" class="zc-letter">&nbsp;</span>
-            <span id="letter3" class="zc-letter">a</span>
-            <span id="letter4" class="zc-letter">m</span>
-            <span id="letter5" class="zc-letter">&nbsp;</span>
-            <span id="letter6" class="zc-letter">Z</span>
-            <span id="letter7" class="zc-letter">h</span>
-            <span id="letter8" class="zc-letter">o</span>
-            <span id="letter9" class="zc-letter">u</span>
-            <span id="letter10" class="zc-letter">&nbsp;</span>
-            <span id="letter11" class="zc-letter">c</span>
-            <span id="letter12" class="zc-letter">o</span>
-            <span id="letter13" class="zc-letter">n</span>
-            <span id="letter14" class="zc-letter">g</span>
-        </div>
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
-    <i class="fa fa-github"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">WhiteYin</span>
-
-  
-</div>
-
-
-
-
-
-
-
-
-  <div class="footer-custom">很高兴能认识你。ლ(⌒▽⌒ლ)</div>
-
-
-        
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-      <style>
-        a.gitment-editor-footer-tip { display: none; }
-        .gitment-container.gitment-footer-container { display: none; }
-      </style>
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname, 
-            owner: 'WhiteYin',
-            repo: 'hexo-comment',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '29ae77cbbfa8b8e1b528bd3de80c9cc4a327afd1',
-            
-                client_id: '0be43d9564938da5b5cd'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
-
-
-
-
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-
-
-  
-
-
-
-
-
-  
-
-  
-  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
-  <script>AV.initialize("CO7tO6jOgFCHBhw3ME7orIY3-gzGzoHsz", "PuQRDwbMAdXl1XiXGTvkMOh9");</script>
-  <script>
-    function showTime(Counter) {
-      var query = new AV.Query(Counter);
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      query.containedIn('url', entries);
-      query.find()
-        .done(function (results) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-  
-
-  
-
-  
-
-  
-
-</body>
 </html>
