@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="xhtml,html," />
+  <meta name="keywords" content="hexo," />
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="xhtml与html的区别以及如何将html转换成xhtml">
-<meta name="keywords" content="xhtml,html">
+<meta name="description" content="记录使用hexo编辑博客时的问题">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="xhtml与html的区别">
-<meta property="og:url" content="https://whiteyin.github.io/2017/10/11/xhtml与html的区别/index.html">
+<meta property="og:title" content="hexo解析markdown时出现的问题">
+<meta property="og:url" content="https://whiteyin.github.io/2018/01/11/hexo解析markdown时出现的问题/index.html">
 <meta property="og:site_name" content="前端吟游诗">
-<meta property="og:description" content="xhtml与html的区别以及如何将html转换成xhtml">
+<meta property="og:description" content="记录使用hexo编辑博客时的问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-08T09:57:56.492Z">
+<meta property="og:updated_time" content="2018-01-11T06:54:17.978Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xhtml与html的区别">
-<meta name="twitter:description" content="xhtml与html的区别以及如何将html转换成xhtml">
+<meta name="twitter:title" content="hexo解析markdown时出现的问题">
+<meta name="twitter:description" content="记录使用hexo编辑博客时的问题">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://whiteyin.github.io/2017/10/11/xhtml与html的区别/"/>
+  <link rel="canonical" href="https://whiteyin.github.io/2018/01/11/hexo解析markdown时出现的问题/"/>
 
 
 
 
 
-  <title>xhtml与html的区别 | 前端吟游诗</title>
+  <title>hexo解析markdown时出现的问题 | 前端吟游诗</title>
   
 
 
@@ -271,7 +271,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://whiteyin.github.io/2017/10/11/xhtml与html的区别/">
+    <link itemprop="mainEntityOfPage" href="https://whiteyin.github.io/2018/01/11/hexo解析markdown时出现的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="白吟">
@@ -288,7 +288,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">xhtml与html的区别</h2>
+          <h2 class="post-title" itemprop="name headline">hexo解析markdown时出现的问题</h2>
         
 
         <div class="post-meta">
@@ -300,8 +300,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-11T12:27:18+08:00">
-                2017-10-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T14:44:23+08:00">
+                2018-01-11
               </time>
             
 
@@ -323,8 +323,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端知识/" itemprop="url" rel="index">
-                    <span itemprop="name">前端知识</span>
+                  <a href="/categories/hexo/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo</span>
                   </a>
                 </span>
 
@@ -341,8 +341,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/10/11/xhtml与html的区别/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2017/10/11/xhtml与html的区别/" itemprop="commentsCount"></span>
+                <a href="/2018/01/11/hexo解析markdown时出现的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/01/11/hexo解析markdown时出现的问题/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -350,7 +350,7 @@
 
           
           
-             <span id="/2017/10/11/xhtml与html的区别/" class="leancloud_visitors" data-flag-title="xhtml与html的区别">
+             <span id="/2018/01/11/hexo解析markdown时出现的问题/" class="leancloud_visitors" data-flag-title="hexo解析markdown时出现的问题">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -368,7 +368,7 @@
 
           
               <div class="post-description">
-                  xhtml与html的区别以及如何将html转换成xhtml
+                  记录使用hexo编辑博客时的问题
               </div>
           
 
@@ -385,26 +385,20 @@
       
 
       
-        <h3 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h3><ul>
-<li>&lt;!DOCTYPE&gt;是强制的</li>
-<li>&lt;html&gt;中的XML namespace属性是强制的</li>
-<li>&lt;html&gt;、&lt;head&gt;、&lt;body&gt;也是强制的<h3 id="元素语法"><a href="#元素语法" class="headerlink" title="元素语法"></a>元素语法</h3></li>
-<li>元素必须正确嵌套</li>
-<li>元素必须始终关闭</li>
-<li>元素必须小写</li>
-<li>文档必须有一个根元素<h3 id="属性语法"><a href="#属性语法" class="headerlink" title="属性语法"></a>属性语法</h3></li>
-<li>属性必须使用小写</li>
-<li>属性值必须用引号包围</li>
-<li>属性最小化也是禁止的</li>
-<li>不允许属性简写<h3 id="将html转换成xhtml"><a href="#将html转换成xhtml" class="headerlink" title="将html转换成xhtml"></a>将html转换成xhtml</h3></li>
-</ul>
+        <p>使用hexo遇到的问题：</p>
 <ol>
-<li>添加一个xhtml &lt;!DOCTYPE&gt;到网页中</li>
-<li>添加xmlns属性到每个页面的html元素中</li>
-<li>改变所有元素为小写</li>
-<li>关闭所有空元素</li>
-<li>修改所有属性名为小写</li>
-<li>所有属性值添加引号</li>
+<li>标题的#号必须是连续的，比如大标题用#，下一级必须用##，不能使用###或其他。否则左侧目录顺序会乱。  </li>
+<li><p>列表后的文本排版会有问题。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 123</span><br><span class="line">2. 123</span><br><span class="line">我是不属于列表中的文本。</span><br></pre></td></tr></table></figure>
+<p> 我们希望排版是上面这样，但是结果是</p>
+<ol>
+<li>123</li>
+<li>123<br>我是不属于列表中文本（才怪）</li>
+</ol>
+<p>要修正错误，需要在最后一行前加2个空格，而不是一个tab或是4个空格。《==比如这行</p>
+</li>
+<li>表格布局前要回车换一行</li>
+<li>```代码块后不能有换行</li>
 </ol>
 
       
@@ -423,9 +417,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/xhtml/" rel="tag"># xhtml</a>
-          
-            <a href="/tags/html/" rel="tag"># html</a>
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
           
         </div>
       
@@ -438,8 +430,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/30/如何写出一篇hexo博文/" rel="next" title="如何写出一篇hexo博文">
-                <i class="fa fa-chevron-left"></i> 如何写出一篇hexo博文
+              <a href="/2018/01/10/CSS-常见布局方案总结/" rel="next" title="CSS 常见布局方案总结">
+                <i class="fa fa-chevron-left"></i> CSS 常见布局方案总结
               </a>
             
           </div>
@@ -448,8 +440,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/17/前端经验积累记录/" rel="prev" title="前端经验积累记录">
-                前端经验积累记录 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/15/JS-ES5数据类型及相互转换/" rel="prev" title="JS ES5数据类型及转换规则">
+                JS ES5数据类型及转换规则 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -533,17 +525,8 @@ var jiathis_config={
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -639,22 +622,6 @@ var jiathis_config={
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文档结构"><span class="nav-number">1.</span> <span class="nav-text">文档结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元素语法"><span class="nav-number">2.</span> <span class="nav-text">元素语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性语法"><span class="nav-number">3.</span> <span class="nav-text">属性语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将html转换成xhtml"><span class="nav-number">4.</span> <span class="nav-text">将html转换成xhtml</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
