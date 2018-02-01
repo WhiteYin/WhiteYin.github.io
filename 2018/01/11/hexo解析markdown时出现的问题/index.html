@@ -80,15 +80,18 @@
 <meta name="description" content="记录使用hexo编辑博客时的问题">
 <meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo解析markdown时出现的问题">
+<meta property="og:title" content="hexo 问题记录">
 <meta property="og:url" content="https://whiteyin.github.io/2018/01/11/hexo解析markdown时出现的问题/index.html">
 <meta property="og:site_name" content="前端吟游诗">
 <meta property="og:description" content="记录使用hexo编辑博客时的问题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-11T06:54:17.978Z">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com/%E5%8E%9F%E5%A7%8B%E6%83%85%E5%86%B5.png">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com/%E4%BB%A3%E7%A0%81%E4%BF%AE%E6%AD%A3.png">
+<meta property="og:updated_time" content="2018-02-01T09:21:40.110Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo解析markdown时出现的问题">
+<meta name="twitter:title" content="hexo 问题记录">
 <meta name="twitter:description" content="记录使用hexo编辑博客时的问题">
+<meta name="twitter:image" content="http://ox34ivs2j.bkt.clouddn.com/%E5%8E%9F%E5%A7%8B%E6%83%85%E5%86%B5.png">
 
 
 
@@ -124,7 +127,7 @@
 
 
 
-  <title>hexo解析markdown时出现的问题 | 前端吟游诗</title>
+  <title>hexo 问题记录 | 前端吟游诗</title>
   
 
 
@@ -288,7 +291,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">hexo解析markdown时出现的问题</h2>
+          <h2 class="post-title" itemprop="name headline">hexo 问题记录</h2>
         
 
         <div class="post-meta">
@@ -350,7 +353,7 @@
 
           
           
-             <span id="/2018/01/11/hexo解析markdown时出现的问题/" class="leancloud_visitors" data-flag-title="hexo解析markdown时出现的问题">
+             <span id="/2018/01/11/hexo解析markdown时出现的问题/" class="leancloud_visitors" data-flag-title="hexo 问题记录">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -385,8 +388,7 @@
       
 
       
-        <p>使用hexo遇到的问题：</p>
-<ol>
+        <h1 id="markdown解析问题："><a href="#markdown解析问题：" class="headerlink" title="markdown解析问题："></a>markdown解析问题：</h1><ol>
 <li>标题的#号必须是连续的，比如大标题用#，下一级必须用##，不能使用###或其他。否则左侧目录顺序会乱。  </li>
 <li><p>列表后的文本排版会有问题。</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 123</span><br><span class="line">2. 123</span><br><span class="line">我是不属于列表中的文本。</span><br></pre></td></tr></table></figure>
@@ -400,6 +402,7 @@
 <li>表格布局前要回车换一行</li>
 <li>```代码块后不能有换行</li>
 </ol>
+<h1 id="gitment初始化评论报错Validate-Error"><a href="#gitment初始化评论报错Validate-Error" class="headerlink" title="gitment初始化评论报错Validate Error"></a>gitment初始化评论报错Validate Error</h1><p>问题：点击评论页的初始化按钮，报Validate Error错误。<br>原因：github的issue label限制长度50字，而next在向github发送请求时传递的是本页面的url，长度会超过这个限制。<br>解决：我使用的是next 5.x，定位代码位置<br><code>/theme/next/layout/_scripts/_third-party/comments/gitment.swig</code>:<br><img src="http://ox34ivs2j.bkt.clouddn.com/%E5%8E%9F%E5%A7%8B%E6%83%85%E5%86%B5.png" alt="原先代码">修改26行的id，如下图：<br><img src="http://ox34ivs2j.bkt.clouddn.com/%E4%BB%A3%E7%A0%81%E4%BF%AE%E6%AD%A3.png" alt="修改后代码">这样就解决了。</p>
 
       
     </div>
@@ -525,8 +528,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -622,6 +634,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#markdown解析问题："><span class="nav-number">1.</span> <span class="nav-text">markdown解析问题：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gitment初始化评论报错Validate-Error"><span class="nav-number">2.</span> <span class="nav-text">gitment初始化评论报错Validate Error</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -840,7 +868,7 @@ var jiathis_config={
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: 'hexo解析markdown时出现的问题', 
+            id: 'hexo 问题记录', 
             owner: 'WhiteYin',
             repo: 'hexo-comment',
             
