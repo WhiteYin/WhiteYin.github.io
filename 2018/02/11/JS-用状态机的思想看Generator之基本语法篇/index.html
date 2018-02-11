@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="用状态机的思想看Generator的状态跳转和状态间传值">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 用状态机的思想看Generator之基本语法篇">
+<meta property="og:url" content="https://whiteyin.github.io/2018/02/11/JS-用状态机的思想看Generator之基本语法篇/index.html">
+<meta property="og:site_name" content="前端吟游诗">
+<meta property="og:description" content="用状态机的思想看Generator的状态跳转和状态间传值">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/demo%E4%B8%80.png">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/return.png">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/throw.png">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/catch.png">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/%E7%BB%88%E6%80%81.png">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/demo2.png">
+<meta property="og:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/demo3.png">
+<meta property="og:updated_time" content="2018-02-11T10:12:40.915Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 用状态机的思想看Generator之基本语法篇">
+<meta name="twitter:description" content="用状态机的思想看Generator的状态跳转和状态间传值">
+<meta name="twitter:image" content="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/demo%E4%B8%80.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://whiteyin.github.io/2018/02/11/JS-用状态机的思想看Generator之基本语法篇/"/>
+
+
+
+
+
+  <title>JS 用状态机的思想看Generator之基本语法篇 | 前端吟游诗</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?61ee2433e6c405ef8f6265d2d19b6b89";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端吟游诗</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">爱生活，爱前端</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/notes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-edit"></i> <br />
+            
+            随手记
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://whiteyin.github.io/2018/02/11/JS-用状态机的思想看Generator之基本语法篇/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="白吟">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端吟游诗">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS 用状态机的思想看Generator之基本语法篇</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-11T18:11:34+08:00">
+                2018-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/11/JS-用状态机的思想看Generator之基本语法篇/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/11/JS-用状态机的思想看Generator之基本语法篇/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/02/11/JS-用状态机的思想看Generator之基本语法篇/" class="leancloud_visitors" data-flag-title="JS 用状态机的思想看Generator之基本语法篇">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  用状态机的思想看Generator的状态跳转和状态间传值
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近学习了阮一峰老师的<a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">《ECMAScript 6 入门》</a>里的Generator相关知识，以及《你不知道的JS》中卷的异步编程部分。同时在SegmentFault问答区看到了一些前端朋友对Generator的语法和执行过程有一些疑问，于是我想分享一下自己对Generator的理解，也许对前端社区会有所帮助。</p>
+<h1 id="Generator本质"><a href="#Generator本质" class="headerlink" title="Generator本质"></a>Generator本质</h1><p>Generator的本质是一个状态机，yield关键字的作用是分割两个状态，右边的语句执行在前一个状态，而左边的语句是下一个状态要执行的。如果右边为空则默认为undefined，左边为空默认为一个赋值语句，被赋值的变量永远不会被调用。当调用Generator函数获取一个迭代器时，状态机处于初态。迭代器调用next方法后，向下一个状态跳转，然后执行该状态的代码。当遇到return或最后一个yield时，进入终态。终态的标识就是next方法返回对象的done属性。</p>
+<h1 id="Generator状态跳转"><a href="#Generator状态跳转" class="headerlink" title="Generator状态跳转"></a>Generator状态跳转</h1><p>Generator函数执行后会生出一个迭代器，包含3个主要方法：next、throw和return。它们的本质都是改变状态机的状态，但throw和return属于强制改变，next则是按照定义好的流程去改变。下面我来分别讲讲这三种方法。</p>
+<h2 id="next方法"><a href="#next方法" class="headerlink" title="next方法"></a>next方法</h2><p>先看下面这个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function* gen()&#123;</span><br><span class="line">    console.log(&quot;state1&quot;);</span><br><span class="line">    let state1 = yield &quot;state1&quot;;</span><br><span class="line">    console.log(&quot;state2&quot;);</span><br><span class="line">    let state2 = yield &quot;state2&quot;;</span><br><span class="line">    console.log(&quot;end&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们声明了一个名为gen的Generator函数，其中有2个yield语句，我们可以归纳出4个状态：</p>
+<ol>
+<li>初态：这个状态是gen这个“状态机”的初始状态，什么也不会做；</li>
+<li><p>状态一：初态的下一个状态，跳转到这个状态后执行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(&quot;state1&quot;);</span><br><span class="line">yield &quot;state1&quot;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>状态二：这个状态会先接收上一个状态传来的数据data，然后执行</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let state1 = data;</span><br><span class="line">console.log(&quot;state2&quot;);</span><br><span class="line">yield &quot;state2&quot;;//注意，这里是最后一个yield</span><br></pre></td></tr></table></figure>
+<p> 这里的data是对上一个状态中<code>yield &quot;state1&quot;</code>的替换。</p>
+</li>
+<li><p>状态三（终态）：因为gen已经执行过最后一个yield表达式，所以状态三也就是状态机的终态。这个状态也接受了上一个状态传来的数据data，执行了</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let state2 = data;</span><br><span class="line">console.log(&quot;end&quot;);</span><br></pre></td></tr></table></figure>
+<p> 同时，还将迭代器返回的对象done属性修改为true，比如<code>{value:undefined,done:true}</code>。这代表gen这个状态机已经执行到了终态。  </p>
+</li>
+</ol>
+<p>将gen这个Generator函数转换成状态机以后，我们可以在脑中想象出下面这张图：<br><img src="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/demo%E4%B8%80.png" alt="demo"><br>接下来我们就根据这张图分析下状态间是如何跳转的。  </p>
+<p>首先是初态，当Generator函数被执行后，状态机就自动处于初态了。这个状态并不会执行任何语句。<br>也就是执行语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let g = gen();</span><br></pre></td></tr></table></figure></p>
+<p>会有一个箭头指向初态，如下图：<br><img src="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/%E5%88%9D%E5%A7%8B%E5%8C%96.png" alt="初始化"><br>然后是非初态间的状态跳转。如果你想要按照gen里定义好的状态顺序跳转，那你应该使用next()方法。比如我们第一次执行<code>g.next()</code>，gen这个状态机会从初态跳转到状态一。然后再执行<code>g.next()</code>，则状态一会向状态二跳转，并且发送数据<code>undefined</code>，这是因为next函数没有传参，默认为<code>undefined</code>。关于状态间如何传递数据我将在下一节讲。  </p>
+<p>当我们不断调用next方法，gen会按照定义好的流程进行状态跳转。而且即使是到了终态，next也会返回对象，只是这个对象的值一直是<code>{value:undefined,done:true}</code>。听上去像是在终态后面又新增了一个状态，所以next方法能够不断执行。但是我觉得为了符合状态机的设定，还是将第一个done为true的状态叫做终态比较好。</p>
+<h2 id="return方法"><a href="#return方法" class="headerlink" title="return方法"></a>return方法</h2><p>与按部就班的next方法不同，return方法会打破原有的状态序列，并根据开发者的需要跳转到一个新的状态，而这个状态有两个特点：</p>
+<ol>
+<li>不是原有状态序列中的任何一个状态；</li>
+<li><p>该状态返回的对象的done属性值为true。</p>
+<p>我们继续用上面的例子。如果从状态一跳转到状态二，使用的代码是<code>g.return();</code>而不是<code>g.next()</code>，那么状态图会变成下面这个样子：<br><img src="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/return.png" alt="使用return方法"><br>从图中可以看出，return的行为就是新增一个新·状态二插入在状态一后面，然后从状态一跳转到新·状态二，同时输出<code>{value:undefined,done:true}</code>。同样，这里的<code>undefined</code>也是因为return方法没有传参。</p>
+</li>
+</ol>
+<p>如果Generator函数里有一个try…finally语句，return新建的状态会插入在执行finally块最后一行语句的状态之后。可以看看<a href="http://es6.ruanyifeng.com/#docs/generator#Generator-prototype-return" target="_blank" rel="noopener">这一节</a>阮一峰老师举的例子。</p>
+<h2 id="throw方法"><a href="#throw方法" class="headerlink" title="throw方法"></a>throw方法</h2><p>我喜欢将throw方法当作next和return方法的结合。throw()方法与throw关键字很像，都是抛出一个错误。而Generator函数会根据是否定义捕获语句来进行状态跳转。一共有下面3种情况：</p>
+<ol>
+<li>没有try…catch；</li>
+<li>下一个状态要执行的语句在try…catch中；</li>
+<li>throw()方法在一个try…catch中被调用。</li>
+</ol>
+<h3 id="没有try…catch"><a href="#没有try…catch" class="headerlink" title="没有try…catch"></a>没有try…catch</h3><p>继续使用上一章的代码，假设从状态一到状态二使用的是<code>g.throw()</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function* gen()&#123;</span><br><span class="line">    console.log(&quot;state1&quot;);</span><br><span class="line">    let state1 = yield &quot;state1&quot;;</span><br><span class="line">    console.log(&quot;state2&quot;);</span><br><span class="line">    let state2 = yield &quot;state2&quot;;</span><br><span class="line">    console.log(&quot;end&quot;);</span><br><span class="line">&#125;</span><br><span class="line">let g = gen();</span><br><span class="line">g.next();</span><br><span class="line">g.throw();</span><br></pre></td></tr></table></figure></p>
+<p>首先，状态二的代码<code>console.log(&quot;state2&quot;);...</code>并不在try…catch块中，而且也不是在try…catch块中调用<code>g.throw()</code>。那么最后的状态图应该是下面这样：<br><img src="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/throw.png" alt="throw()方法"><br>看上去就像是调用了return方法，新增一个状态，同时将输出的对象done属性设置为true。但是有一点不同的是这个对象并不会输出，而是报错：<code>Uncaught undefined</code>，因为程序因错误而中断。同样，原本要输出的字符串<code>state2</code>也不会输出。</p>
+<p>这里我认为需要重视的一个问题是错误是在状态二中的哪一条语句抛出的？修改了代码位置后，我发现throw()方法是将<code>yield &quot;state1&quot;</code>替换成<code>throw undefined</code>，所以之后的<code>let state1...</code>等语句都不会执行。</p>
+<h3 id="下一个状态在try…catch中"><a href="#下一个状态在try…catch中" class="headerlink" title="下一个状态在try…catch中"></a>下一个状态在try…catch中</h3><p>修改上一章的示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function* gen()&#123;</span><br><span class="line">    console.log(&quot;state1&quot;);</span><br><span class="line">    try&#123;</span><br><span class="line">        let state1 = yield &quot;state1&quot;;</span><br><span class="line">        console.log(&quot;state2&quot;);</span><br><span class="line">    &#125;catch(e)&#123;</span><br><span class="line">        console.log(&quot;catch it&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    let state2 = yield &quot;state2&quot;;</span><br><span class="line">    console.log(&quot;end&quot;);</span><br><span class="line">&#125;</span><br><span class="line">let g = gen();</span><br><span class="line">g.next();</span><br><span class="line">g.throw();</span><br></pre></td></tr></table></figure></p>
+<p>由于状态二要执行的代码被try…catch包裹，所以throw()抛出的错误被catch块捕获，从而程序直接转入catch块执行语句，打印“catch it”。这与JS的错误捕获机制一致，状态图总体并不会变化，只是状态二节点下的执行语句有变化。<br><img src="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/catch.png" alt="内部捕获"><br>注意红色圈内的语句，相比较与调用next方法时的状态二，删除了try块中错误抛出位置后的<code>let state1 = data;console.log(&quot;state2&quot;);</code>，添加了catch块中要执行的<code>console.log(&quot;catch it&quot;);</code>，如果有finally块也会把里面的语句添加进去。之后再调用next方法，仍然会按照规定好的流程进行跳转。</p>
+<p>这一次，throw方法对状态机的操作与next方法大体相同。但因为他本质上是抛出错误，所以会对程序的代码执行顺序有一定的影响。</p>
+<h3 id="throw-方法在一个try…catch中被调用"><a href="#throw-方法在一个try…catch中被调用" class="headerlink" title="throw()方法在一个try…catch中被调用"></a>throw()方法在一个try…catch中被调用</h3><p>只要结合上面2种情况，记住3个规则就行：</p>
+<ol>
+<li>Genereator内部没有try…catch则当作正常抛出错误处理；</li>
+<li>下一个状态在try…catch中时，throw()方法抛出的错误会被捕获，那相当于外部没有捕获错误，与第二种情况一致。</li>
+<li><p>规则2中错误捕获后的状态执行代码报错，按规则1处理。</p>
+<p>这里，针对规则3做一个讲解。  </p>
+</li>
+</ol>
+<p>看下面这个例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function* gen()&#123;</span><br><span class="line">    console.log(&quot;state1&quot;);</span><br><span class="line">    try&#123;</span><br><span class="line">        let state1 = yield &quot;state1&quot;;</span><br><span class="line">        console.log(&quot;state2&quot;);</span><br><span class="line">    &#125;catch(e)&#123;</span><br><span class="line">        err = a;//错误</span><br><span class="line">        console.log(&quot;内部捕获&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    let state2 = yield &quot;state2&quot;;</span><br><span class="line">    console.log(&quot;end&quot;);</span><br><span class="line">&#125;</span><br><span class="line">let g = gen();</span><br><span class="line">g.next();</span><br><span class="line">try&#123;</span><br><span class="line">    g.throw();</span><br><span class="line">&#125;catch(e)&#123;</span><br><span class="line">    console.log(&quot;外部捕获&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>那么原本符合规则2的代码在捕获throw()抛出的错误后又因为没有声明标识符<code>a</code>报错，从而被外层catch块捕获。导致看上去就像规则1一样。</p>
+<h2 id="状态间传值"><a href="#状态间传值" class="headerlink" title="状态间传值"></a>状态间传值</h2><p>next、throw和return方法除了状态跳转外，还有一个功能就是为前后两个状态传值。但是它们3个的表现又各不相同。</p>
+<p>next给状态传值的表现中规中矩，看看下面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function* gen()&#123;</span><br><span class="line">    let value = yield &quot;你好&quot;;</span><br><span class="line">    console.log(value);</span><br><span class="line">&#125;</span><br><span class="line">let g = gen();</span><br><span class="line">g.next();</span><br><span class="line">g.next(&quot;再见&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>当我们想要跳转到执行<code>console.log(value);</code>的状态二时，给next方法传一个字符串“再见”，然后<code>yield &quot;你好&quot;</code>会被替换成<code>&quot;再见&quot;</code>，赋值给value变量打印出来。你可以试试不传值或者传其他值，应该能帮助你理解更深刻。</p>
+<p>throw方法一般都会传值，而且为了规范应该传一个Error对象。</p>
+<p>return方法传值有点特殊，修改上面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function* gen()&#123;</span><br><span class="line">    let value = yield &quot;你好&quot;;</span><br><span class="line">    console.log(value);</span><br><span class="line">&#125;</span><br><span class="line">let g = gen();</span><br><span class="line">g.next();</span><br><span class="line">g.return(&quot;看得见我吗？&quot;);</span><br></pre></td></tr></table></figure></p>
+<p>如果你前面的知识没忘的话，你应该知道，用return替换next后，什么也不会打印。因为跳转到了一个什么代码也不会执行状态。那么return函数的参数作用体现在哪呢？还记得每一个方法调用后都会返回一个对象吗？上面的代码输出了<code>{value:&quot;看得见我吗&quot;,done:true}</code>。哈，我看见你了。</p>
+<h1 id="关于终态"><a href="#关于终态" class="headerlink" title="关于终态"></a>关于终态</h1><p>一般我喜欢把最后一个yield或是return表达式当作最后一个状态。但是有时候可以把终态想象成一个不断循环自身的状态，比如下面这样：<br><img src="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/%E7%BB%88%E6%80%81.png" alt="终态"><br>这样理解有一个好处是可以解释为什么done属性值为true后，再次调用next仍会返回一个对象<code>{value:undefined,done:true}</code>。但是这样会多一个状态，画图不方便（假装这个理由很充分）。<br>总之，如何理解全看个人喜欢。</p>
+<h1 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h1><p>下面利用状态机的思想讲讲两个实际案例。</p>
+<h2 id="一个小问题"><a href="#一个小问题" class="headerlink" title="一个小问题"></a>一个小问题</h2><p>我之前回答过一个<a href="https://segmentfault.com/q/1010000013217614/a-1020000013218371" target="_blank" rel="noopener">问题</a>，把它当作实例来分析一下吧  </p>
+<p>题主不太理解下面代码的执行顺序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function* bar() &#123;</span><br><span class="line">  console.log(&apos;one&apos;);</span><br><span class="line">  console.log(&apos;two&apos;);</span><br><span class="line">  console.log(&apos;three&apos;);</span><br><span class="line">  yield console.log(&apos;test&apos;);</span><br><span class="line">  console.log(`1. $&#123;yield&#125;`);</span><br><span class="line">  console.log(`2. $&#123;yield&#125;`);</span><br><span class="line">  return &apos;result&apos;;</span><br><span class="line">&#125;</span><br><span class="line">let barObj = bar();</span><br><span class="line">barObj.next();</span><br><span class="line">barObj.next(&apos;a&apos;);</span><br><span class="line">barObj.next(&apos;b&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>让我们来帮他分析分析吧。</p>
+<p>首先，我补全了这段代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function* bar() &#123;</span><br><span class="line">  console.log(&apos;one&apos;);</span><br><span class="line">  console.log(&apos;two&apos;);</span><br><span class="line">  console.log(&apos;three&apos;);</span><br><span class="line">  yield console.log(&apos;test&apos;);</span><br><span class="line">  console.log(`1. $&#123;yield&#125;`);</span><br><span class="line">  console.log(`2. $&#123;yield&#125;`);</span><br><span class="line">  return &apos;result&apos;;</span><br><span class="line">&#125;</span><br><span class="line">let barObj = bar();</span><br><span class="line">barObj.next();</span><br><span class="line">barObj.next(&apos;a&apos;);</span><br><span class="line">barObj.next(&apos;b&apos;);</span><br><span class="line">barObj.next(&apos;c&apos;);</span><br><span class="line">barObj.next();</span><br></pre></td></tr></table></figure></p>
+<p>然后，分析bar这个Genereator声明了几个状态。一共有6个状态，状态图如下：<br><img src="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/demo2.png" alt="例子"><br>根据状态图，题主提出的两个问题：</p>
+<ol>
+<li>第一次 next 的时候应该走到了 yield console.log(‘test’)</li>
+<li><p>第二次传了一个 a 这个时候程序似乎没有执行  </p>
+<p>第一个问题，调用next方法后，跳转到state1，而<code>yield console.log(&#39;test&#39;)</code>是在state1里执行的，所以确实走到了这行代码。<br>然后，调用next(“a”)，跳转到state2，这里并没有值接收字符串<code>&quot;a&quot;</code>，所以自然没有打印出来，造成程序没有执行的假象。</p>
+</li>
+</ol>
+<p>这个问题比较简单，状态图一画就能理解了。</p>
+<h2 id="throw方法的一个特性"><a href="#throw方法的一个特性" class="headerlink" title="throw方法的一个特性"></a>throw方法的一个特性</h2><p>第二个实例是我在看《ECMAScript 6 入门》时，阮一峰老师说：</p>
+<blockquote>
+<p>throw方法被捕获以后，会附带执行下一条yield表达式。也就是说，会附带执行一次next方法。</p>
+</blockquote>
+<p>然后举了一个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> gen = <span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">yield</span> <span class="built_in">console</span>.log(<span class="string">'a'</span>);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">yield</span> <span class="built_in">console</span>.log(<span class="string">'b'</span>);</span><br><span class="line">  <span class="keyword">yield</span> <span class="built_in">console</span>.log(<span class="string">'c'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> g = gen();</span><br><span class="line">g.next() <span class="comment">// a</span></span><br><span class="line">g.throw() <span class="comment">// b</span></span><br><span class="line">g.next() <span class="comment">// c</span></span><br></pre></td></tr></table></figure></p>
+<p>这里我觉得很奇怪，因为按照我的想法，这是显然的呀，为什么要单独说呢？按照我在Generator状态跳转那一章说的，这属于<strong>下一个状态在try…catch中</strong>的情况，因为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">    /*state2*/yield console.log(&apos;a&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>中yield的左侧是state2状态的代码，虽然没有写，但是我们默认为向一个永远不会被调用的变量进行赋值。<br>接着是画状态图：<br><img src="http://ox34ivs2j.bkt.clouddn.com//hexo/2018-2-11/demo3.png" alt="demo3"><br>我们只关心<code>g.throw()</code>，所以画部分状态图就够了。从图中可以看出，throw方法被调用后，因为错误被捕获，所以正常跳转到了state2，然后必然会执行<code>yield console.log(&#39;b&#39;);</code>。  </p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>状态机的知识还是在大学的编译原理课学习的，有些概念已经忘了。不过在看Generator时，我突然觉得用状态机来解释代码的冻结和执行非常直观。只要能够画出相应的状态图就可以知道每一次调用next等方法会执行什么样的代码。靠着状态机的思想，我在学习Generator时基本没有疑惑，所以决定整理并分享出来。<br>但是我有点不自信，因为网上搜索了很多次，除了阮一峰老师，并没有人同时提到状态机和Generator两个关键字。我在写这篇文章的时候也偶尔怀疑是不是我错了。不过既然已经写了这么多，而且从我自身感觉以及解决了文中两个例子的情况来看，分享出来让大家指指错也是不错的。    所以，如果有什么问题希望能够在评论中指出。非常感谢你的阅读，祝你新年快乐！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/31/移动端-bug记录/" rel="next" title="移动端 bug记录">
+                <i class="fa fa-chevron-left"></i> 移动端 bug记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="白吟" />
+            
+              <p class="site-author-name" itemprop="name">白吟</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                我还活跃于
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/WhiteYin" title="GitHub" target="_blank">GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.zhihu.com/people/bai-yin-16-89/activities" title="知乎" target="_blank">知乎</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/lichking11" title="csdn博客" target="_blank">csdn博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://segmentfault.com/u/baiyinling" title="SegmentFault" target="_blank">SegmentFault</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/introduction" title="自我简介" target="_blank">自我简介</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generator本质"><span class="nav-number">2.</span> <span class="nav-text">Generator本质</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Generator状态跳转"><span class="nav-number">3.</span> <span class="nav-text">Generator状态跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#next方法"><span class="nav-number">3.1.</span> <span class="nav-text">next方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#return方法"><span class="nav-number">3.2.</span> <span class="nav-text">return方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#throw方法"><span class="nav-number">3.3.</span> <span class="nav-text">throw方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#没有try…catch"><span class="nav-number">3.3.1.</span> <span class="nav-text">没有try…catch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下一个状态在try…catch中"><span class="nav-number">3.3.2.</span> <span class="nav-text">下一个状态在try…catch中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#throw-方法在一个try…catch中被调用"><span class="nav-number">3.3.3.</span> <span class="nav-text">throw()方法在一个try…catch中被调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态间传值"><span class="nav-number">3.4.</span> <span class="nav-text">状态间传值</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#关于终态"><span class="nav-number">4.</span> <span class="nav-text">关于终态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实际案例"><span class="nav-number">5.</span> <span class="nav-text">实际案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个小问题"><span class="nav-number">5.1.</span> <span class="nav-text">一个小问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#throw方法的一个特性"><span class="nav-number">5.2.</span> <span class="nav-text">throw方法的一个特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+      <div id="zc-wrapper">
+            <span id="letter1" class="zc-letter">I</span>
+            <span id="letter2" class="zc-letter">&nbsp;</span>
+            <span id="letter3" class="zc-letter">a</span>
+            <span id="letter4" class="zc-letter">m</span>
+            <span id="letter5" class="zc-letter">&nbsp;</span>
+            <span id="letter6" class="zc-letter">Z</span>
+            <span id="letter7" class="zc-letter">h</span>
+            <span id="letter8" class="zc-letter">o</span>
+            <span id="letter9" class="zc-letter">u</span>
+            <span id="letter10" class="zc-letter">&nbsp;</span>
+            <span id="letter11" class="zc-letter">c</span>
+            <span id="letter12" class="zc-letter">o</span>
+            <span id="letter13" class="zc-letter">n</span>
+            <span id="letter14" class="zc-letter">g</span>
+        </div>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-github"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WhiteYin</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">很高兴能认识你。ლ(⌒▽⌒ლ)</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: 'JS 用状态机的思想看Generator之基本语法篇', 
+            owner: 'WhiteYin',
+            repo: 'hexo-comment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1a77fe8d1c08450bd56d871160dcdc76a156bf77',
+            
+                client_id: '0be43d9564938da5b5cd'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("CO7tO6jOgFCHBhw3ME7orIY3-gzGzoHsz", "PuQRDwbMAdXl1XiXGTvkMOh9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
