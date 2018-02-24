@@ -1,0 +1,85 @@
+.sub-title {
+    font-size: 20px;
+    color: #888;
+}
+
+.zc-slide {
+    animation: slide infinite 2s ease;
+}
+
+@keyframes slide {
+    from,to{
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.float-right {
+    position: absolute;
+    right: 80px;
+    top: 100px;
+}
+
+.logo{
+    background: transparent;
+}
+
+.logo:hover,.logo:focus{
+    background: transparent;
+}
+
+.logo img{
+    height: 100px;
+    width: 200px;
+}
+
+.logo img:hover{
+    box-shadow: 0 0 20px rgb(161, 163, 4);
+    transform: translateY(-5px);
+}
+
+#blog-title {
+    transform: translate(80px,-100px);
+}
+
+#heshen {
+    position: absolute;
+    top:0;
+    left:250px;
+}
+
+#git {
+    width: 50px;
+    height: 50px;    
+    position: absolute;
+    top:150px;
+    left:150px;
+}
+
+#csdn {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top:150px;
+    right:250px;
+}
+
+#csdn-text {
+    width: 180px;
+    position: absolute;
+    top:200px;
+    right:180px;
+}
+
+#git-text {
+    width: 160px;
+    position: absolute;
+    top:200px;
+    left:80px;
+}
+
+#qrcode {
+    transform: translateX(200px)
+}

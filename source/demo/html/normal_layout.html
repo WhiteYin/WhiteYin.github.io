@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>常见布局</title>
+    <meta charset="utf-8">
+    <meta name="author" content="white yin">
+    <meta name="description" content="常规布局总结">
+    <meta name="keywords" content="水平居中,垂直居中,双飞燕布局,圣杯布局,等高布局">
+    <link href="../css/normal_layout.css" rel="stylesheet" />
+</head>
+
+<body>
+    <article class="a1">
+        <h1>水平居中</h1>
+        <section class="a1-s1">
+            <h3>text-align:center居中</h3>
+            <pre>
+.a1-s1 .parent{
+    text-align:center;
+}
+.a1-s1 .child{
+    display:inline-block;
+}
+</pre>
+            <div class="parent">
+                <div class="child">
+                    水平居中
+                </div>
+            </div>
+            <p>此方案兼容性较好，可兼容至IE8。</p>
+        </section>
+
+        <section class="a1-s2">
+            <h3>table+margin</h3>
+            <pre>
+.a1-s2 .child{
+    display:table;
+    margin: 0 auto;
+}
+</pre>
+            <div class="parent">
+                <div class="child">
+                    水平居中
+                </div>
+            </div>
+            <p>此方案兼容至IE8</p>
+        </section>
+
+        <section class="a1-s3">
+            <h3>绝对定位+2D变换</h3>
+            <pre>
+.a1-s3 .parent{
+    height:20px;
+    position:relative;
+}
+.a1-s3 .child{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+}
+            </pre>
+            <div class="parent">
+                <div class="child">
+                    水平居中
+                </div>
+            </div>
+            <p>
+                left属性百分比相对于父元素的宽度，translate属性百分比相对于元素本身宽度。
+                <br /> 此外，绝对定位元素脱离文档流，需要指定父元素高度。
+                <br /> 这个方法兼容到IE9，主要问题为transform属性兼容性。
+            </p>
+        </section>
+        <section class="a1-s4">
+            <h3>绝对定位+margin负值</h3>
+            <pre>
+.a1-s4 .parent{
+    height:20px;
+    position:relative;
+}
+.a1-s4 .child{
+    position:absolute;
+    width:100px;
+    left:50%;
+    margin-left:-50px;
+}
+                </pre>
+            <div class="parent">
+                <div class="child">
+                    水平居中
+                </div>
+            </div>
+            <p>
+                这种方法需要子元素宽度确定。兼容性比之前要好。
+            </p>
+        </section>
+
+        <section class="a1-s5">
+            <h3>flex布局</h3>
+            <pre>
+.a1-s5 .parent{
+    display:flex;
+    justify-content:center;
+}
+                </pre>
+            <div class="parent">
+                <div class="child">
+                    水平居中
+                </div>
+            </div>
+            <p>
+                flex的兼容性，你懂的。
+            </p>
+        </section>
+    </article>
+    <article class="a2">
+        <h1>垂直居中</h1>
+        <section class="a2-s1">
+            <h3>table-cell+vertical-align</h3>
+            <pre>
+.a2-s1 .parent{
+    display:table-cell;
+    vertical-align:middle;
+}
+            </pre>
+            <div class="parent">
+                <div class="child">
+                    垂直居中
+                </div>
+            </div>
+            <p>vertical-align:middle是将子元素middle与父元素middle线对齐。
+                <br />注意，该属性只能用在table-cell或inline元素中。</p>
+        </section>
+        <section class="a2-s2">
+            <h3>绝对定位+变换</h3>
+            <pre>
+.a2-s2 .parent{
+    position:relative;
+    height:100px;
+}
+.a2-s2 .child{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+}
+            </pre>
+            <div class="parent">
+                <div class="child">
+                    垂直居中
+                </div>
+            </div>
+            <p>
+                这种居中方式原理与之前水平居中方式一样，兼容性取决于transform属性。
+            </p>
+        </section>
+        <section class="a2-s3">
+            <h3>flex布局align-items</h3>
+            <pre>
+.a2-s3 .parent{
+    display:flex;
+    align-items:center;
+}
+            </pre>
+            <div class="parent">
+                <div class="child">
+                    垂直居中
+                </div>
+            </div>
+        </section>
+    </article>
+    <article class="a3">
+        <h1>一列或多列定宽，一列自适应</h1>
+        <section class="a3-s1">
+            <h3>左列浮动定宽（一）</h3>
+            <pre>
+.a3-s1 .left{
+    float:left;
+    width:50px;
+}
+.a3-s1 .right{
+    margin-left:80px;
+}
+            </pre>
+            <div class="left">
+                左
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="right">
+                右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，
+            </div>
+            <p style="clear:both;">
+                我在使用这种方式的时候，发现如果给.right元素的父元素section设置定宽后，.right是无法自动调整宽度的。 原因应该是.right作为块级元素占满section元素剩余宽度。 而此时section已经固定宽度，无论浏览器宽度怎么变化，section剩余宽度都不会变化。
+                同理，也能明白这种方式自适应的原理就是随父级容器宽度变化自动调整自己的宽度。 至于设置margin-left则是因为.left元素宽度为50px，如果外边距小于50px，左右两块之间是没有空隙的。
+                另外，这种布局也能看出左右两边是不等高的，因此还需要改进。
+            </p>
+        </section>
+
+        <section class="a3-s2">
+            <h3>左列浮动定宽（二）</h3>
+            <pre>
+.a3-s2 .left{
+    float:left;
+    width:100px;
+    margin-right:20px;
+}
+.a3-s2 .right{
+    overflow:hidden;
+}
+            </pre>
+            <div class="left">
+                左
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="right">
+                右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右
+            </div>
+            <p style="clear:both;">
+                这种方法设置了.right元素具有BFC特征，以此来清除浮动。
+                <br /> 因为我们将margin设置在了.left元素上，这在后面要提到的左列不定宽中非常有用。
+                <br /> 至于为什么要清除浮动，因为float属性本身是为了让文本围绕图片排列，但是文本段落的背景并不会绕过浮动元素。
+                <br /> 这听上去就像是浮动元素与文本元素处于一个位面，而背景则属于另一个位面。
+                <br /> 我自己测试了一下，发现应该说浮动元素与除了块级元素外的元素都是在一个位面，与块级元素的content区域在一个位面。
+                <br /> 块级元素的背景、padding、margin和border区域都会和身边的浮动元素重合。
+                <br /> 所以，.right元素需要清除浮动。
+            </p>
+        </section>
+
+        <section class="a3-s3">
+            <h3>表格布局</h3>
+            <pre>
+.a3-s3 .container{
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+.a3-s3 .left,.a3-s3 .right{
+    display:table-cell;
+}
+.a3-s3 .left{
+    width:100px;
+}
+
+            </pre>
+            <div class="container">
+                <div class="left">
+                    左
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="right">
+                    右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右，右
+                </div>
+            </div>
+            <p>
+                表格布局关键就是table-layout属性需要设置为fixed，这样表格宽度决定内部单元格宽度。因此父级容器的宽度也要设置为100%初始值。
+                <br /> 该方法可以实现左右等高。不过表格是无法设置margin外边距的，因此该方法适用范围比较窄。
+            </p>
+        </section>
+        <section class="a3-s4">
+            <h3>flex布局</h3>
+            <pre>
+.a3-s4 .container{
+    display:flex;
+}
+.a3-s4 .left{
+    width:100px;
+    margin-right:20px;
+}
+.a3-s4 .right{
+    flex:1;
+}
+            </pre>
+            <div class="container">
+                <div class="left">
+                    左
+                    <br />
+                    <br/>
+                </div>
+                <div class="right">
+                    右
+                </div>
+            </div>
+            <p>
+                这个方法关键就是设置.right的flex:1;意思是右列获得父元素剩余的所有空间。
+                <br/> 同时，因为flex子项的align-items属性默认为stretch，所以还能实现等高效果。
+                <br /> 可惜啊，这么好用的布局方案兼容性还是有问题。希望这些旧的浏览器早点淘汰吧。
+            </p>
+        </section>
+
+        <section>
+            <h3>多列定宽，一列自适应</h3>
+            多列定宽的情况和一列定宽的情况相似，将左列的样式同时设置在中间几列上就可以达到效果。
+            <br /> 因为前面所说的方法原理都是让自适应的右列获得父元素的剩余宽度。
+            <br /> 而table布局、flex布局或者是简单的浮动布局清除浮动都可以达到这样的效果。我就不用代码演示了。
+            <br /> 不管是什么不定宽，float+overflow都是兼容性最好的方法。
+        </section>
+    </article>
+
+    <article class="a4">
+        <h1>等高布局</h1>
+        <section class="a4-s1" style="width:auto;">
+            <h3>负margin+float</h3>
+            <pre>
+.a4-s1 .container{
+    overflow:hidden;
+}
+.a4-s1 .left,.a4-s1 .right{
+    margin-bottom:-9999px;
+    padding-bottom:9999px;
+}
+.a4-s1 .left{
+    margin-right:10px;
+    float:left;
+    width:100px;
+}
+.a4-s1 .right{
+    overflow:hidden;
+}
+            </pre>
+            <div class="container">
+                <div class="left">
+                    左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左左
+                </div>
+                <div class="right">
+                    右
+                </div>
+            </div>
+            <p>
+                这种方法很巧妙，我现在凭空是想不到的。
+                <br /> 首先看关键的padding-bottoom:9999px;
+                <br /> 设置padding是为了将两列的高度隐式设置为内容高度+9999px。
+                <br /> 因为9999在浏览器高度中是非常大的值，要展示的内容高度不会超过这么高，甚至可以说是远小于这个高度,因此可以近似认为左右两列高度相等。但实际上是存在高度差的，将padding设置小一点我们能看到底部高度差仍然存在。
+                <br /> 虽然我们将padding设置9999px高度，但是我们实际上并不需要下面的padding部分，因此需要做两个处理：
+                <br /> 第一步是使用margin-bottom:-9999px;抹去内边距，使后面的元素能够出现在正常的位置。这是CSS标准盒模型的知识：Elementheight = height
+                + padding + margin；
+                <br /> 第二步是父元素设置overflow:hidden;形成BFC清除浮动，同时清除浮动后也因为两列中较高的一列（demo中为左列）撑起父元素高度，overflow属性就将超出父元素高度的部分给截断。表面上形成了两列等高的情况。
+                <br /> 其实我在学习这种布局时有个很疑惑的地方，为什么右列内容少，设置margin负值后，背景仍然和左列背景一样高呢？原来是我忘了背景是从padding开始的，与margin无关，这样我也就想通了。
+                <br />
+                <br /> 总结一下这种方法兼容性好，没有用到CSS3的属性，消除浮动可能在IE低版本有问题，但是知道原理后还是能够解决的。
+                <br /> 缺点就是无法设置底部边框，需要在两列内部添加一个div定位成边框。
+            </p>
+        </section>
+        <section class="a4-s2">
+            <h3>table布局</h3>
+            <pre>
+.a4-s2 .container{
+    display:table;
+    width:100%;
+}
+.a4-s2 .left{
+    display:table-cell;
+    width:100px;
+}
+.a4-s2 .right{
+    display:table-cell;
+}
+            </pre>
+            <div class="container">
+                <div class="left">
+                    左
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="right">
+                    右
+                </div>
+            </div>
+            <p>
+                不得不说，表格布局确实是一种不错的布局解决方案，都不用特地设置什么就能实现等高布局，这种特性真好呀。
+                <br /> 缺点之前也说过，不能设置margin。
+            </p>
+        </section>
+
+        <section class="a4-s3">
+            <h3>flex布局</h3>
+            <pre>
+.a4-s3 .container{
+    width:100%;
+    display:flex;
+}
+.a4-s3 .right,.a4-s3 .left{
+    flex:1;
+}
+            </pre>
+            <div class="container">
+                <div class="left">左
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="right">右</div>
+            </div>
+            <p>
+                table已死，flex当立！
+            </p>
+        </section>
+    </article>
+    <article class="a5">
+        <h1>三列布局的优化</h1>
+        <section class="a5-s1" style="width:auto;">
+            <h3>常规方法</h3>
+            <pre>
+.a5-s1 .center{
+    vertical-align: top;
+    display: inline-block;
+    width: calc(100% - 240px);
+}
+.a5-s1 .right,.a5-s1 .left{
+    vertical-align: top;
+    display: inline-block;
+    width: 100px;
+}
+            </pre>
+            <div class="left">
+                左
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+            </div>
+            <div class="center">
+                中
+            </div>
+            <div class="right">
+                右
+            </div>
+            <p>
+                这是简单的使用inline-block使3列显示在一行中，同时使用calc方法动态计算宽度。
+                <br /> 此外还有“廉颇老矣，尚能饭否”的table布局和“初升的太阳”flex布局，这里不赘述了。
+            </p>
+        </section>
+        <section>
+            接下来讲下圣杯布局和双飞燕布局，这两种布局是对常规方法的优化。因为浏览器渲染引擎在构建和渲染渲染树是异步的，所以将中间列.center放在左右列的节点前，可以在页面重绘时优先显示。
+        </section>
+        <section class="a5-s2" style="width:auto;">
+            <h3>圣杯布局</h3>
+            <pre>
+.a5-s2 .center,.a5-s2 .right,.a5-s2 .left{
+    float:left;
+    position: relative;
+}
+.a5-s2 .container{
+    padding:0 100px;
+    overflow: hidden;
+}
+.a5-s2 .center{
+    width: 100%;
+}
+.a5-s2 .right{
+    width: 100px;
+    margin-left: -100px;
+    right: -100px;
+}
+.a5-s2 .left{
+    width: 100px;
+    margin-left: -100%;
+    left: -100px;
+}
+                </pre>
+            <div class="container">
+                <div class="center">
+                    中
+                </div>
+                <div class="left">
+                    左
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <div class="right">
+                    右
+                </div>
+            </div>
+
+            <p>
+                圣杯布局原理就是：<br />
+                <ol>
+                    <li>先设置三列浮动，将他们布局在一行上。父元素要生成BFC清除浮动。</li>
+                    <li>将中间列宽度设置为100%占满一行。这时左右两列被挤到下一行。</li>
+                    <li>先调整左列的位置，设置margin负值-100%，即向左偏移一个父元素的宽度。</li>
+                    <li>此时左列与中间列部分重合，对父元素设置paddding-left大于左列的宽度，将中间列左移。</li>
+                    <li>但是左移的不仅仅是中间列，还有左列。因此给左列设置相对定位position:relative;同时向左偏移自己的宽度100px：left:-100px;</li>
+                    <li>左列此时就相当于被安装在中间列的左侧，同理，右列也可以通过定位等方式移动到右侧。</li>
+                </ol>
+                这种方式还有点缺陷，因为左右两列是固定宽度，因此在屏幕宽度小于两列宽度时，左右两列会被挤到下方。解决方法就是加上min-width属性。
+            </p>
+        </section>
+        <section class="a5-s3" style="width:auto;">
+                <h3>双飞燕布局</h3>
+                <pre>
+.a5-s3 .center,.a5-s3 .right,.a5-s3 .left{
+    float:left;
+}
+.a5-s3 .container{
+    overflow: hidden;
+}
+.a5-s3 .center{
+    width: 100%;
+}
+.a5-s3 .center .center-inner{
+    margin:0 100px;
+}
+.a5-s3 .right{
+    width: 100px;
+    margin-left: -100px;
+}
+.a5-s3 .left{
+    width: 100px;
+    margin-left: -100%;
+}
+                    </pre>
+                <div class="container">
+                    <div class="center">
+                        <div class="center-inner">
+                                中
+                        </div>
+                    </div>
+                    <div class="left">
+                        左
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                    </div>
+                    <div class="right">
+                        右
+                    </div>
+                </div>
+    
+                <p>
+                   双飞翼的原理与圣杯原理差不多，但是没有使用相对定位，这是解决圣杯布局在浏览器宽度较小情况下失效的一种方法。<br />
+                   同时也使用了margin来推开左右两列。<br />
+                   缺点是DOM多了一层，损失了部分性能。
+                </p>
+            </section>
+    </article>
+    <section>
+        前端发展到现在，布局方案层出不穷，曾经的table布局，后来的div+css，当下的flex布局，以及未来的grid布局。不得不说，前端布局会越来越容易，功能也越来越强大。<br />
+        grid布局我没有提到，有空会单独写出来，但是什么时候浏览器都能支持还是个未知数。<br />
+        最后，布局方案有很多，选择哪种都需要看业务需求。如果一时半会记不住，等到要用的时候来查也是可以的。要是觉得面试会被考到，也可以提前来看一眼。
+    </section>
+</body>
+
+</html>

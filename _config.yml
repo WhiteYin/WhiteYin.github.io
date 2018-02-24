@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 假装是个技术博客
-subtitle: 爱生活，爱游戏
-description: 在我的小窝，记录我的生活
+title: 前端吟游诗
+subtitle: 爱生活，爱前端
+description: 在我的小窝，吟唱我的歌
 author: 白吟
 email: 739094973@qq.com
 language: zh-Hans
@@ -27,7 +27,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
-
+ - introduction/**
+ - demo/**
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
 default_layout: post
