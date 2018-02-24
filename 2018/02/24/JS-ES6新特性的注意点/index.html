@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JavaScript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="记录我学习ES6新特性时总结的一些的注意点。">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS-ES6新特性的注意点">
+<meta property="og:url" content="https://whiteyin.github.io/2018/02/24/JS-ES6新特性的注意点/index.html">
+<meta property="og:site_name" content="前端吟游诗">
+<meta property="og:description" content="记录我学习ES6新特性时总结的一些的注意点。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-02-24T05:43:13.640Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS-ES6新特性的注意点">
+<meta name="twitter:description" content="记录我学习ES6新特性时总结的一些的注意点。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://whiteyin.github.io/2018/02/24/JS-ES6新特性的注意点/"/>
+
+
+
+
+
+  <title>JS-ES6新特性的注意点 | 前端吟游诗</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?61ee2433e6c405ef8f6265d2d19b6b89";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">前端吟游诗</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">爱生活，爱前端</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-notes">
+          <a href="/notes/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-edit"></i> <br />
+            
+            随手记
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://whiteyin.github.io/2018/02/24/JS-ES6新特性的注意点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="白吟">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端吟游诗">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">JS-ES6新特性的注意点</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-24T13:42:14+08:00">
+                2018-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/24/JS-ES6新特性的注意点/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/02/24/JS-ES6新特性的注意点/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/02/24/JS-ES6新特性的注意点/" class="leancloud_visitors" data-flag-title="JS-ES6新特性的注意点">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  记录我学习ES6新特性时总结的一些的注意点。
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、块级作用域与函数声明"><a href="#一、块级作用域与函数声明" class="headerlink" title="一、块级作用域与函数声明"></a>一、块级作用域与函数声明</h2><p>在ES5中，块级作用域中是不能写函数声明的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="literal">false</span>)&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"123"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的例子在ES5中是非法的。但是浏览器并不一定会报错，因为没有完全执行这个规范。<br>而在ES6中，块级作用域里的函数声明相当于使用了let关键字，在块级作用域外是无法调用的。<br>举个例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="number">123</span>);</span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">false</span>)&#123;</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">321</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    f();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码，在ES5中执行会打印321，因为浏览器对这段代码的解析是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="number">321</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">false</span>)&#123;&#125;</span><br><span class="line">    f();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>而在ES6的浏览器中，虽然按规范应该打印外层作用域的123，但实际上会报错。因为浏览器为了兼容老版本，仍然不遵守ES6的规范，使用的是下面的规则：  </p>
+<ol>
+<li>允许在块级作用域内声明函数。</li>
+<li>函数声明类似于var，即会提升到全局作用域或函数作用域的头部。</li>
+<li><p>同时，函数声明还会提升到所在的块级作用域的头部。</p>
+<p>所以，ES6浏览器中的实际代码是这样的：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> f = <span class="literal">undefined</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="literal">false</span>)&#123;</span><br><span class="line">        f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="number">321</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    f();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这才导致实际结果是<code>f is not a function</code>错误。</p>
+<p>因此，虽然ES6支持块级作用域声明函数，但还是尽量不要这么做。</p>
+<h2 id="二、对象的解构赋值究竟把值赋给了谁？"><a href="#二、对象的解构赋值究竟把值赋给了谁？" class="headerlink" title="二、对象的解构赋值究竟把值赋给了谁？"></a>二、对象的解构赋值究竟把值赋给了谁？</h2><p>ES6出现了一个很方便的特性：解构赋值。它的写法如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [x,y,z] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">let</span> &#123;a,b,c&#125; = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>&#125;;</span><br><span class="line"><span class="comment">//这时，x=a=1,y=b=2,z=c=3</span></span><br></pre></td></tr></table></figure></p>
+<p>例子中对象的解构赋值写法是一种简写，实际上应该是：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123;<span class="attr">a</span>:a,<span class="attr">b</span>:b,<span class="attr">c</span>:c&#125; = &#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>&#125;；</span><br></pre></td></tr></table></figure></p>
+<p>分析<code>{key:value}</code>形式，key是用来匹配右侧对象的键名，而value才是真正被赋值的变量。</p>
+<h2 id="三、字符串的新方法"><a href="#三、字符串的新方法" class="headerlink" title="三、字符串的新方法"></a>三、字符串的新方法</h2><p>ES6中，对字符串扩展了新的方法：includes()、startsWith()和endsWith()。</p>
+<ol>
+<li>includes()：返回布尔值，表示是否找到了参数字符串。</li>
+<li>startsWith()：返回布尔值，表示参数字符串是否在原字符串的头部。</li>
+<li>endsWith()：返回布尔值，表示参数字符串是否在原字符串的尾部。<br>这三个方法都接收第二个参数，表示开始搜索的位置。而endsWith()的第二个参数表示的是在前n个字符组成的字符串中搜索。</li>
+</ol>
+<p>此外还有repeat(n)方法，用来将字符串重复n次。如果n不是整数，会使用Math.floor()方法取整。如果是NaN，当作0处理，其他类型先转成number类型，使用的是parseInt方法。</p>
+<p>还有两个实用的方法是padStart(length,str)和padEnd(length,str)，能够在字符串前或尾填充指定字符串达到指定长度。如果省略第二个参数，默认为空格。</p>
+<h2 id="四、模板字符串"><a href="#四、模板字符串" class="headerlink" title="四、模板字符串"></a>四、模板字符串</h2><p>ES6中使用反引号强化字符串的表现，这被成为模板字符串。在模板字符串中，空格、换行都会得到保留。而且还能调用变量：<code>${变量名}</code>。</p>
+<p>同时，模板字符串还能用来当作函数参数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function hello(msg)&#123;</span><br><span class="line">    console.log(&quot;hello &quot;+msg);</span><br><span class="line">&#125;</span><br><span class="line">hello`whiteyin`;//hello whiteyin</span><br></pre></td></tr></table></figure></p>
+<p>不过，如果模板字符串当作函数参数时有使用到变量，函数实际接收到的参数就不是一个转换后的字符串。以上面的例子来说：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var name = &quot;whiteyin&quot;;</span><br><span class="line">hello`我是$&#123;name&#125;。`;</span><br><span class="line">//相当于</span><br><span class="line">hello([&apos;我是&apos;,&apos;。&apos;],name);</span><br></pre></td></tr></table></figure></p>
+<p>也就是说，模板字符串中的变量在计算后会依次被添加到最后一个参数上，而其他非变量的字符串会按顺序插入一个数组，这个数组始终是函数的第一个参数。</p>
+<h2 id="五、正则表达式的新修饰符"><a href="#五、正则表达式的新修饰符" class="headerlink" title="五、正则表达式的新修饰符"></a>五、正则表达式的新修饰符</h2><h3 id="u修饰符"><a href="#u修饰符" class="headerlink" title="u修饰符"></a>u修饰符</h3><p>为了匹配超过\uFFFF的四字节unicode编码，可以使用u修饰符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/𠮷&#123;2&#125;/.test(&apos;𠮷𠮷&apos;) // false</span><br><span class="line">/𠮷&#123;2&#125;/u.test(&apos;𠮷𠮷&apos;) // true</span><br></pre></td></tr></table></figure></p>
+<h3 id="y修饰符"><a href="#y修饰符" class="headerlink" title="y修饰符"></a>y修饰符</h3><p>y修饰符也称为粘连修饰符，与g修饰符功能类似，但是比它严格。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var s = &apos;aaa_aa_a&apos;;</span><br><span class="line">var r1 = /a+/g;</span><br><span class="line">var r2 = /a+/y;</span><br><span class="line"></span><br><span class="line">r1.exec(s) // [&quot;aaa&quot;]</span><br><span class="line">r2.exec(s) // [&quot;aaa&quot;]</span><br><span class="line"></span><br><span class="line">r1.exec(s) // [&quot;aa&quot;]</span><br><span class="line">r2.exec(s) // null</span><br></pre></td></tr></table></figure></p>
+<p>例子中，使用y修饰符匹配时只会匹配第一组<code>aaa</code>，再次匹配剩余字符串<code>_aa_a</code>时，因为第一个位置是<code>_</code>所以匹配失败。而g修饰符会将剩余字符串当作新串，仍能匹配到<code>aa</code>。</p>
+<p>实际上，y修饰符的设计目的就是使<code>^</code>匹配符全局有效。</p>
+<h2 id="六、对有穷和NaN判断的优化"><a href="#六、对有穷和NaN判断的优化" class="headerlink" title="六、对有穷和NaN判断的优化"></a>六、对有穷和NaN判断的优化</h2><p>ES6新增两个Number的方法isFinite和isNaN。之前已经有两个同名方法注册在全局下，我们用window.isFinite和window.isNaN来表示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">isFinite(&quot;123&quot;);//true</span><br><span class="line">Number.isFinite(&quot;123&quot;);//false</span><br><span class="line"></span><br><span class="line">isNaN(&quot;a&quot;);//true</span><br><span class="line">Number.isNaN(&quot;a&quot;);//false</span><br></pre></td></tr></table></figure></p>
+<p>相比较与window.isFinite和window.isNaN，Number.isFinite和Number.isNaN会对所有不是number类型参数返回false。</p>
+<h2 id="七、函数参数默认值"><a href="#七、函数参数默认值" class="headerlink" title="七、函数参数默认值"></a>七、函数参数默认值</h2><p>ES5中想要给函数参数设置默认值，可以使用||运算符：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function f(x,y)&#123;</span><br><span class="line">    x = x||1;</span><br><span class="line">    y = y||&quot;2&quot;;</span><br><span class="line">    console.log(x,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>但是这样会导致一个问题，如果x或y的值是falsy值，则会取值错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f(3,&quot;&quot;);//输出3,&quot;2&quot;</span><br></pre></td></tr></table></figure></p>
+<p>而在ES6中，可以使用默认参数语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function f(x=1,y=&quot;2&quot;)&#123;</span><br><span class="line">    console.log(x,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样的写法很方便，也很容易懂。但是会有一些规则要遵守：</p>
+<ol>
+<li><p>不能在函数体中使用let或const再次声明与形参同名的变量：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function f(x=1)&#123;</span><br><span class="line">    let x;</span><br><span class="line">&#125;</span><br><span class="line">f();//Identifier &apos;x&apos; has already been declared</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用默认参数时不能有多个同名形参：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function f(x=1,x,y)&#123;&#125;//Duplicate parameter name not allowed in this context</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果有默认值的形参后面没有设置默认值的参数，那么调用函数时不能省略这种参数：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function f(x,y=1,z)&#123;&#125;</span><br><span class="line">f(1,,3);//报错</span><br><span class="line">f(1,undefined,3);//没问题</span><br></pre></td></tr></table></figure>
+<p>使用默认参数会对函数的length属性有影响。因为length的值会变成没有默认值的参数个数。比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function f(a,b,c=1)&#123;&#125;</span><br><span class="line">f.length;//2</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果一个设置默认值的参数不是尾参数，那么它后面的所有参数都不会计入length中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">function f(c=1,a,b)&#123;&#125;</span><br><span class="line">f.length;//0</span><br></pre></td></tr></table></figure></p>
+<p>如果默认参数值是一个函数，这个函数可能形成了一个闭包，它记住的是函数所在的作用域。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">g</span>(<span class="params">h=(</span>)=&gt;</span>&#123;<span class="built_in">console</span>.log(a)&#125;)&#123;</span><br><span class="line">        <span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line">        h();</span><br><span class="line">    &#125;</span><br><span class="line">    g();</span><br><span class="line">&#125;</span><br><span class="line">f();<span class="comment">//输出2</span></span><br></pre></td></tr></table></figure></p>
+<p>还有个更复杂的例子：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x,y=(</span>)=&gt;</span>&#123;x=<span class="number">3</span>;&#125;)&#123;</span><br><span class="line">    x=<span class="number">1</span>;</span><br><span class="line">    y();</span><br><span class="line">    <span class="built_in">console</span>.log(x);</span><br><span class="line">&#125;</span><br><span class="line">f();<span class="comment">//3</span></span><br></pre></td></tr></table></figure></p>
+<p>应该说，f()这个圆括号内形成一个作用域:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">f(</span><br><span class="line">    &#123;<span class="comment">//块作用域</span></span><br><span class="line">        <span class="keyword">let</span> x;</span><br><span class="line">        <span class="keyword">let</span> y=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            x = <span class="number">3</span>;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> [x,y];</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>大概是这样吧，y相当于一个闭包函数，记住了x的引用，所以后面调用时会修改这个引用。</p>
+<p>不过这种规则确实违反了我的正常认知，所以我觉得还是不要这么写比较好。</p>
+<h2 id="八、函数的名字"><a href="#八、函数的名字" class="headerlink" title="八、函数的名字"></a>八、函数的名字</h2><p>ES6的函数新增了一个name属性，用来读取函数的名字。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//具名函数返回函数名</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>　<span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">f.name;<span class="comment">//f</span></span><br><span class="line"><span class="comment">//匿名函数赋给变量</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">f.name;<span class="comment">//f</span></span><br><span class="line"><span class="comment">//具名函数赋给变量</span></span><br><span class="line"><span class="keyword">var</span> g = <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">g.name;<span class="comment">//f</span></span><br><span class="line"><span class="comment">//变量函数赋给变量</span></span><br><span class="line"><span class="keyword">var</span> f = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> g = f;</span><br><span class="line">g.name;<span class="comment">//f</span></span><br></pre></td></tr></table></figure></p>
+<p>总结一下就是name属性应该是跟函数地址绑定，如果这个地址的函数没有名字，那么在声明或赋值语句执行后会设置name属性值，此后不管是什么变量指向这个地址，都不会改变name属性的值。</p>
+<h2 id="九、数组空位"><a href="#九、数组空位" class="headerlink" title="九、数组空位"></a>九、数组空位</h2><p>如果我们使用<code>new Array(10);</code>来创建一个数组，返回的是一个有10个空位的数组，length=10。这里空位的概念并不等同于undefined，因为空位没有值，而undefined是有值的。</p>
+<p>在ES5中，数组方法对空位的处理是不一样的，可以总结如下：</p>
+<ol>
+<li><p>forEach(), filter(), reduce(), every() 和some()都会跳过空位。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// forEach方法</span><br><span class="line">[,&apos;a&apos;].forEach((x,i) =&gt; console.log(i)); // 1</span><br><span class="line"></span><br><span class="line">// filter方法</span><br><span class="line">[&apos;a&apos;,,&apos;b&apos;].filter(x =&gt; true) // [&apos;a&apos;,&apos;b&apos;]</span><br><span class="line"></span><br><span class="line">// every方法</span><br><span class="line">[,&apos;a&apos;].every(x =&gt; x===&apos;a&apos;) // true</span><br><span class="line"></span><br><span class="line">// reduce方法</span><br><span class="line">[1,,2].reduce((x,y) =&gt; return x+y) // 3</span><br><span class="line"></span><br><span class="line">// some方法</span><br><span class="line">[,&apos;a&apos;].some(x =&gt; x !== &apos;a&apos;) // false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>map()会跳过空位，但会保留这个值</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// map方法</span><br><span class="line">[,&apos;a&apos;].map(x =&gt; 1) // [,1]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// join方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].join(&apos;#&apos;) // &quot;#a##&quot;</span><br><span class="line"></span><br><span class="line">// toString方法</span><br><span class="line">[,&apos;a&apos;,undefined,null].toString() // &quot;,a,,&quot;</span><br></pre></td></tr></table></figure>
+<p>在ES6新增的方法中，空位会被处理成undefined。尽管如此，还是应该拒绝出现空位的情况。</p>
+</li>
+</ol>
+<h2 id="十、Object-is"><a href="#十、Object-is" class="headerlink" title="十、Object.is()"></a>十、Object.is()</h2><p>在ES6之前，比较两个值相等只能使用<code>==</code>和<code>===</code>，这两种方法各有各的缺点。<br>首先，==会判断左右两边值的类型，如果不同则会类型转换。而<code>===</code>在判断-0和+0比较时会返回true，而<code>NaN===NaN</code>会返回false。</p>
+<p>为了能够得到更符合人直觉的严格比较，ES6提出新的比较方法Object.is()，它与<code>===</code>表现类似，但是弥补了上述的两个缺点。如果浏览器没有支持这个方法，可以使用下面的代码polyfill：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(<span class="built_in">Object</span>,<span class="string">"is"</span>,&#123;</span><br><span class="line">    value:<span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x===y)&#123;</span><br><span class="line">            <span class="keyword">return</span> x!==<span class="number">0</span> || <span class="number">1</span>/x===<span class="number">1</span>/y;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> x!==x&amp;&amp;y!==y;</span><br><span class="line">    &#125;,</span><br><span class="line">    configurable:<span class="literal">true</span>,</span><br><span class="line">    enumerable:<span class="literal">true</span>,</span><br><span class="line">    writable:<span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="十一、super的this绑定"><a href="#十一、super的this绑定" class="headerlink" title="十一、super的this绑定"></a>十一、super的this绑定</h2><p>ES6中，super关键字指向当前对象的原型对象，同时它只能在对象的方法中调用，不能在其他地方使用。</p>
+<p>如果要调用原型对象的属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var proto = &#123;</span><br><span class="line">    foo:1</span><br><span class="line">&#125;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    foo()&#123;</span><br><span class="line">        console.log(super.foo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Object.setPrototypeOf(obj,proto);</span><br><span class="line">obj.foo();//1</span><br></pre></td></tr></table></figure></p>
+<p>但是如果要调用原型对象的方法，那会有一个this指向的问题：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> proto = &#123;</span><br><span class="line">    foo:<span class="number">1</span>,</span><br><span class="line">    bar()&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.foo);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    foo:<span class="number">2</span>,</span><br><span class="line">    bar()&#123;</span><br><span class="line">        <span class="keyword">super</span>.bar();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.setPrototypeOf(obj,proto);</span><br><span class="line">obj.bar();<span class="comment">//2</span></span><br></pre></td></tr></table></figure></p>
+<p>也就是说，super.bar实质上是<code>Object.getPrototypeOf(this).bar.call(this);</code>从而this仍指向当前对象。</p>
+<h2 id="十二、Symbol与Symbol-for"><a href="#十二、Symbol与Symbol-for" class="headerlink" title="十二、Symbol与Symbol.for"></a>十二、Symbol与Symbol.for</h2><p>Symbol是ES6中新增的原始类型，用来表示独一无二的值。使用方法是<code>const s = Symbol(&quot;123&quot;);</code>。一般都要给Symbol函数传递一个字符串用来标记该Symbol变量的名字。如果传入的是对象，根据toPrimitive原则要调用toString方法。</p>
+<p>尽管传入参数可以标记不同名的Symbol变量，但是同名的Symbol变量，相互之间并不是等价的。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s1 = <span class="built_in">Symbol</span>(<span class="string">"1"</span>);</span><br><span class="line"><span class="keyword">const</span> newS1 = <span class="built_in">Symbol</span>(<span class="string">"1"</span>);</span><br><span class="line">s1 === newS1;<span class="comment">//false</span></span><br></pre></td></tr></table></figure></p>
+<p>也就是说，这种方法创建的Symbol并不是唯一命名的。<br>如果想要创建一个Symbol，并且如果之前已经有相同命名的Symbol则使用已有的Symbol，否则重新创建一个。可以使用Symbol.for()。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s1 = <span class="built_in">Symbol</span>(<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">const</span> s2 = <span class="built_in">Symbol</span>.for(<span class="string">"123"</span>);</span><br><span class="line"><span class="keyword">const</span> s3 = <span class="built_in">Symbol</span>.for(<span class="string">"123"</span>);</span><br><span class="line"></span><br><span class="line">s1 === s2;<span class="comment">//false</span></span><br><span class="line">s2 === s3;<span class="comment">//true</span></span><br></pre></td></tr></table></figure></p>
+<p>这个例子表明，s2和s3这两个使用Symbol.for()创建的Symbol变量实质上是等价的。原理就是Symbol()创建的变量不会在全局中登记，而Symbol.for()创建的变量会在全局中登记，当下次调用Symbol.for()时，会检测是否登记过该变量。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s1 = <span class="built_in">Symbol</span>();<span class="comment">//Symbol()</span></span><br><span class="line"><span class="keyword">const</span> s2 = <span class="built_in">Symbol</span>.for();<span class="comment">//Symbol(undefined)</span></span><br></pre></td></tr></table></figure></p>
+<p>另外，如果不给这两个函数传参，得到的值也是不一样的。</p>
+<p>如果要获取某个登记过的Symbol值，可以使用Symbol.keyFor()方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const s = Symbol.for(&quot;123&quot;);</span><br><span class="line">Symbol.keyFor(s);//123</span><br><span class="line"></span><br><span class="line">const s2 = Symbol(&quot;123&quot;);</span><br><span class="line">Symbol.keyFor(s2);//undefined</span><br></pre></td></tr></table></figure></p>
+<p>对于没有登记过的Symbol会返回undefined。传入其他类型参数会报错TypeError。</p>
+<h2 id="十三、Set和Map"><a href="#十三、Set和Map" class="headerlink" title="十三、Set和Map"></a>十三、Set和Map</h2><p>Set中没有重复值，事实上这是因为Set的键名就是值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,&quot;2&quot;,&#123;&#125;,[],null,undefined,true];</span><br><span class="line">const set = new Set(arr);</span><br><span class="line">set.forEach((key,value)=&gt;console.log(key,&quot;+&quot;,value));</span><br><span class="line">/*输出</span><br><span class="line">//1&quot;:&quot;1</span><br><span class="line">//1:1</span><br><span class="line">//&#123;&#125;:&#123;&#125;</span><br><span class="line">//[]:[]</span><br><span class="line">//null&quot;:&quot;null</span><br><span class="line">//undefined&quot;:&quot;undefined</span><br><span class="line">//true&quot;:&quot;true</span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
+<p>另一方面，Set中的键值对的顺序与添加时的顺序一致。  </p>
+<p>Map是对原始对象的升级，因为原始对象的属性名都是字符串类型，也就是<code>字符串：值</code>，而Map的属性名可以是任意值，也就是<code>值：值</code>。</p>
+<p>比较Set和Map的CURD接口：<br>类型|Set|Map<br>–|–|–<br>新增/修改|add|set<br>删除|delete|delete和clear<br>查找|没有|get<br>检测存在|has|has<br>默认遍历方法|values|entries<br>元素个数|size属性|size属性<br>ES6给出的Set接口中并没有获取某一特定值的方法，感觉也没有这么个需求。毕竟键值相同，如果知道要找什么值，那为什么还要遍历Set去找这个值呢？反正就是没有这个需要。</p>
+<h3 id="关于WeakSet和WeakMap"><a href="#关于WeakSet和WeakMap" class="headerlink" title="关于WeakSet和WeakMap"></a>关于WeakSet和WeakMap</h3><p>这两个是弱引用的Set或Map，成员的键名只能是对象，因为WeakSet的键与值一样，所以它的成员只能是对象。如果这些对象在外部引用消除，垃圾回收了，WeakSet或WeakMap里的引用也会消除。也就是说，这两个数据类型里的引用会被垃圾回收机制忽视。由于不知道什么时候会垃圾回收，所以这两个数据结构可能每次返回值都不一样。因此，没有给他们遍历接口，也没有size属性。而利用这个特性，一旦键名对象不再被外部需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。</p>
+<h2 id="十四、生成器Generator"><a href="#十四、生成器Generator" class="headerlink" title="十四、生成器Generator"></a>十四、生成器Generator</h2><p>Generator是ES6提出的一种异步解决方案，也可以看成是一个状态机，可以生成一个遍历器对象。声明使用<code>function*</code>表达形式，内部的状态跳转使用yield关键字。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个Generator函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第一次运行"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第一次中断"</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第二次运行"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第二次中断"</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第三次运行"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"运行结束"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//执行该函数，返回一个迭代器对象</span></span><br><span class="line"><span class="keyword">const</span> g = gen();</span><br><span class="line"><span class="built_in">console</span>.log(g);</span><br><span class="line"><span class="comment">//&#123;[[GeneratorStatus]]: "suspended"&#125;，这里GeneratorStatus是该状态机当前的状态</span></span><br><span class="line"><span class="comment">//遍历方式一：执行next</span></span><br><span class="line">g.next();<span class="comment">//第一次运行 第一次中断 &#123;value: 1, done: false&#125;</span></span><br><span class="line">g.next();<span class="comment">//第二次运行 第二次中断 &#123;value: 2, done: false&#125;</span></span><br><span class="line">g.next();<span class="comment">//第三次运行 运行结束 &#123;value: 3, done: true&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历方式二：for...of</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> obj <span class="keyword">of</span> g)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*第一次运行</span></span><br><span class="line"><span class="comment">第一次中断</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">第二次运行</span></span><br><span class="line"><span class="comment">第二次中断</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">第三次运行</span></span><br><span class="line"><span class="comment">运行结束*/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(g);</span><br><span class="line"><span class="comment">//&#123;[[GeneratorStatus]]: "closed"&#125;，最后状态改变了</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看出几个特点：</p>
+<ol>
+<li>每遍历一次，返回一个对象，有两个属性：value和done。value代表yield或return的返回值；done代表迭代器是否结束迭代。</li>
+<li>Generator返回的迭代器对象有一个内部属性GeneratorStatus，初始值为suspended，而在done属性为true后会被置为closed。</li>
+<li>用for…of遍历迭代器对象会忽略最后return的返回值，或是说成done为true的对象的value值。<br>Generate有三种方法：next()、throw()和return()。在我看来，后两种方法效果类似。<br>首先，next()方法让Generate状态机的状态向前移动一步，可以传入一个参数，相当于上一个状态返回的结果，而这可以作为下一个状态的输入值。next()的返回值是一个对象。<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> y = <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(y);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> g = gen();</span><br><span class="line">g.next();</span><br><span class="line"></span><br><span class="line"><span class="comment">//如果第二次不传参数</span></span><br><span class="line">g.next();<span class="comment">//undefined</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果第二次传入参数</span></span><br><span class="line">g.next(<span class="string">"我是y"</span>);<span class="comment">//我是y</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这是因为，next方法执行后，遇到yield关键字，会执行它后面的表达式<code>1</code>。而<code>var y = ...</code>赋值语句并不会执行，而是等到下次调用时在赋值。但是等到下一次调用next时，因为不传参数就是传入undefined，相当于<code>var y = undefined</code>，所以打印出来的就是undefined。如果我们传入一个字符串”我是y”，那么相当于<code>var y = &quot;我是y&quot;;</code>，也就打印出响应值。<br>我感觉Generator每一次状态转换都是对一个执行过程的分段与冻结，第一次调用next时在<code>var y = ...</code>处冻结，将<code>yield 1</code>的状态封存，1这个返回值由于没有变量接收所以无法引用。而第二次调用next时，从冻结处开始运行，原本<code>var y = ...</code>希望右边是1，但是因为这是上一个状态的事，所以在这个状态无法获取到。因此，需要next传入这个值。<br>可以理解成next是上一个状态与下一个状态的邮差，其参数是上一个状态要发送给下一个状态的邮件，大概就是这样。</p>
+<p>接下来是throw()，调用throw方法后，会手动抛出一个错误，同时迭代器g的GeneratorStatus会被修改为closed。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> * <span class="title">gen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"start"</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"end"</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> g = gen();</span><br><span class="line">g.next();<span class="comment">//&#123;value:1,done:false&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(g);<span class="comment">//&#123;[[GeneratorStatus]]: "suspended"&#125;</span></span><br><span class="line">g.throw(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"出错了"</span>));<span class="comment">//Uncaught Error 出错了</span></span><br><span class="line"><span class="built_in">console</span>.log(g);<span class="comment">//这一步没有打印，实际上应该是&#123;[[GeneratorStatus]]: "closed"&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>之所以最后一步执行，是因为上一步抛出错误，且没有catch语句捕获错误，所以程序中断。如果我们在Generator函数中加入try…catch语句：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"start"</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"second"</span>);</span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">    &#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"catch"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"end"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> g = gen();</span><br><span class="line">g.next();</span><br><span class="line"><span class="comment">//start</span></span><br><span class="line"><span class="comment">//&#123;value:1&#125;</span></span><br><span class="line">g.next();</span><br><span class="line"><span class="comment">//second</span></span><br><span class="line"><span class="comment">//&#123;value:2&#125;</span></span><br><span class="line">g.throw(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"hi"</span>));</span><br><span class="line"><span class="comment">//catch</span></span><br><span class="line"><span class="comment">//&#123;value:3&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(g);</span><br><span class="line"><span class="comment">//&#123;[[GeneratorStatus]]: "suspended"&#125;</span></span><br><span class="line">g.next();</span><br><span class="line"><span class="comment">//end</span></span><br><span class="line"><span class="comment">//&#123;value:undefined,done:true&#125;</span></span><br></pre></td></tr></table></figure></p>
+<p>当g.throw()被调用时，刚好是try块里的yield语句，这里抛出的错误<code>new Error(&quot;hi&quot;)</code>被catch捕获，因此程序没有中断，并且继续向下执行到<code>yield 3</code>，返回3，同时也没有设置<code>{[[GeneratorStatus]]: &quot;closed&quot;}</code>。<br>看上去throw方法会在Generator下一个状态的开始处抛出一个错误，如果被捕获则继续执行，否则报错终止运行。</p>
+<p>最后，return()方法是让Generator函数强制执行return，也就是相当于将yield替换成return关键字。当然，与return关键字的作用一样，return()方法会将迭代器的GeneratorStatus设置为closed。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function* gen()&#123;</span><br><span class="line">    yield console.log(&quot;start&quot;);</span><br><span class="line">    yield console.log(&quot;second&quot;);</span><br><span class="line">    yield console.log(&quot;end&quot;);</span><br><span class="line">&#125;</span><br><span class="line">const g = gen();</span><br><span class="line">g.next();</span><br><span class="line">//start</span><br><span class="line">//&#123;done:false&#125;</span><br><span class="line">g.return(&quot;hi&quot;);</span><br><span class="line">//&#123;value:&quot;hi&quot;,done:true&#125;</span><br><span class="line">console.log(g);</span><br><span class="line">//&#123;[GeneratorStatus]:&quot;closed&quot;&#125;</span><br><span class="line">g.next();</span><br><span class="line">//&#123;value: undefined, done: true&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里的return()方法，会将Generator函数的后续状态全部抹除，跳到一个全新的终态。这也能解释为什么second、end字符串没有打印出来，而且迭代器的状态被修改为closed。</p>
+<p>最后的最后，如果要将一个Generator插入另一个Generator，需要使用yield*表达式。<br>总结一下，我认为理解Generator需要理解DFA有穷自动机的概念，这样有很多特性就能想清楚了。</p>
+<h2 id="十五、Iterator"><a href="#十五、Iterator" class="headerlink" title="十五、Iterator"></a>十五、Iterator</h2><p>一个对象具有Iterator接口有以下几个条件：</p>
+<ol>
+<li>有一个[Symbol.iterator]属性，该属性值为一个函数；</li>
+<li>该函数返回值是一个对象，该对象具有next属性，值为一个函数；</li>
+<li><p>该next函数有一个返回值，形式为{value:…,next:…}。</p>
+<p>或是使用Array.from将类数组对象转成数组。又或是将一个Generator函数赋值给[Symbol.iterator]。</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/11/JS-用状态机的思想看Generator之基本语法篇/" rel="next" title="JS 用状态机的思想看Generator之基本语法篇">
+                <i class="fa fa-chevron-left"></i> JS 用状态机的思想看Generator之基本语法篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="白吟" />
+            
+              <p class="site-author-name" itemprop="name">白吟</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                我还活跃于
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/WhiteYin" title="GitHub" target="_blank">GitHub</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.zhihu.com/people/bai-yin-16-89/activities" title="知乎" target="_blank">知乎</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://blog.csdn.net/lichking11" title="csdn博客" target="_blank">csdn博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://segmentfault.com/u/baiyinling" title="SegmentFault" target="_blank">SegmentFault</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/introduction" title="自我简介" target="_blank">自我简介</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、块级作用域与函数声明"><span class="nav-number">1.</span> <span class="nav-text">一、块级作用域与函数声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、对象的解构赋值究竟把值赋给了谁？"><span class="nav-number">2.</span> <span class="nav-text">二、对象的解构赋值究竟把值赋给了谁？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、字符串的新方法"><span class="nav-number">3.</span> <span class="nav-text">三、字符串的新方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、模板字符串"><span class="nav-number">4.</span> <span class="nav-text">四、模板字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、正则表达式的新修饰符"><span class="nav-number">5.</span> <span class="nav-text">五、正则表达式的新修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#u修饰符"><span class="nav-number">5.1.</span> <span class="nav-text">u修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#y修饰符"><span class="nav-number">5.2.</span> <span class="nav-text">y修饰符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、对有穷和NaN判断的优化"><span class="nav-number">6.</span> <span class="nav-text">六、对有穷和NaN判断的优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、函数参数默认值"><span class="nav-number">7.</span> <span class="nav-text">七、函数参数默认值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、函数的名字"><span class="nav-number">8.</span> <span class="nav-text">八、函数的名字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#九、数组空位"><span class="nav-number">9.</span> <span class="nav-text">九、数组空位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十、Object-is"><span class="nav-number">10.</span> <span class="nav-text">十、Object.is()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十一、super的this绑定"><span class="nav-number">11.</span> <span class="nav-text">十一、super的this绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十二、Symbol与Symbol-for"><span class="nav-number">12.</span> <span class="nav-text">十二、Symbol与Symbol.for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十三、Set和Map"><span class="nav-number">13.</span> <span class="nav-text">十三、Set和Map</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于WeakSet和WeakMap"><span class="nav-number">13.1.</span> <span class="nav-text">关于WeakSet和WeakMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十四、生成器Generator"><span class="nav-number">14.</span> <span class="nav-text">十四、生成器Generator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#十五、Iterator"><span class="nav-number">15.</span> <span class="nav-text">十五、Iterator</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+      <div id="zc-wrapper">
+            <span id="letter1" class="zc-letter">I</span>
+            <span id="letter2" class="zc-letter">&nbsp;</span>
+            <span id="letter3" class="zc-letter">a</span>
+            <span id="letter4" class="zc-letter">m</span>
+            <span id="letter5" class="zc-letter">&nbsp;</span>
+            <span id="letter6" class="zc-letter">Z</span>
+            <span id="letter7" class="zc-letter">h</span>
+            <span id="letter8" class="zc-letter">o</span>
+            <span id="letter9" class="zc-letter">u</span>
+            <span id="letter10" class="zc-letter">&nbsp;</span>
+            <span id="letter11" class="zc-letter">c</span>
+            <span id="letter12" class="zc-letter">o</span>
+            <span id="letter13" class="zc-letter">n</span>
+            <span id="letter14" class="zc-letter">g</span>
+        </div>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-github"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WhiteYin</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">很高兴能认识你。ლ(⌒▽⌒ლ)</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: 'JS-ES6新特性的注意点', 
+            owner: 'WhiteYin',
+            repo: 'hexo-comment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1a77fe8d1c08450bd56d871160dcdc76a156bf77',
+            
+                client_id: '0be43d9564938da5b5cd'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("CO7tO6jOgFCHBhw3ME7orIY3-gzGzoHsz", "PuQRDwbMAdXl1XiXGTvkMOh9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
