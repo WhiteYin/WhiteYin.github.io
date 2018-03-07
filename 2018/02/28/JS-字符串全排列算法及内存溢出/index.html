@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="前端吟游诗">
 <meta property="og:description" content="总结JS全排列的3种算法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-28T03:28:46.317Z">
+<meta property="og:updated_time" content="2018-02-28T03:31:13.986Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS 字符串全排列算法及内存溢出">
 <meta name="twitter:description" content="总结JS全排列的3种算法。">
@@ -402,10 +402,9 @@
 <li>每次取当次递归串的第一个字母；</li>
 <li>若第二个参数长度为0说明是第一次递归，则初始化本次结果为<code>[首字母]</code>。然后将首字母从递归串中剔除，剩余串传给下一次递归;</li>
 <li>之后每一次递归，都取递归串的首字母，将其插入前x个字符的全排列的所有位置，求出x+1个字符的全排列；</li>
-<li><p>递归直到第一个参数为空串，则第二个参数为字符串所有字符的全排列。</p>
-<p>可能不太好理解，不过知道这是尾递归就行了。虽然尾递归在ES6的严格模式中才有效，但是，我加上<code>&#39;use strict&#39;;</code>后仍然无效。事实上我认为并不是函数调用栈的溢出，而是存放变量的堆溢出。所以，大概是无解了吧。毕竟全排列不管怎么样，空间复杂度都是O(n!)的。</p>
-</li>
+<li>递归直到第一个参数为空串，则第二个参数为字符串所有字符的全排列。  </li>
 </ol>
+<p>可能不太好理解，不过知道这是尾递归就行了。虽然尾递归在ES6的严格模式中才有效，但是，我加上<code>&#39;use strict&#39;;</code>后仍然无效。事实上我认为并不是函数调用栈的溢出，而是存放变量的堆溢出。所以，大概是无解了吧。毕竟全排列不管怎么样，空间复杂度都是O(n!)的。</p>
 <h1 id="算法三：循环"><a href="#算法三：循环" class="headerlink" title="算法三：循环"></a>算法三：循环</h1><p>最后再贴个循环的代码吧，也是没什么用，就当扩展思路了。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">perm</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> result = [],tempArr = [];</span><br><span class="line">    <span class="keyword">let</span> subStr = str;</span><br><span class="line">    <span class="keyword">while</span> (subStr.length !== <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (result.length === <span class="number">0</span>) &#123;</span><br><span class="line">            result.push(str[<span class="number">0</span>]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; result.length; i++) &#123;</span><br><span class="line">                <span class="keyword">let</span> item = result[i];</span><br><span class="line">                <span class="keyword">let</span> itemLen = item.length;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; itemLen+<span class="number">1</span>; j++) &#123;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">let</span> temp = item.slice(<span class="number">0</span>, j) + subStr[<span class="number">0</span>] + item.slice(j);</span><br><span class="line">                    tempArr.push(temp);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            result = tempArr;</span><br><span class="line">            tempArr = [];</span><br><span class="line">        &#125;</span><br><span class="line">        subStr = subStr.slice(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>第一次遇到解决不了的问题啊，感觉很不开心。我还特地跑到<a href="https://stackoverflow.com/questions/49008971/how-to-avoid-my-permutation-algorithm-of-errorheap-out-memory/49009227#49009227" target="_blank" rel="noopener">stackoverflow</a>上问了，然后回答的都不能解决。所以我也只好放弃了，真是不甘心。</p>
 
@@ -438,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/24/JS-ES6新特性的注意点/" rel="next" title="JS-ES6新特性的注意点">
-                <i class="fa fa-chevron-left"></i> JS-ES6新特性的注意点
+              <a href="/2018/02/24/JS-ES6新特性的注意点/" rel="next" title="JS ES6新特性的注意点">
+                <i class="fa fa-chevron-left"></i> JS ES6新特性的注意点
               </a>
             
           </div>
@@ -447,6 +446,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/07/GIT-指令记录/" rel="prev" title="Git 指令记录">
+                Git 指令记录 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -558,7 +561,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -569,7 +572,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -580,7 +583,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
