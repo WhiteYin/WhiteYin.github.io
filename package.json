@@ -20,5 +20,8 @@
     "hexo-renderer-stylus": "^0.3.1",
     "hexo-server": "^0.2.0",
     "void-elements": "^3.1.0"
+  },
+  "devDependencies": {
+    "uglify-js": "^3.3.16"
   }
 }
