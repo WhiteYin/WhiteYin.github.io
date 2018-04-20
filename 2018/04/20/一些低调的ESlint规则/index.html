@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="webpack,插件," />
+  <meta name="keywords" content="前端随笔,前端," />
 
 
 
@@ -77,18 +77,18 @@
 
 
 
-<meta name="description" content="在clean-webpack-plugin基础上，优化删除文件的过程。">
-<meta name="keywords" content="webpack,插件">
+<meta name="description" content="在平常中发现不平常，自娱自乐的一篇水文。">
+<meta name="keywords" content="前端随笔,前端">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack 删除重复文件的一种优化思路">
-<meta property="og:url" content="https://whiteyin.github.io/2018/03/07/webpack-删除重复文件的一种优化思路/index.html">
+<meta property="og:title" content="一些低调的ESlint规则">
+<meta property="og:url" content="https://whiteyin.github.io/2018/04/20/一些低调的ESlint规则/index.html">
 <meta property="og:site_name" content="前端吟游诗">
-<meta property="og:description" content="在clean-webpack-plugin基础上，优化删除文件的过程。">
+<meta property="og:description" content="在平常中发现不平常，自娱自乐的一篇水文。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-22T07:50:04.336Z">
+<meta property="og:updated_time" content="2018-04-20T02:27:17.293Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpack 删除重复文件的一种优化思路">
-<meta name="twitter:description" content="在clean-webpack-plugin基础上，优化删除文件的过程。">
+<meta name="twitter:title" content="一些低调的ESlint规则">
+<meta name="twitter:description" content="在平常中发现不平常，自娱自乐的一篇水文。">
 
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://whiteyin.github.io/2018/03/07/webpack-删除重复文件的一种优化思路/"/>
+  <link rel="canonical" href="https://whiteyin.github.io/2018/04/20/一些低调的ESlint规则/"/>
 
 
 
 
 
-  <title>webpack 删除重复文件的一种优化思路 | 前端吟游诗</title>
+  <title>一些低调的ESlint规则 | 前端吟游诗</title>
   
 
 
@@ -281,7 +281,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://whiteyin.github.io/2018/03/07/webpack-删除重复文件的一种优化思路/">
+    <link itemprop="mainEntityOfPage" href="https://whiteyin.github.io/2018/04/20/一些低调的ESlint规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="白吟">
@@ -298,7 +298,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">webpack 删除重复文件的一种优化思路</h2>
+          <h2 class="post-title" itemprop="name headline">一些低调的ESlint规则</h2>
         
 
         <div class="post-meta">
@@ -310,8 +310,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-07T16:28:52+08:00">
-                2018-03-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T10:25:24+08:00">
+                2018-04-20
               </time>
             
 
@@ -333,8 +333,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/webpack/" itemprop="url" rel="index">
-                    <span itemprop="name">webpack</span>
+                  <a href="/categories/前端随笔/" itemprop="url" rel="index">
+                    <span itemprop="name">前端随笔</span>
                   </a>
                 </span>
 
@@ -351,8 +351,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/07/webpack-删除重复文件的一种优化思路/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/03/07/webpack-删除重复文件的一种优化思路/" itemprop="commentsCount"></span>
+                <a href="/2018/04/20/一些低调的ESlint规则/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/20/一些低调的ESlint规则/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -360,7 +360,7 @@
 
           
           
-             <span id="/2018/03/07/webpack-删除重复文件的一种优化思路/" class="leancloud_visitors" data-flag-title="webpack 删除重复文件的一种优化思路">
+             <span id="/2018/04/20/一些低调的ESlint规则/" class="leancloud_visitors" data-flag-title="一些低调的ESlint规则">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -378,7 +378,7 @@
 
           
               <div class="post-description">
-                  在clean-webpack-plugin基础上，优化删除文件的过程。
+                  在平常中发现不平常，自娱自乐的一篇水文。
               </div>
           
 
@@ -395,34 +395,23 @@
       
 
       
-        <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>很多人使用webpack打包文件，为了防止浏览器缓存，经常会这样设置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">        path: path.resolve(__dirname, &quot;./dist&quot;),</span><br><span class="line">        filename: &quot;bundle-[hash:5].js&quot;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>给文件hash编码后加在文件名后面，只要文件修改，都会生成不同的文件名。但是，经过多次打包后，往往会遇到这样的情况：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/dist目录</span><br><span class="line">|--  bundle-6ece9.js</span><br><span class="line">|--  bundle-b41c3.js</span><br><span class="line">|--  bundle-d303d.js</span><br><span class="line">|--  index.html</span><br><span class="line">|--  style-6ece9.css</span><br><span class="line">|--  style-b41c3.css</span><br><span class="line">|--  style-d303d.css</span><br></pre></td></tr></table></figure></p>
-<p>除了我们的index.html如海边的礁石一般巍然不动，js、css文件都仿佛拉帮结派，一茬一茬的。该怎么删除这些重复的文件呢？</p>
-<h3 id="解决方法一"><a href="#解决方法一" class="headerlink" title="解决方法一"></a>解决方法一</h3><p>很多人都推荐使用“clean-webpack-plugin”插件，它能在Webpack编译之前就删除所有文件。<br><em>优点</em>：轻量级插件，配置简单。<br><em>缺点</em>：在大型项目中，如果只改变了一个文件却需要删除其他所有未改变的文件，这些文件数量不定但对性能还是有一定影响，因此这个插件性能上还有提升空间。</p>
-<h3 id="解决方法二"><a href="#解决方法二" class="headerlink" title="解决方法二"></a>解决方法二</h3><p>写过Webpack插件的前端同行，可能知道compiler对象以及相关的事件钩子。  </p>
-<p>在此介绍两种与本文相关的钩子：</p>
-<ol>
-<li>compile：开始编译，在创建 compilation 对象之前；</li>
-<li>done：所有的编译过程已完成。  </li>
-</ol>
-<p>方法一中的clean-webpack-plugin插件就是在compile阶段删除目标文件夹。而想要优化该插件，思路就是在done阶段删除上一次打包后留下的废弃文件。</p>
-<p>这时有一个新的问题，在done阶段，项目中所有文件都编译完成，存放在dist文件夹中了，怎么区分哪些是这次打包产生的新文件，哪些是上一次打包产生的旧文件呢？</p>
-<p>这里，再介绍一下compilation对象。</p>
-<blockquote>
-<p>compilation 对象代表了一次单一的版本 webpack 构建和生成编译资源的过程，compilation 对象可以访问所有的模块和它们的依赖（大部分是循环依赖）。  </p>
-</blockquote>
-<p>了解compilation对象的概念后，介绍一下它的一个属性assets。compilation.assets的值是一个对象，其中每一属性名都是本次打包产生的文件的文件名，打印出来如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">assets:</span><br><span class="line">&#123; </span><br><span class="line">	&apos;bundle-a82da.js&apos;:</span><br><span class="line">	&#123;</span><br><span class="line">		existsAt: &apos;...\\dist\\bundle-a82da.js&apos; </span><br><span class="line">	&#125;,</span><br><span class="line">	&apos;style-cc549.css&apos;:</span><br><span class="line">		ConcatSource &#123;</span><br><span class="line">			children: [Object],</span><br><span class="line">			existsAt: &apos;...\\dist\\style-cc549.css&apos;,</span><br><span class="line">			emitted: true </span><br><span class="line">		&#125;,</span><br><span class="line">	&apos;index.html&apos;:</span><br><span class="line">	&#123; </span><br><span class="line">		source: [Function: source],</span><br><span class="line">		size: [Function: size],</span><br><span class="line">		existsAt: &apos;...\\dist\\index.html&apos;,</span><br><span class="line">		emitted: true </span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>因此，通过assets属性我们就解决了如何区分本次打包与之前打包产生的文件的问题。只需要遍历一次dist目录所有文件，若assets对象中不包含该文件的文件名，那就说明这是“前朝余孽”，直接斩立决。</p>
-<p>核心代码如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">buildDir = <span class="keyword">this</span>.buildDir;</span><br><span class="line">compiler.plugin(<span class="string">'done'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">compat</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取资源数组对象</span></span><br><span class="line">    <span class="keyword">const</span> newlyCreatedAssets = compat.compilation.assets;</span><br><span class="line">    <span class="keyword">const</span> unlinked = [];</span><br><span class="line">    fs.readdir(path.resolve(buildDir), (err, files) =&gt; &#123;</span><br><span class="line">        files.forEach(<span class="function"><span class="params">file</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="comment">//删除当前打包资源组中不存在的文件</span></span><br><span class="line">            <span class="keyword">if</span> (!newlyCreatedAssets[file]) &#123;</span><br><span class="line">                fs.unlink(path.resolve(buildDir + file));</span><br><span class="line">                unlinked.push(file);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">if</span> (unlinked.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'删除文件: '</span>, unlinked);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
-<p>使用时只需要传入目标文件夹的目录url即可，如“./dist/”。</p>
-<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>为了方便的使用，我做了一个插件上传到npm仓库。  </p>
-<p>1.初始化npm<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure></p>
-<p>2.安装模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i webpack-remove-hashed-files --save-dev</span><br></pre></td></tr></table></figure></p>
-<p>3.修改webpack.config.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">const removeFiles = require(&apos;webpack-remove-hashed-files&apos;);</span><br><span class="line">//你的打包目标文件夹</span><br><span class="line">//your distnation folder</span><br><span class="line">const buildDir = &apos;./dist/&apos;;</span><br><span class="line">//……修改plugins</span><br><span class="line">//...modify plugins</span><br><span class="line">plugins:[</span><br><span class="line">    new removeFiles(buildDir)</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
-<p>源码请看我的<a href="https://github.com/WhiteYin/webpack-remove-hashed-files" target="_blank" rel="noopener">github仓库</a></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>我的方法主要是判断文件是否为本次打包产生来减少文件删除的时间，但是相比较于clean-webpack-plugin插件，功能还缺少删除白名单和文件名正则匹配等，这些都会在我有空的时间添加。  </p>
-<p>另外可能有的同行觉得clean-webpack-plugin不能满足某些需求，不妨试试我的这款插件，也许有意外之喜。  </p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://zoumiaojiang.com/article/what-is-real-webpack-plugin/#compilation-1" target="_blank" rel="noopener">看清楚真正的 Webpack 插件</a><br><a href="http://www.css88.com/doc/webpack/development/how-to-write-a-plugin/" target="_blank" rel="noopener">如何编写一个插件？</a></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>ESlint的重要性我就不说了，基本上每家公司的前端团队都会有自己的一套规范。要么是用Google的，要么是用Airbnb的，或者是自己配置一个。</p>
+<p>曾经我用的是Google的规范，但是4月初的时候我在Medium上看到一篇关于Google代码规范的文章，顺带翻译了一下。感觉有的规则我并不太认同，所以为了以后不被这些规则所困扰，我决定自己配置一套。</p>
+<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><p>个人规范其实配合eslint的recommended配置挺不错的，但是我希望有一天能够脱离这个官方推荐配置，我还是给规范添加了环境。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">env: &#123;</span><br><span class="line">    <span class="string">'browser'</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'node'</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'jest'</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'jquery'</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'mongo'</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'es6'</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">'mocha'</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;,</span><br><span class="line">parserOptions: &#123;</span><br><span class="line">    <span class="string">'ecmaFeatures'</span>: &#123;</span><br><span class="line">        <span class="string">'experimentalObjectRestSpread'</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">'jsx'</span>: <span class="literal">true</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'sourceType'</span>: <span class="string">'module'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出这份规范支持浏览器、Node、Jest、jQuery等环境，还支持jsx和ESM。  </p>
+<p>不过这不是重点，本文要讲的还是我在阅读规则文档时看到的一些奇怪的规则。虽然数量不多，但是在枯燥的复制、粘贴的过程中突然看见它们，能够让我的心情也缓和了许多。</p>
+<h1 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h1><h2 id="no-div-regex"><a href="#no-div-regex" class="headerlink" title="no-div-regex"></a>no-div-regex</h2><p>no-div-regex的意思是禁止在正则表达式前出现疑似<code>/</code>的符号。  </p>
+<p>比如<code>/=123/</code>，正则前的等号使得整个表达式像是一个除法表达式。虽然这种情况并不会影响代码的结果，但为了可读性还是建议加上转义字符<code>/\=123/</code>。</p>
+<h2 id="no-extend-native"><a href="#no-extend-native" class="headerlink" title="no-extend-native"></a>no-extend-native</h2><p>no-extend-native的意思是禁止扩展原生对象，因为这样会影响到代码的其他部分。之所以觉得有趣，是因为想到之前在掘金上看到一篇扩展Date对象的文章，然后评论里各种质疑这件行为是否有意义。反正作者觉得有用，我是不想在网上争论这种事情的。</p>
+<h2 id="yoda"><a href="#yoda" class="headerlink" title="yoda"></a>yoda</h2><p>如果说什么电影是西方人心目中最好的科幻片，那答案一定是《星球大战》。yoda这个规则说得就是《星球大战》里的倒装大师yoda的说话方式。</p>
+<p>比如判断语句：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// yoda体</span></span><br><span class="line"><span class="keyword">if</span>(<span class="number">1</span> === a)</span><br><span class="line"><span class="comment">// 正常</span></span><br><span class="line"><span class="keyword">if</span>(a === <span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>在其他语言中，一般会推荐用yoda体，因为这样避免省略等号，误将1赋值给变量a。但是在JS里并不需要，毕竟我们使用的是<code>===</code>。如果还能做到省略两个等号的话，那我也无fu**k说。</p>
+<h2 id="max-nested-callbacks"><a href="#max-nested-callbacks" class="headerlink" title="max-nested-callbacks"></a>max-nested-callbacks</h2><p>回调地狱是ES5让人诟病的地方。为了顺序执行一系列的异步操作，只能通过回调嵌套的方式来实现。也就出现了下面的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">foo(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    bar(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        baz(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            qux(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>不得不说这让我想起才学前端时写的辣鸡代码，摇头苦笑之余不忘给这条规则加了<code>max:3</code>的限制。</p>
+<h2 id="array-element-newline"><a href="#array-element-newline" class="headerlink" title="array-element-newline"></a>array-element-newline</h2><p>array-element-newline规定代码中的数组项必须换行。如果设置为always的话，正确的代码是下面这样的：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [</span><br><span class="line">    <span class="number">1</span>,</span><br><span class="line">    <span class="number">2</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p>真的有人会写出这种代码吗……</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>闲来无事，所以写写这种没什么技术含量的文章调节下心情。规范这种事情，主观意愿太强，好坏各有各的看法。  </p>
+<p>在做这种项目基础的时候，其实是很容易感到枯燥乏味的。不过呢，多发现一些小小的闪光点，往往就能让自己的疲惫一扫而空。</p>
 
       
     </div>
@@ -443,7 +432,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://whiteyin.github.io/2018/03/07/webpack-删除重复文件的一种优化思路/" title="webpack 删除重复文件的一种优化思路">https://whiteyin.github.io/2018/03/07/webpack-删除重复文件的一种优化思路/</a>
+    <a href="https://whiteyin.github.io/2018/04/20/一些低调的ESlint规则/" title="一些低调的ESlint规则">https://whiteyin.github.io/2018/04/20/一些低调的ESlint规则/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -458,9 +447,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/webpack/" rel="tag"># webpack</a>
+            <a href="/tags/前端随笔/" rel="tag"># 前端随笔</a>
           
-            <a href="/tags/插件/" rel="tag"># 插件</a>
+            <a href="/tags/前端/" rel="tag"># 前端</a>
           
         </div>
       
@@ -473,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/07/GIT-指令记录/" rel="next" title="Git 指令记录">
-                <i class="fa fa-chevron-left"></i> Git 指令记录
+              <a href="/2018/04/11/现在的我以及未来的我/" rel="next" title="现在的我以及未来的我">
+                <i class="fa fa-chevron-left"></i> 现在的我以及未来的我
               </a>
             
           </div>
@@ -482,10 +471,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/20/自学前端的读书路线（基础）/" rel="prev" title="自学前端的读书路线（基础）">
-                自学前端的读书路线（基础） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -680,7 +665,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">1.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法一"><span class="nav-number">2.</span> <span class="nav-text">解决方法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法二"><span class="nav-number">3.</span> <span class="nav-text">解决方法二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件"><span class="nav-number">4.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-number">2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规则"><span class="nav-number">3.</span> <span class="nav-text">规则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#no-div-regex"><span class="nav-number">3.1.</span> <span class="nav-text">no-div-regex</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#no-extend-native"><span class="nav-number">3.2.</span> <span class="nav-text">no-extend-native</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yoda"><span class="nav-number">3.3.</span> <span class="nav-text">yoda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#max-nested-callbacks"><span class="nav-number">3.4.</span> <span class="nav-text">max-nested-callbacks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#array-element-newline"><span class="nav-number">3.5.</span> <span class="nav-text">array-element-newline</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -904,7 +889,7 @@ var jiathis_config={
       <script type="text/javascript">
       function renderGitment(){
         var gitment = new Gitmint({
-            id: 'webpack 删除重复文件的一种优化思路', 
+            id: '一些低调的ESlint规则', 
             owner: 'WhiteYin',
             repo: 'hexo-comment',
             
