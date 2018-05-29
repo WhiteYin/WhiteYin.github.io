@@ -85,7 +85,7 @@
 <meta property="og:site_name" content="前端吟游诗">
 <meta property="og:description" content="记录我学习ES6新特性时总结的一些的注意点。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-07T08:21:06.975Z">
+<meta property="og:updated_time" content="2018-05-29T04:01:49.997Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS ES6新特性的注意点">
 <meta name="twitter:description" content="记录我学习ES6新特性时总结的一些的注意点。">
@@ -485,7 +485,49 @@
 <h2 id="十三、Set和Map"><a href="#十三、Set和Map" class="headerlink" title="十三、Set和Map"></a>十三、Set和Map</h2><p>Set中没有重复值，事实上这是因为Set的键名就是值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const arr = [1,&quot;2&quot;,&#123;&#125;,[],null,undefined,true];</span><br><span class="line">const set = new Set(arr);</span><br><span class="line">set.forEach((key,value)=&gt;console.log(key,&quot;+&quot;,value));</span><br><span class="line">/*输出</span><br><span class="line">//1&quot;:&quot;1</span><br><span class="line">//1:1</span><br><span class="line">//&#123;&#125;:&#123;&#125;</span><br><span class="line">//[]:[]</span><br><span class="line">//null&quot;:&quot;null</span><br><span class="line">//undefined&quot;:&quot;undefined</span><br><span class="line">//true&quot;:&quot;true</span><br><span class="line">*/</span><br></pre></td></tr></table></figure></p>
 <p>另一方面，Set中的键值对的顺序与添加时的顺序一致。  </p>
 <p>Map是对原始对象的升级，因为原始对象的属性名都是字符串类型，也就是<code>字符串：值</code>，而Map的属性名可以是任意值，也就是<code>值：值</code>。</p>
-<p>比较Set和Map的CURD接口：<br>类型|Set|Map<br>–|–|–<br>新增/修改|add|set<br>删除|delete|delete和clear<br>查找|没有|get<br>检测存在|has|has<br>默认遍历方法|values|entries<br>元素个数|size属性|size属性<br>ES6给出的Set接口中并没有获取某一特定值的方法，感觉也没有这么个需求。毕竟键值相同，如果知道要找什么值，那为什么还要遍历Set去找这个值呢？反正就是没有这个需要。</p>
+<p>比较Set和Map的CURD接口：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>Set</th>
+<th>Map</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新增/修改</td>
+<td>add</td>
+<td>set</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>delete</td>
+<td>delete和clear</td>
+</tr>
+<tr>
+<td>查找</td>
+<td>没有</td>
+<td>get</td>
+</tr>
+<tr>
+<td>检测存在</td>
+<td>has</td>
+<td>has</td>
+</tr>
+<tr>
+<td>默认遍历方法</td>
+<td>values</td>
+<td>entries</td>
+</tr>
+<tr>
+<td>元素个数</td>
+<td>size属性</td>
+<td>size属性</td>
+</tr>
+</tbody>
+</table>
+<p>ES6给出的Set接口中并没有获取某一特定值的方法，感觉也没有这么个需求。毕竟键值相同，如果知道要找什么值，那为什么还要遍历Set去找这个值呢？反正就是没有这个需要。</p>
 <h3 id="关于WeakSet和WeakMap"><a href="#关于WeakSet和WeakMap" class="headerlink" title="关于WeakSet和WeakMap"></a>关于WeakSet和WeakMap</h3><p>这两个是弱引用的Set或Map，成员的键名只能是对象，因为WeakSet的键与值一样，所以它的成员只能是对象。如果这些对象在外部引用消除，垃圾回收了，WeakSet或WeakMap里的引用也会消除。也就是说，这两个数据类型里的引用会被垃圾回收机制忽视。由于不知道什么时候会垃圾回收，所以这两个数据结构可能每次返回值都不一样。因此，没有给他们遍历接口，也没有size属性。而利用这个特性，一旦键名对象不再被外部需要，WeakMap 里面的键名对象和所对应的键值对会自动消失，不用手动删除引用。</p>
 <h2 id="十四、生成器Generator"><a href="#十四、生成器Generator" class="headerlink" title="十四、生成器Generator"></a>十四、生成器Generator</h2><p>Generator是ES6提出的一种异步解决方案，也可以看成是一个状态机，可以生成一个遍历器对象。声明使用<code>function*</code>表达形式，内部的状态跳转使用yield关键字。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个Generator函数</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">gen</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第一次运行"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第一次中断"</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第二次运行"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第二次中断"</span>);</span><br><span class="line">    <span class="keyword">yield</span> <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"第三次运行"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"运行结束"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//执行该函数，返回一个迭代器对象</span></span><br><span class="line"><span class="keyword">const</span> g = gen();</span><br><span class="line"><span class="built_in">console</span>.log(g);</span><br><span class="line"><span class="comment">//&#123;[[GeneratorStatus]]: "suspended"&#125;，这里GeneratorStatus是该状态机当前的状态</span></span><br><span class="line"><span class="comment">//遍历方式一：执行next</span></span><br><span class="line">g.next();<span class="comment">//第一次运行 第一次中断 &#123;value: 1, done: false&#125;</span></span><br><span class="line">g.next();<span class="comment">//第二次运行 第二次中断 &#123;value: 2, done: false&#125;</span></span><br><span class="line">g.next();<span class="comment">//第三次运行 运行结束 &#123;value: 3, done: true&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历方式二：for...of</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> obj <span class="keyword">of</span> g)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(obj);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*第一次运行</span></span><br><span class="line"><span class="comment">第一次中断</span></span><br><span class="line"><span class="comment">1</span></span><br><span class="line"><span class="comment">第二次运行</span></span><br><span class="line"><span class="comment">第二次中断</span></span><br><span class="line"><span class="comment">2</span></span><br><span class="line"><span class="comment">第三次运行</span></span><br><span class="line"><span class="comment">运行结束*/</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(g);</span><br><span class="line"><span class="comment">//&#123;[[GeneratorStatus]]: "closed"&#125;，最后状态改变了</span></span><br></pre></td></tr></table></figure></p>
 <p>可以看出几个特点：</p>
@@ -682,7 +724,7 @@ var jiathis_config={
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -693,7 +735,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -704,7 +746,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
