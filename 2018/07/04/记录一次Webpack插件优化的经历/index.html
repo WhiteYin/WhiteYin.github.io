@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="webpack,插件," />
 
 
 
@@ -77,16 +77,18 @@
 
 
 
-<meta name="description" content="在我的小窝，吟唱我的歌">
-<meta property="og:type" content="website">
-<meta property="og:title" content="前端吟游诗">
-<meta property="og:url" content="https://whiteyin.github.io/tags/xhtml/index.html">
+<meta name="description" content="重构插件的逻辑，根据路径来判断新旧文件。解决了与file-loader不兼容的bug">
+<meta name="keywords" content="webpack,插件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="记录一次Webpack插件优化的经历">
+<meta property="og:url" content="https://whiteyin.github.io/2018/07/04/记录一次Webpack插件优化的经历/index.html">
 <meta property="og:site_name" content="前端吟游诗">
-<meta property="og:description" content="在我的小窝，吟唱我的歌">
+<meta property="og:description" content="重构插件的逻辑，根据路径来判断新旧文件。解决了与file-loader不兼容的bug">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-04T08:31:46.120Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="前端吟游诗">
-<meta name="twitter:description" content="在我的小窝，吟唱我的歌">
+<meta name="twitter:title" content="记录一次Webpack插件优化的经历">
+<meta name="twitter:description" content="重构插件的逻辑，根据路径来判断新旧文件。解决了与file-loader不兼容的bug">
 
 
 
@@ -116,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://whiteyin.github.io/tags/xhtml/"/>
+  <link rel="canonical" href="https://whiteyin.github.io/2018/07/04/记录一次Webpack插件优化的经历/"/>
 
 
 
 
 
-  <title>标签: xhtml | 前端吟游诗</title>
+  <title>记录一次Webpack插件优化的经历 | 前端吟游诗</title>
   
 
 
@@ -151,7 +153,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,54 +267,258 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>xhtml<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://whiteyin.github.io/2018/07/04/记录一次Webpack插件优化的经历/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="白吟">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前端吟游诗">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/10/11/xhtml与html的区别/" itemprop="url">
-              
-                <span itemprop="name">xhtml与html的区别</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">记录一次Webpack插件优化的经历</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-10-11T12:27:18+08:00"
-              content="2017-10-11" >
-          10-11
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-04T16:27:28+08:00">
+                2018-07-04
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/04/记录一次Webpack插件优化的经历/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/07/04/记录一次Webpack插件优化的经历/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/07/04/记录一次Webpack插件优化的经历/" class="leancloud_visitors" data-flag-title="记录一次Webpack插件优化的经历">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  重构插件的逻辑，根据路径来判断新旧文件。解决了与file-loader不兼容的bug
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="起"><a href="#起" class="headerlink" title="起"></a>起</h1><p>去年12月份，我一个才毕业半年的前端新人接触了Webpack。跟着网上教程学习时，遇到了一个难题：文件名加上hash编码后，多次打包会有之前残留的文件。  </p>
+<p>当时看的那篇文章，并没有提到<a href="https://github.com/johnagan/clean-webpack-plugin" target="_blank" rel="noopener"><code>clean-webpack-plugin</code></a>，所以我就傻傻的手动删除。还很奇怪为什么这么严重的问题没人说过……其实就是当时google的关键字有问题，没搜到正确的结果。</p>
+<p>不过也是那次误打误撞，让我开始维护一个自己的Webpack插件——<a href="https://github.com/WhiteYin/webpack-remove-hashed-files" target="_blank" rel="noopener">webpack-remove-hashed-files</a>。具体功能可以看我<a href="https://whiteyin.github.io/2018/03/07/webpack-%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E7%A7%8D%E4%BC%98%E5%8C%96%E6%80%9D%E8%B7%AF/">之前的文章</a>。</p>
+<h1 id="承"><a href="#承" class="headerlink" title="承"></a>承</h1><p>本来这个插件吧，功能也不是很复杂，所以我开发好第一版后就没管了。只有后面收到一封邮件，按要求我新增了白名单的功能。接着就搁置了三个月吧。</p>
+<p>不过呢，昨天在新项目里需要用到几个本地的图片，于是就发现了一个<a href="https://github.com/WhiteYin/webpack-remove-hashed-files/issues/4" target="_blank" rel="noopener">bug</a>。</p>
+<p>就是说，我在项目中本来要用<code>file-loader</code>去处理js和css中引入的本地图片，将他们打包到<code>dist</code>文件夹下。然后呢，我打算把它们都放在<code>dist/assets/images</code>子文件夹下。于是就配置<code>file-loader</code>，option为<code>{name: &#39;assets/images/[name].[ext]&#39;}</code>。</p>
+<p>然而就是这个配置导致我的删除插件出了问题。</p>
+<p>本来我插件的设计是遍历<code>dist</code>目录，将所有文件的文件名与Webpack的<code>compliation.assets</code>的键名比较，如果文件名能够对应于某一个键名，说明是本次打包的内容，将其保留。其他的都删除。这是不考虑白名单的思路。</p>
+<p>但是，不知道为什么，<code>file-loader</code>处理后的文件，在<code>assets</code>中是以类似于<code>assets/images/a.jpg</code>的键名保存的，这就导致遍历<code>dist</code>文件夹时，我是用<code>a.jpg</code>与<code>assets/images/a.jpg</code>做比较。虽然这是同一个文件，但实际上被误认为两个文件，从而导致删除bug。</p>
+<p>那么我该怎么解决呢？</p>
+<h1 id="转"><a href="#转" class="headerlink" title="转"></a>转</h1><p>首先要明确问题出现所涉及到的两个角色：<code>file-loader</code>与<code>webpack-remove-hashed-files</code>。其次，能够修改的是<code>file-loader</code>的options与删除插件的源码。而我的目的就是要把所有图片都存放在<code>dist/assets/images</code>文件夹下，所以<code>file-loader</code>的options是不能修改的，应该重构插件的源码来适应<code>file-loader</code>的配置。</p>
+<p>说实话，昨天想了一天才解决好这个问题。因为一直没明白，<code>file-loader</code>到底是怎么做到又改文件名又能创建个新文件夹的……</p>
+<p>继续说怎么修改删除插件的源码吧。我苦思冥想N个小时后，决定推翻以前的判断逻辑。因为我想到了一个更简单的判断因素，而且这个因素才是删除插件的核心，只是一直被我忽略了。那就是【<strong>文件路径</strong>】。</p>
+<p>在<code>compliation.assets</code>中，每一键对应一个文件对象，其中有一个字段<code>existsAt</code>表明打包后的文件所在的绝对路径。那么我们先将这些路径保存到一个数组<code>dirArrays</code>中，然后在遍历<code>dist</code>下所有文件时，在<code>dirArrays</code>中搜索每个不在白名单中的文件的绝对路径，如果存在则保留；不存在则说明不是本次打包的内容，应该删除。</p>
+<p>听上去是不是既不影响原有功能，而且还能解决<code>file-loader</code>的bug问题？另外还比之前的逻辑要简单一些。</p>
+<p>至于为什么说文件路径是删除插件的核心？因为插件实质上做了两件事：比较assets与<code>dist</code>中所有文件、删除非本次打包产生的文件。原本只有在删除时才要调用<code>fs.unlink</code>方法，传入文件路径参数。而现在在比较的时候就使用了文件路径。说明它贯穿了本插件的所有流程，说是核心也不为过了。</p>
+<h1 id="合"><a href="#合" class="headerlink" title="合"></a>合</h1><p>以上就是本次优化插件的完整记录了，总结一下就是自己造的轮子要多测试多维护，这样才能有理由写推广的文章，让更多人去使用hhh。</p>
+<p>另外，在遇到bug后我分析了一下竞品<code>clean-webpack-plugin</code>，发现它的思路跟去年我看得时候相比，还是默认在生命周期<code>emit</code>时遍历目标文件夹<code>dist</code>，如果文件不在白名单里就直接删除。这点也是它能够不受<code>file-loader</code>影响的原因。</p>
+<p>但也是我一开始文章中说过的，本次打包与上一次打包也许只有一个文件被修改，实际上只要删除旧的这一个文件就行，但<code>clean-webpack-plugin</code>是将所有文件都删除了。我觉得这一点在大项目中还是会导致打包时间问题的，所以就自己造了个轮子。</p>
+<p>还发现了一点，就是判断了是否有<code>compiler.hooks</code>，这是Webpack 4的新特性。后面我再修补下这个问题。</p>
+<p>最后，感谢阅读。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    白吟
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://whiteyin.github.io/2018/07/04/记录一次Webpack插件优化的经历/" title="记录一次Webpack插件优化的经历">https://whiteyin.github.io/2018/07/04/记录一次Webpack插件优化的经历/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/webpack/" rel="tag"># webpack</a>
+          
+            <a href="/tags/插件/" rel="tag"># 插件</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/05/实现深拷贝的一次尝试/" rel="next" title="实现深拷贝的一次尝试">
+                <i class="fa fa-chevron-left"></i> 实现深拷贝的一次尝试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -320,6 +526,17 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
 
         </div>
         
@@ -340,8 +557,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -433,6 +659,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起"><span class="nav-number">1.</span> <span class="nav-text">起</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#承"><span class="nav-number">2.</span> <span class="nav-text">承</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#转"><span class="nav-number">3.</span> <span class="nav-text">转</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#合"><span class="nav-number">4.</span> <span class="nav-text">合</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -592,6 +834,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
@@ -643,6 +889,30 @@
       </style>
     
 
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: '记录一次Webpack插件优化的经历', 
+            owner: 'WhiteYin',
+            repo: 'hexo-comment',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '1a77fe8d1c08450bd56d871160dcdc76a156bf77',
+            
+                client_id: '0be43d9564938da5b5cd'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
     
 
 
