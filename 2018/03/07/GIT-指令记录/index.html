@@ -86,7 +86,7 @@
 <meta property="og:description" content="记录Git常用指令。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://git-scm.com/book/en/v2/images/lifecycle.png">
-<meta property="og:updated_time" content="2018-03-22T07:49:43.053Z">
+<meta property="og:updated_time" content="2018-07-11T07:37:16.190Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git 指令记录">
 <meta name="twitter:description" content="记录Git常用指令。">
@@ -499,14 +499,16 @@
 <p> 命令中的占位符说明如下：</p>
 <p> 选项|说明<br> –|–<br> %H|提交对象（commit）的完整哈希字串<br> %h|提交对象的简短哈希字串<br> %T|树对象（tree）的完整哈希字串<br> %t|树对象的简短哈希字串<br> %P|父对象（parent）的完整哈希字串<br> %p|父对象的简短哈希字串<br> %an|作者（author）的名字<br> %ae|作者的电子邮件地址<br> %ad|作者修订日期（可以用 –date= 选项定制格式）<br> %ar|作者修订日期，按多久以前的方式显示<br> %cn|提交者（committer）的名字<br> %ce|提交者的电子邮件地址<br> %cd|提交日期<br> %cr|提交日期，按多久以前的方式显示<br> %s|提交说明</p>
 </li>
-<li>–graph:图形化提交历史，可以与–pretty结合显示美观的log。</li>
+<li><p>–graph:图形化提交历史，可以与–pretty结合显示美观的log。</p>
+</li>
 <li><p>其他常用格式选项：</p>
 <p> 选项|说明<br> –|–<br> –stat|显示每次更新的文件修改统计信息。<br> –shortstat|只显示 –stat 中最后的行数修改添加移除统计。<br> –name-only|仅在提交信息后显示已修改的文件清单。<br> –name-status|显示新增、修改、删除的文件清单。<br> –abbrev-commit|仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。<br> –relative-date|使用较短的相对时间显示（比如，“2 weeks ago”）。 </p>
 </li>
 <li><p>限制输出选项：</p>
-<p> 选项|说明<br> –since|从某个时间起，比如<code>--since=2.weeks</code>或<code>--since=2008-01-15</code>。<br> –until|到某个时间为止，格式与–since相似。<br> –author|指定作者<br> –grep|搜索提交说明中的关键字<br> –all-match|相当于选项的与操作<br> -S|显示对某个关键字符串进行修改的提交</p>
+<p> 选项|说明<br> –|–<br> –since|从某个时间起，比如<code>--since=2.weeks</code>或<code>--since=2008-01-15</code>。<br> –until|到某个时间为止，格式与–since相似。<br> –author|指定作者<br> –grep|搜索提交说明中的关键字<br> –all-match|相当于选项的与操作<br> -S|显示对某个关键字符串进行修改的提交</p>
 </li>
-<li>–decorate：查看当前所有分支指向的commit对象。</li>
+<li><p>–decorate：查看当前所有分支指向的commit对象。</p>
+</li>
 </ol>
 <h1 id="撤销操作"><a href="#撤销操作" class="headerlink" title="撤销操作"></a>撤销操作</h1><blockquote>
 <p>git commit –amend</p>
