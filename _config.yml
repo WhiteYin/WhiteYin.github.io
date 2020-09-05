@@ -31,6 +31,7 @@ skip_render:
  - demo/**
  - scc/**
  - visual/**
+ - myproject/**
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
 default_layout: post
