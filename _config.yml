@@ -84,4 +84,4 @@ theme: next
 deploy:
   type: git
   repo:
-    github: git@github.com:WhiteYin/WhiteYin.github.io.git,master
+    github: https://github.com/WhiteYin/WhiteYin.github.io.git,master
